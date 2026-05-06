@@ -296,6 +296,32 @@ export default function Home() {
       <div className="noise" />
       {stage === "broken" ? (
         <section className="error-stage" aria-label="Broken cheap website preview">
+          <div className={`welcome-language ${languageOpen ? "open" : ""}`}>
+            <button
+              className="language-trigger active"
+              onClick={() => setLanguageOpen((open) => !open)}
+              type="button"
+              aria-expanded={languageOpen}
+              aria-label="Change language"
+            >
+              {lang.toUpperCase()}
+            </button>
+            <div className="language-menu">
+              {(["en", "ru", "lv"] as Lang[]).map((item) => (
+                <button
+                  className={item === lang ? "active" : ""}
+                  key={item}
+                  onClick={() => {
+                    changeLang(item);
+                    setLanguageOpen(false);
+                  }}
+                  type="button"
+                >
+                  {item.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="broken-nav">
             <span />
             <span />

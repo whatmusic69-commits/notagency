@@ -97,6 +97,31 @@ a {
   top: 24px;
 }
 
+.welcome-language {
+  position: absolute;
+  right: 28px;
+  top: 24px;
+  z-index: 12;
+}
+
+.welcome-language .language-trigger {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  height: 42px;
+  min-width: 52px;
+}
+
+.welcome-language .language-menu {
+  border-color: var(--white);
+  box-shadow: 6px 6px 0 var(--pink);
+}
+
 .broken-nav span {
   animation: blink 1.6s infinite;
   background: var(--lime);
@@ -1916,6 +1941,11 @@ a {
   .error-stage,
   .repair-stage {
     padding: 82px 18px 28px;
+  }
+
+  .welcome-language {
+    right: 18px;
+    top: 20px;
   }
 
   .broken-browser {
