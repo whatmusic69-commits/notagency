@@ -122,6 +122,12 @@ a {
   box-shadow: 6px 6px 0 var(--pink);
 }
 
+.welcome-language.open .language-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 .broken-nav span {
   animation: blink 1.6s infinite;
   background: var(--lime);
