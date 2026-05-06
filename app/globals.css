@@ -538,16 +538,46 @@ a {
   gap: 10px;
 }
 
-.brand-mark {
-  align-items: center;
-  animation: spinSnap 7s infinite;
-  background: var(--ink);
-  border-radius: 8px;
-  color: var(--lime);
+.brand-mascot {
+  animation: brandMascotBounce 2.8s ease-in-out infinite;
+  background: var(--lime);
+  border: 3px solid var(--ink);
+  border-radius: 30% 70% 44% 56%;
+  box-shadow: 4px 4px 0 var(--ink);
   display: inline-flex;
+  flex: 0 0 auto;
   height: 42px;
-  justify-content: center;
+  position: relative;
   width: 42px;
+}
+
+.brand-eye {
+  background: var(--ink);
+  border-radius: 50%;
+  height: 6px;
+  position: absolute;
+  top: 14px;
+  width: 6px;
+}
+
+.brand-eye.left {
+  left: 12px;
+}
+
+.brand-eye.right {
+  right: 12px;
+}
+
+.brand-mouth {
+  background: var(--pink);
+  border: 2px solid var(--ink);
+  border-radius: 0 0 999px 999px;
+  height: 9px;
+  left: 50%;
+  position: absolute;
+  top: 24px;
+  transform: translateX(-50%);
+  width: 17px;
 }
 
 .desktop-nav {
@@ -1796,6 +1826,13 @@ a {
 @keyframes spinSnap {
   50% {
     transform: rotate(8deg) scale(1.06);
+  }
+}
+
+@keyframes brandMascotBounce {
+  50% {
+    border-radius: 61% 39% 55% 45%;
+    transform: translateY(-3px) rotate(-5deg);
   }
 }
 

@@ -35,7 +35,11 @@ export function SiteFooter({ lang = "en" }: { lang?: Lang }) {
     <footer className="site-footer">
       <div className="footer-main">
         <a className="footer-brand" href="/#home">
-          <span className="brand-mark">N!</span>
+          <span className="brand-mascot" aria-hidden="true">
+            <span className="brand-eye left" />
+            <span className="brand-eye right" />
+            <span className="brand-mouth" />
+          </span>
           NotAgency
         </a>
         <h2>{t.title}</h2>
