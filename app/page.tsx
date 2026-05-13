@@ -8,6 +8,7 @@ import {
   ChevronRight,
   Code2,
   Cpu,
+  ExternalLink,
   Globe2,
   LayoutDashboard,
   Palette,
@@ -19,6 +20,7 @@ import {
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { type Lang, readStoredLang, storeLang } from "./lib/language";
+import { projects } from "./lib/projects";
 
 type Stage = "broken" | "repairing" | "fixed";
 
@@ -55,6 +57,8 @@ const copy = {
     servicesTitle: "Что мы делаем",
     servicesSub: "Хаос — это рынок. Мы в нем — порядок.",
     portfolioTitle: "Портфолио без скучных кейсов",
+    portfolioAll: "Все проекты",
+    projectLink: "Смотреть проект",
     fitTitle: "Кому мы подходим",
     fitSub:
       "Мы не продаем спокойствие людям, которые сами не верят в свой проект. Мы входим туда, где есть амбиция, бюджет и готовность принимать решения.",
@@ -121,6 +125,8 @@ const copy = {
     servicesTitle: "Ko mēs darām",
     servicesSub: "Tirgus ir haoss. Mēs tajā esam kārtība.",
     portfolioTitle: "Portfolio bez garlaicīgiem keisiem",
+    portfolioAll: "Visi projekti",
+    projectLink: "Skatīt projektu",
     fitTitle: "Kam mēs deram",
     fitSub:
       "Mēs nepārdodam mierinājumu cilvēkiem, kuri paši netic savam projektam. Mēs ejam tur, kur ir ambīcija, budžets un gatavība pieņemt lēmumus.",
@@ -187,6 +193,8 @@ const copy = {
     servicesTitle: "What we build",
     servicesSub: "The market is chaos. We are the order inside it.",
     portfolioTitle: "Portfolio without sleepy case studies",
+    portfolioAll: "All projects",
+    projectLink: "View project",
     fitTitle: "Who we are for",
     fitSub:
       "We do not sell comfort to people who do not believe in their own project. We enter when there is ambition, budget and a willingness to decide.",
@@ -238,12 +246,6 @@ const copy = {
 };
 
 const serviceIcons = [LayoutDashboard, Cpu, Palette, Rocket];
-
-const projects = [
-  { name: "NEON DENTAL", type: "Clinic platform", color: "var(--cyan)" },
-  { name: "RAGE RENT", type: "Booking app", color: "var(--pink)" },
-  { name: "LEGAL CTRL", type: "Client portal", color: "var(--lime)" },
-];
 
 const budgets = ["< 1k", "1k-3k", "3k-8k", "8k+"];
 const welcomeSeenKey = "notagency-welcome-seen";
@@ -518,11 +520,22 @@ export default function Home() {
               <h2>{t.portfolioTitle}</h2>
             </div>
             <div className="project-rail">
-              {projects.map((project, index) => (
+              {projects.slice(0, 3).map((project, index) => (
                 <article className="project-card" key={project.name} style={{ "--accent": project.color } as React.CSSProperties}>
-                  <span>0{index + 1}</span>
+                  <span className="project-index">0{index + 1}</span>
                   <h3>{project.name}</h3>
-                  <p>{project.type}</p>
+                  <p className="project-type">{project.type}</p>
+                  <p className="project-summary">{project.summary[lang]}</p>
+                  <p className="project-details">{project.details[lang]}</p>
+                  <div className="project-tags">
+                    {project.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <a className="project-link" href={project.url} rel="noreferrer" target="_blank">
+                    {t.projectLink}
+                    <ExternalLink size={16} />
+                  </a>
                   <div className="project-screen">
                     <div />
                     <div />
@@ -531,6 +544,10 @@ export default function Home() {
                 </article>
               ))}
             </div>
+            <a className="portfolio-more" href="/portfolio">
+              {t.portfolioAll}
+              <ArrowRight size={22} />
+            </a>
           </section>
 
           <section className="fit-check">
