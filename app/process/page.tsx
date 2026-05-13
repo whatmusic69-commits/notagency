@@ -6,20 +6,18 @@ import {
   CheckCircle2,
   Flame,
   Globe2,
-  Menu,
   MousePointerClick,
   Rocket,
   ShieldCheck,
   Sparkles,
-  X,
   Zap,
 } from "lucide-react";
 import { SiteFooter } from "../components/SiteFooter";
+import { SiteHeader } from "../components/SiteHeader";
 import { type Lang, readStoredLang, storeLang } from "../lib/language";
 
 const copy = {
   en: {
-    nav: ["Home", "Work", "Portfolio", "Brief"],
     kicker: "NotAgency / Process",
     title: "No magic. Just pressure, taste and shipping.",
     text:
@@ -41,7 +39,6 @@ const copy = {
     ],
   },
   ru: {
-    nav: ["Главная", "Что делаем", "Портфолио", "Заявка"],
     kicker: "NotAgency / Процесс",
     title: "Без магии. Давление, вкус и запуск.",
     text:
@@ -63,7 +60,6 @@ const copy = {
     ],
   },
   lv: {
-    nav: ["Sākums", "Pakalpojumi", "Portfolio", "Pieteikums"],
     kicker: "NotAgency / Process",
     title: "Bez maģijas. Spiediens, gaume un palaišana.",
     text:
@@ -86,13 +82,10 @@ const copy = {
   },
 };
 
-const navLinks = ["/#home", "/#work", "/#portfolio", "/#brief"];
 const icons = [MousePointerClick, Sparkles, ShieldCheck, Zap, Rocket];
 
 export default function ProcessPage() {
   const [lang, setLang] = useState<Lang>("en");
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [languageOpen, setLanguageOpen] = useState(false);
   const t = copy[lang];
   const changeLang = (nextLang: Lang) => {
     storeLang(nextLang);
@@ -106,67 +99,11 @@ export default function ProcessPage() {
   return (
     <main className={`process-shell lang-${lang}`}>
       <div className="noise" />
-      <header className="topbar process-topbar">
-        <a className="brand" href="/#home">
-          <span className="brand-mascot" aria-hidden="true">
-            <span className="brand-eye left" />
-            <span className="brand-eye right" />
-            <span className="brand-mouth" />
-          </span>
-          NotAgency
-        </a>
-        <nav className="desktop-nav">
-          {t.nav.map((item, index) => (
-            <a href={navLinks[index]} key={item}>
-              {item}
-            </a>
-          ))}
-        </nav>
-        <div className="top-actions">
-          <div className={`language-switcher ${languageOpen ? "open" : ""}`}>
-            <button
-              className="language-trigger active"
-              onClick={() => setLanguageOpen((open) => !open)}
-              type="button"
-              aria-expanded={languageOpen}
-              aria-label="Change language"
-            >
-              {lang.toUpperCase()}
-            </button>
-            <div className="language-menu">
-              {(["en", "ru", "lv"] as Lang[]).map((item) => (
-                <button
-                  className={item === lang ? "active" : ""}
-                  key={item}
-                  onClick={() => {
-                    changeLang(item);
-                    setLanguageOpen(false);
-                  }}
-                  type="button"
-                >
-                  {item.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </div>
-          <button
-            className={`menu-button ${menuOpen ? "active" : ""}`}
-            type="button"
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-        <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-          {t.nav.map((item, index) => (
-            <a href={navLinks[index]} key={item} onClick={() => setMenuOpen(false)}>
-              {item}
-            </a>
-          ))}
-        </div>
-      </header>
+      <SiteHeader
+        className="process-topbar"
+        lang={lang}
+        onLangChange={changeLang}
+      />
 
       <section className="process-hero">
         <div className="process-copy">
@@ -181,7 +118,7 @@ export default function ProcessPage() {
               <ArrowLeft size={20} />
               {t.back}
             </a>
-            <a className="primary" href="/#brief">
+            <a className="primary" href="/brief">
               {t.brief}
               <Rocket size={20} />
             </a>

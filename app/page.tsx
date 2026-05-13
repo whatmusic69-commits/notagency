@@ -10,7 +10,6 @@ import {
   Cpu,
   Globe2,
   LayoutDashboard,
-  Menu,
   Palette,
   Rocket,
   Sparkles,
@@ -18,6 +17,7 @@ import {
   X,
 } from "lucide-react";
 import { SiteFooter } from "./components/SiteFooter";
+import { SiteHeader } from "./components/SiteHeader";
 import { type Lang, readStoredLang, storeLang } from "./lib/language";
 
 type Stage = "broken" | "repairing" | "fixed";
@@ -55,6 +55,21 @@ const copy = {
     servicesTitle: "Что мы делаем",
     servicesSub: "Хаос — это рынок. Мы в нем — порядок.",
     portfolioTitle: "Портфолио без скучных кейсов",
+    fitTitle: "Кому мы подходим",
+    fitSub:
+      "Мы не продаем спокойствие людям, которые сами не верят в свой проект. Мы входим туда, где есть амбиция, бюджет и готовность принимать решения.",
+    goodFit: "Работаем с",
+    badFit: "Не работаем с",
+    fitGood: [
+      "Фаундерами и владельцами, которые уверены в продукте и хотят сильный digital-образ.",
+      "Командами, которым нужен сайт, приложение или MVP с нормальной логикой, а не картинка для галочки.",
+      "Бизнесами, готовыми к быстрым решениям, честному фидбеку и запуску без театра согласований.",
+    ],
+    fitBad: [
+      "Проектами без уверенности, позиции и понимания, зачем вообще нужен сайт.",
+      "Бюджетами из серии «сделайте все красиво за 200 EUR».",
+      "Запросами на шаблонный WordPress, конструкторный мусор и сайты, которые должны просто существовать.",
+    ],
     aboutTitle: "NotAgency — не витрина, а цех.",
     about:
       "Мы собираем сайты и приложения, которые выглядят громко, продают спокойно и не разваливаются после первого обновления.",
@@ -106,6 +121,21 @@ const copy = {
     servicesTitle: "Ko mēs darām",
     servicesSub: "Tirgus ir haoss. Mēs tajā esam kārtība.",
     portfolioTitle: "Portfolio bez garlaicīgiem keisiem",
+    fitTitle: "Kam mēs deram",
+    fitSub:
+      "Mēs nepārdodam mierinājumu cilvēkiem, kuri paši netic savam projektam. Mēs ejam tur, kur ir ambīcija, budžets un gatavība pieņemt lēmumus.",
+    goodFit: "Strādājam ar",
+    badFit: "Nestrādājam ar",
+    fitGood: [
+      "Founderiem un īpašniekiem, kuri tic produktam un grib spēcīgu digital tēlu.",
+      "Komandām, kurām vajag lapu, aplikāciju vai MVP ar skaidru loģiku, nevis bildīti ķeksītim.",
+      "Biznesiem, kas gatavi ātriem lēmumiem, godīgam feedback un palaišanai bez apstiprināšanas teātra.",
+    ],
+    fitBad: [
+      "Projektiem bez pārliecības, pozīcijas un saprašanas, kāpēc vispār vajag lapu.",
+      "Budžetiem no sērijas 'uztaisiet visu skaisti par 200 EUR'.",
+      "Šabloniskiem WordPress, konstruktoru atkritumiem un lapām, kurām vienkārši jāeksistē.",
+    ],
     aboutTitle: "NotAgency nav vitrīna, tā ir darbnīca.",
     about:
       "Mēs būvējam mājaslapas un aplikācijas, kas izskatās skaļi, pārdod mierīgi un nesabrūk pēc pirmā update.",
@@ -157,6 +187,21 @@ const copy = {
     servicesTitle: "What we build",
     servicesSub: "The market is chaos. We are the order inside it.",
     portfolioTitle: "Portfolio without sleepy case studies",
+    fitTitle: "Who we are for",
+    fitSub:
+      "We do not sell comfort to people who do not believe in their own project. We enter when there is ambition, budget and a willingness to decide.",
+    goodFit: "We work with",
+    badFit: "We do not work with",
+    fitGood: [
+      "Founders and owners who believe in the product and want a sharp digital presence.",
+      "Teams that need a website, app or MVP with clear logic, not a pretty checkbox.",
+      "Businesses ready for fast decisions, honest feedback and a launch without approval theater.",
+    ],
+    fitBad: [
+      "Projects with no confidence, no position and no clear reason for the site to exist.",
+      "Budgets that expect everything to be beautiful for 200 EUR.",
+      "Template WordPress jobs, builder junk and websites that are only meant to sit there.",
+    ],
     aboutTitle: "NotAgency is not a showroom. It is a workshop.",
     about:
       "We build sites and apps that look loud, sell calmly and do not fall apart after the first update.",
@@ -201,13 +246,11 @@ const projects = [
 ];
 
 const budgets = ["< 1k", "1k-3k", "3k-8k", "8k+"];
-const navLinks = ["#work", "#portfolio", "/process", "#brief"];
 const welcomeSeenKey = "notagency-welcome-seen";
 
 export default function Home() {
   const [stage, setStage] = useState<Stage>("broken");
   const [lang, setLang] = useState<Lang>("en");
-  const [menuOpen, setMenuOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [countdown, setCountdown] = useState(getLaunchCountdown);
   const [choice, setChoice] = useState(1);
@@ -386,71 +429,7 @@ export default function Home() {
         </section>
       ) : (
         <>
-          <header className="topbar">
-            <a className="brand" href="#home">
-              <span className="brand-mascot" aria-hidden="true">
-                <span className="brand-eye left" />
-                <span className="brand-eye right" />
-                <span className="brand-mouth" />
-              </span>
-              NotAgency
-            </a>
-            <nav className="desktop-nav">
-              {t.nav.map((item, index) => (
-                <a href={navLinks[index]} key={item}>
-                  {item}
-                </a>
-              ))}
-            </nav>
-            <div className="top-actions">
-              <div className={`language-switcher ${languageOpen ? "open" : ""}`}>
-                <button
-                  className="language-trigger active"
-                  onClick={() => setLanguageOpen((open) => !open)}
-                  type="button"
-                  aria-expanded={languageOpen}
-                  aria-label="Change language"
-                >
-                  {lang.toUpperCase()}
-                </button>
-                <div className="language-menu">
-                  {(["en", "ru", "lv"] as Lang[]).map((item) => (
-                    <button
-                      className={item === lang ? "active" : ""}
-                      key={item}
-                      onClick={() => {
-                        changeLang(item);
-                        setLanguageOpen(false);
-                      }}
-                      type="button"
-                    >
-                      {item.toUpperCase()}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <button
-                className={`menu-button ${menuOpen ? "active" : ""}`}
-                type="button"
-                aria-label="Menu"
-                aria-expanded={menuOpen}
-                onClick={() => setMenuOpen((open) => !open)}
-              >
-                {menuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
-            <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-              {t.nav.map((item, index) => (
-                <a
-                  href={navLinks[index]}
-                  key={item}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </header>
+          <SiteHeader className="" lang={lang} onLangChange={changeLang} />
 
           <section className="hero" id="home">
             <div className="hero-art" aria-hidden="true">
@@ -470,7 +449,7 @@ export default function Home() {
               <h1>{t.normalTitle}</h1>
               <p>{t.normalText}</p>
               <div className="hero-actions">
-                <a className="primary" href="#brief">
+                <a className="primary" href="/brief">
                   {t.cta}
                   <ArrowRight size={20} />
                 </a>
@@ -551,6 +530,38 @@ export default function Home() {
                   </div>
                 </article>
               ))}
+            </div>
+          </section>
+
+          <section className="fit-check">
+            <div className="section-head">
+              <p className="kicker">FILTER / NO MYSTERY</p>
+              <h2>{t.fitTitle}</h2>
+              <p>{t.fitSub}</p>
+            </div>
+            <div className="fit-grid">
+              <article className="fit-card good">
+                <h3>{t.goodFit}</h3>
+                <ul>
+                  {t.fitGood.map((item) => (
+                    <li key={item}>
+                      <Check size={18} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+              <article className="fit-card bad">
+                <h3>{t.badFit}</h3>
+                <ul>
+                  {t.fitBad.map((item) => (
+                    <li key={item}>
+                      <X size={18} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             </div>
           </section>
 

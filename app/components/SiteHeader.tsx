@@ -14,14 +14,19 @@ const navCopy = {
   lv: ["Sākums", "Pakalpojumi", "Portfolio", "Process", "Pieteikums"],
 };
 
-const navHrefs = ["/#home", "/#work", "/#portfolio", "/process", "/#brief"];
+const navHrefs = ["/#home", "/#work", "/#portfolio", "/process", "/brief"];
 
 type SiteHeaderProps = {
+  className?: string;
   lang?: Lang;
   onLangChange?: (lang: Lang) => void;
 };
 
-export function SiteHeader({ lang: controlledLang, onLangChange }: SiteHeaderProps) {
+export function SiteHeader({
+  className = "page-topbar",
+  lang: controlledLang,
+  onLangChange,
+}: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [internalLang, setInternalLang] = useState<Lang>("en");
@@ -46,7 +51,7 @@ export function SiteHeader({ lang: controlledLang, onLangChange }: SiteHeaderPro
   }, [controlledLang]);
 
   return (
-    <header className="topbar page-topbar">
+    <header className={`topbar ${className}`.trim()}>
       <a className="brand" href="/#home">
         <span className="brand-mascot" aria-hidden="true">
           <span className="brand-eye left" />

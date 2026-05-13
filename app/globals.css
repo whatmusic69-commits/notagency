@@ -867,6 +867,7 @@ a {
 .budget-banner,
 .section,
 .portfolio,
+.fit-check,
 .about,
 .brief {
   padding-left: max(24px, calc((100vw - 1180px) / 2));
@@ -1047,6 +1048,77 @@ a {
 .project-screen div:nth-child(3) {
   background: var(--cyan);
   width: 52%;
+}
+
+.fit-check {
+  background: var(--paper);
+  padding-bottom: 88px;
+  padding-top: 88px;
+}
+
+.fit-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 34px;
+}
+
+.fit-card {
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 8px 8px 0 var(--ink);
+  min-height: 420px;
+  padding: 26px;
+}
+
+.fit-card.good {
+  background: var(--lime);
+}
+
+.fit-card.bad {
+  background: var(--pink);
+  color: var(--white);
+}
+
+.fit-card h3 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 0.96;
+  margin: 0 0 28px;
+  text-transform: uppercase;
+}
+
+.fit-card ul {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fit-card li {
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.55);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  color: var(--ink);
+  display: grid;
+  font-size: 18px;
+  font-weight: 700;
+  gap: 12px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  line-height: 1.28;
+  padding: 16px;
+}
+
+.fit-card.bad li {
+  background: rgba(8, 8, 8, 0.18);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: var(--white);
+}
+
+.fit-card li svg {
+  margin-top: 2px;
 }
 
 .about {
@@ -1612,6 +1684,277 @@ a {
   position: relative;
 }
 
+.contact-shell {
+  background:
+    radial-gradient(circle at 12% 14%, rgba(255, 47, 139, 0.24), transparent 28%),
+    radial-gradient(circle at 84% 16%, rgba(0, 217, 255, 0.22), transparent 26%),
+    linear-gradient(180deg, var(--paper) 0%, #fff8db 54%, var(--black) 54%);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.contact-hero {
+  align-items: center;
+  display: grid;
+  gap: 34px;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.85fr);
+  padding: 72px max(24px, calc((100vw - 1180px) / 2)) 84px;
+}
+
+.contact-copy h1 {
+  font-family: var(--font-display);
+  font-size: clamp(50px, 8vw, 112px);
+  line-height: 0.92;
+  margin: 0;
+  max-width: 930px;
+  text-transform: uppercase;
+}
+
+.lang-lv .contact-copy h1 {
+  font-size: clamp(42px, 6.2vw, 86px);
+  line-height: 1;
+  max-width: 980px;
+}
+
+.contact-copy > p:not(.kicker) {
+  font-size: clamp(19px, 2.2vw, 27px);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 26px 0 30px;
+  max-width: 720px;
+}
+
+.contact-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.contact-card {
+  align-items: flex-start;
+  background: var(--white);
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 7px 7px 0 var(--ink);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 34px minmax(0, 1fr);
+  padding: 20px;
+}
+
+.contact-card:nth-child(2) {
+  background: var(--lime);
+}
+
+.contact-card:nth-child(3) {
+  background: var(--cyan);
+}
+
+.contact-card:nth-child(4) {
+  background: var(--orange);
+}
+
+.contact-card h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  line-height: 1;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.contact-card a {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.contact-card p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.32;
+  margin: 0;
+}
+
+.contact-brief {
+  background: var(--black);
+  color: var(--white);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+  padding: 88px max(24px, calc((100vw - 1180px) / 2));
+}
+
+.contact-brief article {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  padding: 26px;
+}
+
+.contact-brief article:first-child {
+  border-color: var(--lime);
+}
+
+.contact-no {
+  border-color: var(--pink) !important;
+}
+
+.contact-brief h2 {
+  color: var(--lime);
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 66px);
+  line-height: 0.98;
+  margin: 0 0 26px;
+  text-transform: uppercase;
+}
+
+.contact-no h2 {
+  color: var(--pink);
+}
+
+.contact-brief ul {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-brief li {
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  display: grid;
+  font-size: 18px;
+  font-weight: 700;
+  gap: 12px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  line-height: 1.3;
+  padding: 16px;
+}
+
+.contact-no li {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.contact-no li span {
+  color: var(--pink);
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 0.85;
+}
+
+.brief-page-shell {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(0, 217, 255, 0.22), transparent 28%),
+    radial-gradient(circle at 88% 14%, rgba(255, 47, 139, 0.22), transparent 26%),
+    linear-gradient(180deg, var(--paper) 0%, #fff8db 52%, var(--black) 52%);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.brief-page {
+  display: grid;
+  gap: 44px;
+  grid-template-columns: minmax(0, 0.78fr) minmax(360px, 1fr);
+  padding: 72px max(24px, calc((100vw - 1180px) / 2)) 100px;
+}
+
+.brief-page-copy {
+  min-height: 560px;
+  position: relative;
+}
+
+.brief-page-copy h1 {
+  font-family: var(--font-display);
+  font-size: clamp(46px, 5.8vw, 82px);
+  line-height: 0.98;
+  margin: 0;
+  max-width: 720px;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+.lang-lv .brief-page-copy h1 {
+  font-size: clamp(40px, 5.2vw, 72px);
+  line-height: 1.08;
+  max-width: 760px;
+}
+
+.lang-ru .brief-page-copy h1 {
+  line-height: 1.08;
+}
+
+.brief-page-copy > p:not(.kicker) {
+  font-size: clamp(19px, 2.1vw, 26px);
+  font-weight: 600;
+  line-height: 1.32;
+  margin: 26px 0 0;
+  max-width: 660px;
+}
+
+.brief-page-mascot {
+  align-items: center;
+  animation: mascotBounce 2.8s ease-in-out infinite;
+  background: var(--lime);
+  border: 4px solid var(--ink);
+  border-radius: 30% 70% 44% 56%;
+  box-shadow: 10px 10px 0 var(--ink);
+  display: flex;
+  height: 170px;
+  justify-content: center;
+  left: 14%;
+  position: absolute;
+  top: 58%;
+  width: 170px;
+}
+
+.brief-page-form {
+  align-self: start;
+}
+
+.brief-fieldset {
+  display: grid;
+  gap: 10px;
+}
+
+.brief-fieldset > span {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.brief-page-form .option-group,
+.brief-page-form .budget-group {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.brief-page-form .submit {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brief-note {
+  align-items: flex-start;
+  color: rgba(8, 8, 8, 0.64);
+  display: grid;
+  font-size: 13px;
+  font-weight: 700;
+  gap: 8px;
+  grid-template-columns: 18px minmax(0, 1fr);
+  line-height: 1.3;
+  margin: 0;
+}
+
 .info-hero {
   padding: 72px max(24px, calc((100vw - 1180px) / 2)) 54px;
 }
@@ -1931,7 +2274,8 @@ a {
   }
 
   .service-grid,
-  .project-rail {
+  .project-rail,
+  .fit-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1956,6 +2300,9 @@ a {
   }
 
   .process-hero,
+  .contact-hero,
+  .contact-brief,
+  .brief-page,
   .process-cards,
   .site-footer,
   .info-content {
@@ -1965,6 +2312,10 @@ a {
   .process-machine {
     grid-row: 1;
     min-height: 310px;
+  }
+
+  .brief-page-copy {
+    min-height: 430px;
   }
 
   .process-step {
@@ -2046,6 +2397,9 @@ a {
 
   .hero,
   .process-hero,
+  .contact-hero,
+  .contact-brief,
+  .brief-page,
   .process-warning,
   .process-timeline,
   .process-cards,
@@ -2055,6 +2409,7 @@ a {
   .budget-banner,
   .section,
   .portfolio,
+  .fit-check,
   .about,
   .brief {
     padding-left: 18px;
@@ -2068,6 +2423,14 @@ a {
   .process-copy h1 {
     font-size: 42px;
     line-height: 1;
+  }
+
+  .contact-copy h1,
+  .lang-lv .contact-copy h1,
+  .brief-page-copy h1,
+  .lang-lv .brief-page-copy h1 {
+    font-size: 40px;
+    line-height: 1.04;
   }
 
   .process-warning {
