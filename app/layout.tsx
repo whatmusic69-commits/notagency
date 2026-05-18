@@ -22,16 +22,33 @@ export const metadata: Metadata = {
     "Next.js agency",
     "MVP development",
     "digital studio Latvia",
+    "сайты Рига",
+    "разработка сайтов",
+    "web izstrāde Rīga",
+    "mājaslapu izstrāde",
   ],
   authors: [{ name: "NotAgency" }],
   creator: "NotAgency",
   publisher: "NotAgency",
+  category: "Technology",
+  classification: "Web design and application development studio",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
   alternates: {
     canonical: "/",
     languages: {
       en: "/",
       ru: "/?lang=ru",
       lv: "/?lang=lv",
+      "x-default": "/",
     },
   },
   openGraph: {
@@ -40,6 +57,14 @@ export const metadata: Metadata = {
       "Sharp websites, web apps, MVPs and digital systems for serious projects with real ambition.",
     url: "/",
     siteName: "NotAgency",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "NotAgency - Websites, Apps and Digital Systems",
+      },
+    ],
     locale: "en_US",
     alternateLocale: ["ru_RU", "lv_LV"],
     type: "website",
@@ -49,10 +74,21 @@ export const metadata: Metadata = {
     title: "NotAgency - Websites, Apps and Digital Systems",
     description:
       "Sharp websites, web apps, MVPs and digital systems for serious projects with real ambition.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  other: {
+    "og:locale:alternate": ["ru_RU", "lv_LV"],
   },
 };
 
@@ -60,6 +96,7 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "NotAgency",
+  alternateName: ["Not Agency", "NotAgency Riga"],
   url: "https://notagency.dev",
   email: "hello@notagency.dev",
   address: {
@@ -77,6 +114,16 @@ const organizationJsonLd = {
   ],
 };
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "NotAgency",
+  url: "https://notagency.dev",
+  inLanguage: ["en", "ru", "lv"],
+  description:
+    "Websites, web apps, MVPs and digital systems for founders and businesses in Latvia, Europe and remote.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -88,7 +135,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
+            __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
           }}
         />
         {children}

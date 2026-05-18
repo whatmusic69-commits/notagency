@@ -9,7 +9,6 @@ import {
   Code2,
   Cpu,
   ExternalLink,
-  Globe2,
   LayoutDashboard,
   Palette,
   Rocket,
@@ -22,7 +21,7 @@ import { SiteHeader } from "./components/SiteHeader";
 import { type Lang, readStoredLang, storeLang } from "./lib/language";
 import { projects } from "./lib/projects";
 
-type Stage = "broken" | "repairing" | "fixed";
+type WelcomeStage = "hidden" | "broken" | "repairing";
 
 const launchDate = new Date("2026-06-01T12:00:00+03:00").getTime();
 
@@ -53,7 +52,7 @@ const copy = {
     secondary: "Смотреть работы",
     counterLabel: "До запуска клиентского домена",
     budget: "Если бюджет 200€ — закрой сайт. Мы не для тебя.",
-    budgetSub: "Устройся на вторую работу или приходи, когда хочешь результат, а не картинку.",
+    budgetSub: "Устройся на вторую работу или приходи, когда захочешь результат, а не картинку.",
     servicesTitle: "Что мы делаем",
     servicesSub: "Хаос — это рынок. Мы в нем — порядок.",
     portfolioTitle: "Портфолио без скучных кейсов",
@@ -73,6 +72,15 @@ const copy = {
       "Проектами без уверенности, позиции и понимания, зачем вообще нужен сайт.",
       "Бюджетами из серии «сделайте все красиво за 200 EUR».",
       "Запросами на шаблонный WordPress, конструкторный мусор и сайты, которые должны просто существовать.",
+    ],
+    processHomeTitle: "Процесс без тумана",
+    processHomeSub:
+      "Сначала разбираем ущерб, потом собираем направление, дизайн, разработку и запуск без театра согласований.",
+    processHomeCta: "Смотреть весь процесс",
+    processHomeSteps: [
+      "Сканируем оффер, структуру и визуальный хаос.",
+      "Собираем сильную концепцию и рабочие экраны.",
+      "Доводим до deploy, аналитики, форм и реального запуска.",
     ],
     aboutTitle: "NotAgency — не витрина, а цех.",
     about:
@@ -142,6 +150,15 @@ const copy = {
       "Budžetiem no sērijas 'uztaisiet visu skaisti par 200 EUR'.",
       "Šabloniskiem WordPress, konstruktoru atkritumiem un lapām, kurām vienkārši jāeksistē.",
     ],
+    processHomeTitle: "Process bez miglas",
+    processHomeSub:
+      "Vispirms atrodam bojājumus, tad saliekam virzienu, dizainu, izstrādi un palaišanu bez apstiprināšanas teātra.",
+    processHomeCta: "Skatīt visu procesu",
+    processHomeSteps: [
+      "Skenējam piedāvājumu, struktūru un vizuālo haosu.",
+      "Saliekam spēcīgu konceptu un strādājošus ekrānus.",
+      "Aizvedam līdz deploy, analītikai, formām un īstai palaišanai.",
+    ],
     aboutTitle: "NotAgency nav vitrīna, tā ir darbnīca.",
     about:
       "Mēs būvējam mājaslapas un aplikācijas, kas izskatās skaļi, pārdod mierīgi un nesabrūk pēc pirmā update.",
@@ -210,6 +227,15 @@ const copy = {
       "Budgets that expect everything to be beautiful for 200 EUR.",
       "Template WordPress jobs, builder junk and websites that are only meant to sit there.",
     ],
+    processHomeTitle: "Process without fog",
+    processHomeSub:
+      "We scan the damage, shape the direction, design, build and launch without turning decisions into theater.",
+    processHomeCta: "View full process",
+    processHomeSteps: [
+      "Scan the offer, structure and visual chaos.",
+      "Shape a sharp concept and usable screens.",
+      "Ship deploy, analytics, forms and the real launch.",
+    ],
     aboutTitle: "NotAgency is not a showroom. It is a workshop.",
     about:
       "We build sites and apps that look loud, sell calmly and do not fall apart after the first update.",
@@ -248,13 +274,15 @@ const copy = {
 const serviceIcons = [LayoutDashboard, Cpu, Palette, Rocket];
 
 const budgets = ["< 1k", "1k-3k", "3k-8k", "8k+"];
-const welcomeSeenKey = "notagency-welcome-seen";
+const initialCountdown = "00 : 00 : 00 : 00";
+const welcomeShownAtKey = "notagency-welcome-shown-at";
+const welcomeCooldownMs = 7 * 24 * 60 * 60 * 1000;
 
 export default function Home() {
-  const [stage, setStage] = useState<Stage>("broken");
+  const [welcomeStage, setWelcomeStage] = useState<WelcomeStage>("hidden");
   const [lang, setLang] = useState<Lang>("en");
   const [languageOpen, setLanguageOpen] = useState(false);
-  const [countdown, setCountdown] = useState(getLaunchCountdown);
+  const [countdown, setCountdown] = useState(initialCountdown);
   const [choice, setChoice] = useState(1);
   const [budget, setBudget] = useState(2);
   const t = copy[lang];
@@ -269,12 +297,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (
-      !window.location.hash &&
-      window.localStorage.getItem(welcomeSeenKey) === "true"
-    ) {
-      setStage("fixed");
-    }
+    let welcomeTimer: number | undefined;
 
     const openHashTarget = () => {
       const targetId = window.location.hash.slice(1);
@@ -283,8 +306,7 @@ export default function Home() {
         return;
       }
 
-      window.localStorage.setItem(welcomeSeenKey, "true");
-      setStage("fixed");
+      setWelcomeStage("hidden");
       window.requestAnimationFrame(() => {
         document.getElementById(targetId)?.scrollIntoView({ block: "start" });
       });
@@ -293,35 +315,43 @@ export default function Home() {
     openHashTarget();
     window.addEventListener("hashchange", openHashTarget);
 
-    return () => window.removeEventListener("hashchange", openHashTarget);
+    if (!window.location.hash) {
+      const lastShownAt = Number(
+        window.localStorage.getItem(welcomeShownAtKey) ?? 0,
+      );
+      const shouldShowWelcome = Date.now() - lastShownAt > welcomeCooldownMs;
+
+      if (shouldShowWelcome) {
+        welcomeTimer = window.setTimeout(() => {
+          window.localStorage.setItem(welcomeShownAtKey, String(Date.now()));
+          setWelcomeStage("broken");
+        }, 2000);
+      }
+    }
+
+    return () => {
+      window.removeEventListener("hashchange", openHashTarget);
+      if (welcomeTimer) {
+        window.clearTimeout(welcomeTimer);
+      }
+    };
   }, []);
 
   useEffect(() => {
-    if (stage !== "fixed" || !window.location.hash) {
-      return;
-    }
-
-    window.localStorage.setItem(welcomeSeenKey, "true");
-    const targetId = window.location.hash.slice(1);
-    window.requestAnimationFrame(() => {
-      document.getElementById(targetId)?.scrollIntoView({ block: "start" });
-    });
-  }, [stage]);
-
-  useEffect(() => {
-    if (stage !== "repairing") {
+    if (welcomeStage !== "repairing") {
       return;
     }
 
     const repairTimer = window.setTimeout(() => {
-      window.localStorage.setItem(welcomeSeenKey, "true");
-      setStage("fixed");
+      setWelcomeStage("hidden");
     }, 2400);
 
     return () => window.clearTimeout(repairTimer);
-  }, [stage]);
+  }, [welcomeStage]);
 
   useEffect(() => {
+    setCountdown(getLaunchCountdown());
+
     const countdownTimer = window.setInterval(() => {
       setCountdown(getLaunchCountdown());
     }, 1000);
@@ -337,101 +367,125 @@ export default function Home() {
   );
 
   return (
-    <main className={`site-shell is-${stage} lang-${lang}`}>
+    <main className={`site-shell is-fixed lang-${lang}`}>
       <div className="noise" />
-      {stage === "broken" ? (
-        <section className="error-stage" aria-label="Broken cheap website preview">
-          <div className={`welcome-language ${languageOpen ? "open" : ""}`}>
-            <button
-              className="language-trigger active"
-              onClick={() => setLanguageOpen((open) => !open)}
-              type="button"
-              aria-expanded={languageOpen}
-              aria-label="Change language"
-            >
-              {lang.toUpperCase()}
-            </button>
-            <div className="language-menu">
-              {(["en", "ru", "lv"] as Lang[]).map((item) => (
-                <button
-                  className={item === lang ? "active" : ""}
-                  key={item}
-                  onClick={() => {
-                    changeLang(item);
-                    setLanguageOpen(false);
-                  }}
-                  type="button"
-                >
-                  {item.toUpperCase()}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="broken-nav">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="error-grid">
-            <div className="glitch-copy">
-              <p className="kicker">NOTAGENCY / DAMAGE REPORT</p>
-              <h1 data-text="404">404</h1>
-              <h2>{t.glitchTitle}</h2>
-              <p>{t.glitchText}</p>
-              <button className="panic-button" onClick={() => setStage("repairing")}>
-                <TimerReset size={20} />
-                {t.fix}
-              </button>
-            </div>
-            <div className="broken-browser" aria-hidden="true">
-              <div className="crash-card card-a">header_final_final_v7</div>
-              <div className="crash-card card-b">button?</div>
-              <div className="crash-card card-c">logo.png</div>
-              <div className="crash-card card-d">mobile later</div>
-              <div className="dead-cursor">×</div>
-            </div>
-          </div>
-        </section>
-      ) : stage === "repairing" ? (
-        <section className="repair-stage" aria-label="NotAgency repair sequence">
-          <div className="repair-panel">
-            <div className="repair-browser">
-              <div className="repair-topbar">
+      {welcomeStage !== "hidden" ? (
+        <div
+          className="welcome-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="NotAgency welcome repair"
+        >
+          <div className="welcome-window">
+            <div className="welcome-window-bar">
+              <div className="welcome-window-lights" aria-hidden="true">
                 <span />
                 <span />
                 <span />
-                <strong>notagency.fix</strong>
               </div>
-              <div className="repair-grid">
-                <div className="repair-block repair-hero" />
-                <div className="repair-block repair-card one" />
-                <div className="repair-block repair-card two" />
-                <div className="repair-block repair-card three" />
-                <div className="repair-mascot">
-                  <span className="eye left" />
-                  <span className="eye right" />
-                  <span className="mouth" />
+              <strong>notagency.damage.report</strong>
+            </div>
+            {welcomeStage === "broken" ? (
+              <section className="error-stage" aria-label="Broken cheap website preview">
+              <div className={`welcome-language ${languageOpen ? "open" : ""}`}>
+                <button
+                  className="language-trigger active"
+                  onClick={() => setLanguageOpen((open) => !open)}
+                  type="button"
+                  aria-expanded={languageOpen}
+                  aria-label="Change language"
+                >
+                  {lang.toUpperCase()}
+                </button>
+                <div className="language-menu">
+                  {(["en", "ru", "lv"] as Lang[]).map((item) => (
+                    <button
+                      className={item === lang ? "active" : ""}
+                      key={item}
+                      onClick={() => {
+                        changeLang(item);
+                        setLanguageOpen(false);
+                      }}
+                      type="button"
+                    >
+                      {item.toUpperCase()}
+                    </button>
+                  ))}
                 </div>
               </div>
-              <div className="scan-line" />
-            </div>
-            <div className="repair-copy">
-              <p className="kicker">NOTAGENCY / LIVE REPAIR</p>
-              <h2>Fixing cheap damage</h2>
-              <div className="repair-steps">
-                <span>killing template</span>
-                <span>aligning chaos</span>
-                <span>shipping taste</span>
-              </div>
-              <div className="repair-progress">
+              <div className="broken-nav">
+                <span />
+                <span />
                 <span />
               </div>
-            </div>
+              <div className="error-grid">
+                <div className="glitch-copy">
+                  <p className="kicker">NOTAGENCY / DAMAGE REPORT</p>
+                  <h1 data-text="404">404</h1>
+                  <h2>{t.glitchTitle}</h2>
+                  <p>{t.glitchText}</p>
+                  <button
+                    className="panic-button"
+                    onClick={() => setWelcomeStage("repairing")}
+                    type="button"
+                  >
+                    <TimerReset size={20} />
+                    {t.fix}
+                  </button>
+                </div>
+                <div className="broken-browser" aria-hidden="true">
+                  <div className="crash-card card-a">header_final_final_v7</div>
+                  <div className="crash-card card-b">button?</div>
+                  <div className="crash-card card-c">logo.png</div>
+                  <div className="crash-card card-d">mobile later</div>
+                  <div className="dead-cursor">×</div>
+                </div>
+              </div>
+              </section>
+            ) : (
+              <section className="repair-stage" aria-label="NotAgency repair sequence">
+              <div className="repair-panel">
+                <div className="repair-browser">
+                  <div className="repair-topbar">
+                    <span />
+                    <span />
+                    <span />
+                    <strong>notagency.fix</strong>
+                  </div>
+                  <div className="repair-grid">
+                    <div className="repair-block repair-hero" />
+                    <div className="repair-block repair-card one" />
+                    <div className="repair-block repair-card two" />
+                    <div className="repair-block repair-card three" />
+                    <div className="repair-mascot">
+                      <span className="eye left" />
+                      <span className="eye right" />
+                      <span className="mouth" />
+                    </div>
+                  </div>
+                  <div className="scan-line" />
+                </div>
+                <div className="repair-copy">
+                  <p className="kicker">NOTAGENCY / LIVE REPAIR</p>
+                  <h2>Fixing cheap damage</h2>
+                  <div className="repair-steps">
+                    <span>killing template</span>
+                    <span>aligning chaos</span>
+                    <span>shipping taste</span>
+                  </div>
+                  <div className="repair-progress">
+                    <span />
+                  </div>
+                </div>
+              </div>
+              </section>
+            )}
           </div>
-        </section>
-      ) : (
-        <>
-          <SiteHeader className="" lang={lang} onLangChange={changeLang} />
+        </div>
+      ) : null}
+
+      <div className={`site-content ${welcomeStage !== "hidden" ? "is-blurred" : ""}`}>
+        <SiteHeader className="" lang={lang} onLangChange={changeLang} />
 
           <section className="hero" id="home">
             <div className="hero-art" aria-hidden="true">
@@ -582,6 +636,29 @@ export default function Home() {
             </div>
           </section>
 
+          <section className="home-process" id="process">
+            <div className="home-process-copy">
+              <p className="kicker">
+                <Rocket size={16} />
+                NOTAGENCY / PROCESS
+              </p>
+              <h2>{t.processHomeTitle}</h2>
+              <p>{t.processHomeSub}</p>
+              <a className="primary" href="/process">
+                {t.processHomeCta}
+                <ArrowRight size={20} />
+              </a>
+            </div>
+            <div className="home-process-stack">
+              {t.processHomeSteps.map((item, index) => (
+                <article className="home-process-step" key={item}>
+                  <span>0{index + 1}</span>
+                  <p>{item}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
           <section className="about" id="about">
             <Code2 size={36} />
             <h2>{t.aboutTitle}</h2>
@@ -597,10 +674,6 @@ export default function Home() {
 
           <section className="brief" id="brief">
             <div className="brief-copy">
-              <p className="kicker">
-                <Globe2 size={16} />
-                RU / LV / EN
-              </p>
               <h2>{t.formTitle}</h2>
               <p>{t.formSub}</p>
               <div className="brief-mascot" style={characterStyle}>
@@ -637,16 +710,18 @@ export default function Home() {
               </div>
               <div className="budget-group">
                 <span>{t.budgetField}</span>
-                {budgets.map((item, index) => (
-                  <button
-                    className={budget === index ? "selected" : ""}
-                    key={item}
-                    onClick={() => setBudget(index)}
-                    type="button"
-                  >
-                    {item}
-                  </button>
-                ))}
+                <div className="budget-options">
+                  {budgets.map((item, index) => (
+                    <button
+                      className={budget === index ? "selected" : ""}
+                      key={item}
+                      onClick={() => setBudget(index)}
+                      type="button"
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
               </div>
               <button className="submit" type="button">
                 {t.send}
@@ -655,8 +730,7 @@ export default function Home() {
             </form>
           </section>
           <SiteFooter lang={lang} />
-        </>
-      )}
+      </div>
     </main>
   );
 }

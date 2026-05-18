@@ -19,13 +19,13 @@ export default function PrivacyPage() {
       content={{
         en: {
           kicker: "Legal / Privacy",
-          title: "Политика приватности",
+          title: "Privacy Policy",
           text: "We collect only what we need to answer you, run the project, and avoid building nonsense in the dark.",
           sections: enSections,
         },
         ru: {
           kicker: "Юридическое / Приватность",
-          title: "Privātuma politika",
+          title: "Политика приватности",
           text: "Мы собираем только то, что нужно, чтобы ответить тебе, вести проект и не строить ерунду в темноте.",
           sections: [
             { title: "Что мы собираем", body: "Имя, компанию, email, телефон или мессенджер, заметки по проекту, бюджет, сроки, файлы и сообщения, которые ты отправляешь через сайт или почту." },
@@ -42,7 +42,7 @@ export default function PrivacyPage() {
         },
         lv: {
           kicker: "Juridiski / Privātums",
-          title: "Privacy Policy",
+          title: "Privātuma politika",
           text: "Mēs vācam tikai to, kas vajadzīgs, lai atbildētu, vadītu projektu un nebūvētu muļķības tumsā.",
           sections: [
             { title: "Ko mēs vācam", body: "Vārdu, uzņēmumu, email, telefonu vai messenger, projekta piezīmes, budžetu, termiņus, failus un ziņas, ko sūti caur lapu vai email." },

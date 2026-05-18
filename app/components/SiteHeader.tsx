@@ -14,7 +14,7 @@ const navCopy = {
   lv: ["Sākums", "Pakalpojumi", "Portfolio", "Process", "Pieteikums"],
 };
 
-const navHrefs = ["/#home", "/#work", "/#portfolio", "/process", "/brief"];
+const navHrefs = ["/#home", "/#work", "/#portfolio", "/#process", "/#brief"];
 
 type SiteHeaderProps = {
   className?: string;
