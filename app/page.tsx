@@ -725,7 +725,7 @@ export default function Home() {
               </div>
               <button className="submit" type="button">
                 {t.send}
-                <X size={18} />
+                <ArrowRight size={18} />
               </button>
             </form>
           </section>
