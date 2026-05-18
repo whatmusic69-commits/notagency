@@ -1,4 +1,5 @@
 import { InfoPage } from "../components/InfoPage";
+import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
 
 const enSections = [
   { title: "What we collect", body: "We may collect your name, company name, email, phone or messenger handle, project notes, budget range, deadlines, files you send us, and messages submitted through the website or email." },
@@ -13,9 +14,12 @@ const enSections = [
   { title: "Policy updates", body: "We may update this Privacy Policy when tools, legal requirements, or business processes change. The latest version on this page applies." },
 ];
 
-export default function PrivacyPage() {
+export default async function PrivacyPage({ searchParams }: PageWithLangProps) {
+  const initialLang = await getInitialLang(searchParams);
+
   return (
     <InfoPage
+      initialLang={initialLang}
       content={{
         en: {
           kicker: "Legal / Privacy",

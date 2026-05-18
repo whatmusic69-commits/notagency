@@ -2,9 +2,22 @@ export type Lang = "en" | "ru" | "lv";
 
 export const defaultLang: Lang = "en";
 export const languageStorageKey = "notagency-language";
+const languageCookieMaxAge = 60 * 60 * 24 * 365;
 
-function isLang(value: string | null): value is Lang {
+export function isLang(value: string | null): value is Lang {
   return value === "ru" || value === "lv" || value === "en";
+}
+
+function readCookieLang() {
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  const cookie = document.cookie
+    .split("; ")
+    .find((item) => item.startsWith(`${languageStorageKey}=`));
+
+  return cookie ? decodeURIComponent(cookie.split("=")[1] ?? "") : null;
 }
 
 export function readStoredLang(): Lang {
@@ -18,13 +31,26 @@ export function readStoredLang(): Lang {
     return queryLang;
   }
 
+  const cookieLang = readCookieLang();
+
+  if (isLang(cookieLang)) {
+    return cookieLang;
+  }
+
   const storedLang = window.localStorage.getItem(languageStorageKey);
 
   return isLang(storedLang) ? storedLang : defaultLang;
 }
 
-export function storeLang(lang: Lang) {
+export function persistLang(lang: Lang) {
   window.localStorage.setItem(languageStorageKey, lang);
+  document.cookie = `${languageStorageKey}=${encodeURIComponent(
+    lang,
+  )}; path=/; max-age=${languageCookieMaxAge}; SameSite=Lax`;
+}
+
+export function storeLang(lang: Lang) {
+  persistLang(lang);
 
   const url = new URL(window.location.href);
 

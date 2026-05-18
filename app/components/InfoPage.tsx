@@ -1,9 +1,9 @@
  "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
-import { type Lang, readStoredLang, storeLang } from "../lib/language";
+import { type Lang, storeLang } from "../lib/language";
 
 type InfoPageProps = {
   content: Record<
@@ -18,18 +18,16 @@ type InfoPageProps = {
       }>;
     }
   >;
+  initialLang: Lang;
 };
 
-export function InfoPage({ content }: InfoPageProps) {
-  const [lang, setLang] = useState<Lang>("en");
+export function InfoPage({ content, initialLang }: InfoPageProps) {
+  const [lang, setLang] = useState<Lang>(initialLang);
   const changeLang = (nextLang: Lang) => {
     storeLang(nextLang);
     setLang(nextLang);
   };
 
-  useEffect(() => {
-    setLang(readStoredLang());
-  }, []);
   const page = content[lang];
 
   return (

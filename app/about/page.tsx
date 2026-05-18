@@ -1,8 +1,12 @@
 import { InfoPage } from "../components/InfoPage";
+import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
 
-export default function AboutPage() {
+export default async function AboutPage({ searchParams }: PageWithLangProps) {
+  const initialLang = await getInitialLang(searchParams);
+
   return (
     <InfoPage
+      initialLang={initialLang}
       content={{
         en: {
           kicker: "Studio / About",

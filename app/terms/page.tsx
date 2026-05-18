@@ -1,8 +1,12 @@
 import { InfoPage } from "../components/InfoPage";
+import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
 
-export default function TermsPage() {
+export default async function TermsPage({ searchParams }: PageWithLangProps) {
+  const initialLang = await getInitialLang(searchParams);
+
   return (
     <InfoPage
+      initialLang={initialLang}
       content={{
         en: {
           kicker: "Legal / Terms",

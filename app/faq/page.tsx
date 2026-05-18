@@ -1,8 +1,12 @@
 import { InfoPage } from "../components/InfoPage";
+import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
 
-export default function FaqPage() {
+export default async function FaqPage({ searchParams }: PageWithLangProps) {
+  const initialLang = await getInitialLang(searchParams);
+
   return (
     <InfoPage
+      initialLang={initialLang}
       content={{
         en: {
           kicker: "Questions / No fog",

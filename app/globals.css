@@ -312,6 +312,11 @@ a {
   transform: translate(4px, 4px);
 }
 
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
 .panic-button {
   background: var(--lime);
   color: var(--ink);
@@ -1581,6 +1586,29 @@ a {
   background: var(--lime);
   margin-top: 6px;
   width: 100%;
+}
+
+.form-status {
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+  padding: 12px 14px;
+}
+
+.form-status.sending {
+  background: var(--white);
+}
+
+.form-status.sent {
+  background: var(--cyan);
+}
+
+.form-status.error {
+  background: var(--pink);
+  color: var(--white);
 }
 
 .process-shell {

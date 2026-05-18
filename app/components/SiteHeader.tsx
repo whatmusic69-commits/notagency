@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   type Lang,
+  persistLang,
   readStoredLang,
   storeLang,
 } from "../lib/language";
@@ -29,7 +30,7 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
-  const [internalLang, setInternalLang] = useState<Lang>("en");
+  const [internalLang, setInternalLang] = useState<Lang>(readStoredLang);
   const lang = controlledLang ?? internalLang;
   const setLang = (nextLang: Lang) => {
     storeLang(nextLang);
@@ -45,10 +46,8 @@ export function SiteHeader({
   }));
 
   useEffect(() => {
-    if (!controlledLang) {
-      setInternalLang(readStoredLang());
-    }
-  }, [controlledLang]);
+    persistLang(lang);
+  }, [lang]);
 
   return (
     <header className={`topbar ${className}`.trim()}>
