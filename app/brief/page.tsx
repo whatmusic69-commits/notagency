@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, Check, Send, X } from "lucide-react";
+import { ArrowRight, Check, Send } from "lucide-react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { type Lang, readStoredLang, storeLang } from "../lib/language";
@@ -26,8 +26,6 @@ const copy = {
     projectType: "Project type",
     budget: "Budget",
     send: "Email the brief",
-    note:
-      "This opens your email client with the brief filled in. Real form delivery can be wired next with Resend, Telegram or a CRM.",
     options: ["Landing", "Web app", "E-commerce", "Brand + site", "Rescue / redesign"],
   },
   ru: {
@@ -47,8 +45,6 @@ const copy = {
     projectType: "Тип проекта",
     budget: "Бюджет",
     send: "Отправить бриф",
-    note:
-      "Кнопка откроет почту с заполненным брифом. Реальную отправку формы можно следующим шагом подключить через Resend, Telegram или CRM.",
     options: ["Лендинг", "Web app", "E-commerce", "Бренд + сайт", "Спасение / редизайн"],
   },
   lv: {
@@ -68,8 +64,6 @@ const copy = {
     projectType: "Projekta tips",
     budget: "Budžets",
     send: "Nosūtīt briefu",
-    note:
-      "Poga atvērs e-pastu ar aizpildītu briefu. Īstu formas piegādi nākamajā solī var pieslēgt caur Resend, Telegram vai CRM.",
     options: ["Landing", "Web app", "E-commerce", "Zīmols + lapa", "Glābšana / redesign"],
   },
 };
@@ -203,10 +197,6 @@ export default function BriefPage() {
             {t.send}
             <ArrowRight size={18} />
           </a>
-          <p className="brief-note">
-            <X size={16} />
-            {t.note}
-          </p>
         </form>
       </section>
 
