@@ -296,8 +296,8 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   const [lang, setLang] = useState<Lang>(initialLang);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [countdown, setCountdown] = useState(initialCountdown);
-  const [choice, setChoice] = useState(1);
-  const [budget, setBudget] = useState(2);
+  const [choice, setChoice] = useState<number | null>(null);
+  const [budget, setBudget] = useState<number | null>(null);
   const [briefName, setBriefName] = useState("");
   const [briefEmail, setBriefEmail] = useState("");
   const [briefIdea, setBriefIdea] = useState("");
@@ -373,9 +373,14 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   }, []);
 
   const characterStyle = useMemo(
-    () => ({
-      transform: `translate(${choice * 22 - budget * 8}px, ${budget * 8 - choice * 5}px) rotate(${choice * 5 - budget * 3}deg)`,
-    }),
+    () => {
+      const choiceValue = choice ?? 0;
+      const budgetValue = budget ?? 0;
+
+      return {
+        transform: `translate(${choiceValue * 22 - budgetValue * 8}px, ${budgetValue * 8 - choiceValue * 5}px) rotate(${choiceValue * 5 - budgetValue * 3}deg)`,
+      };
+    },
     [choice, budget],
   );
 
@@ -395,8 +400,8 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
           name: briefName,
           email: briefEmail,
           idea: briefIdea,
-          projectType: t.options[choice],
-          budget: budgets[budget],
+          projectType: choice === null ? "" : t.options[choice],
+          budget: budget === null ? "" : budgets[budget],
         }),
       });
 
@@ -723,7 +728,10 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
             <div className="brief-copy">
               <h2>{t.formTitle}</h2>
               <p>{t.formSub}</p>
-              <div className="brief-mascot" style={characterStyle}>
+              <div
+                className={`brief-mascot ${choice === null ? "mood-sad" : `is-brief-active mood-${budget ?? 0}`}`}
+                style={characterStyle}
+              >
                 <span className="eye left" />
                 <span className="eye right" />
                 <span className="mouth" />
@@ -763,7 +771,9 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                   <button
                     className={choice === index ? "selected" : ""}
                     key={item}
-                    onClick={() => setChoice(index)}
+                    onClick={() => {
+                      setChoice(index);
+                    }}
                     type="button"
                   >
                     {choice === index && <Check size={16} />}
