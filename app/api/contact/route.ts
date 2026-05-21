@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+
+export const runtime = "nodejs";
 
 type ContactPayload = {
   budget?: string;
@@ -13,7 +16,9 @@ type ContactPayload = {
   projectType?: string;
 };
 
-const defaultToEmail = "hello@notagency.dev";
+const defaultToEmail = "hello@notagency.io";
+const defaultSmtpHost = "mail.privateemail.com";
+const defaultSmtpPort = 587;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function clean(value: unknown) {
@@ -44,16 +49,14 @@ function findReplyEmail(payload: ContactPayload) {
 
 function buildRows(payload: ContactPayload) {
   return [
-    ["Form", clean(payload.form)],
-    ["Language", clean(payload.lang)],
-    ["Name", clean(payload.name)],
+    ["Имя", clean(payload.name)],
     ["Email", clean(payload.email)],
-    ["Contact", clean(payload.contact)],
-    ["Company / project", clean(payload.company)],
-    ["Project type", clean(payload.projectType)],
-    ["Budget", clean(payload.budget)],
-    ["Idea", clean(payload.idea)],
-    ["Details", clean(payload.details)],
+    ["Контакт", clean(payload.contact)],
+    ["Компания / проект", clean(payload.company)],
+    ["Тип проекта", clean(payload.projectType)],
+    ["Бюджет", clean(payload.budget)],
+    ["Идея", clean(payload.idea)],
+    ["Детали", clean(payload.details)],
   ].filter(([, value]) => value);
 }
 
@@ -66,12 +69,11 @@ function buildMessage(payload: ContactPayload) {
 function buildHtmlMessage(payload: ContactPayload) {
   const rows = buildRows(payload);
   const form = clean(payload.form);
-  const title =
-    form === "brief" ? "New Project Brief" : "New Contact Request";
+  const title = "Новый клиент";
   const preheader =
     form === "brief"
-      ? "A new brief was submitted through notagency.dev."
-      : "A new request was submitted through notagency.dev.";
+      ? "Новый бриф с сайта notagency.io."
+      : "Новая заявка с сайта notagency.io.";
   const primaryMessage = clean(payload.details) || clean(payload.idea);
 
   const rowsHtml = rows
@@ -98,17 +100,17 @@ function buildHtmlMessage(payload: ContactPayload) {
     .join("");
 
   return `<!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${escapeHtml(title)}</title>
   </head>
-  <body style="margin: 0; padding: 0; background: #080808;">
+  <body style="margin: 0; padding: 0; background: #f8f3e7;">
     <div style="display: none; max-height: 0; overflow: hidden; opacity: 0;">
       ${escapeHtml(preheader)}
     </div>
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background: #080808; border-collapse: collapse;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background: #f8f3e7; border-collapse: collapse;">
       <tr>
         <td align="center" style="padding: 28px 14px;">
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse; max-width: 680px;">
@@ -120,10 +122,10 @@ function buildHtmlMessage(payload: ContactPayload) {
                       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
                         <tr>
                           <td style="color: #d8ff38; font-family: Arial, sans-serif; font-size: 13px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase;">
-                            NotAgency / Inbox
+                            NotAgency / Заявка
                           </td>
                           <td align="right" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700;">
-                            notagency.dev
+                            notagency.io
                           </td>
                         </tr>
                       </table>
@@ -131,8 +133,8 @@ function buildHtmlMessage(payload: ContactPayload) {
                   </tr>
                   <tr>
                     <td style="padding: 26px 20px 14px 20px;">
-                      <div style="display: inline-block; background: #00d9ff; border: 2px solid #111116; border-radius: 999px; box-shadow: 4px 4px 0 #111116; color: #111116; font-family: Arial, sans-serif; font-size: 12px; font-weight: 900; letter-spacing: 0.08em; margin-bottom: 16px; padding: 8px 12px; text-transform: uppercase;">
-                        ${escapeHtml(form || "contact")}
+                      <div style="display: inline-block; background: #00d9ff; border: 2px solid #111116; border-radius: 999px; box-shadow: 4px 4px 0 #111116; color: #111116; font-family: Arial, sans-serif; font-size: 12px; font-weight: 900; letter-spacing: 0.08em; line-height: 1; margin-bottom: 16px; padding: 9px 13px; text-transform: uppercase; vertical-align: middle;">
+                        ${form === "brief" ? "бриф" : "заявка"} <span style="color: #111116; font-size: 13px; line-height: 1;">★</span>
                       </div>
                       <h1 style="color: #111116; font-family: Impact, Arial Black, Arial, sans-serif; font-size: 42px; letter-spacing: 0; line-height: 0.98; margin: 0 0 12px 0; text-transform: uppercase;">
                         ${escapeHtml(title)}
@@ -151,7 +153,7 @@ function buildHtmlMessage(payload: ContactPayload) {
                   </tr>
                   <tr>
                     <td style="background: #d8ff38; border-top: 3px solid #111116; color: #111116; font-family: Arial, sans-serif; font-size: 13px; font-weight: 800; line-height: 1.4; padding: 14px 20px;">
-                      Reply directly from this email if the sender provided a valid email address.
+                      Если клиент оставил email, можно ответить прямо на это письмо.
                     </td>
                   </tr>
                 </table>
@@ -190,9 +192,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const smtpUser = process.env.SMTP_USER ?? defaultToEmail;
+  const smtpPass = process.env.EMAIL_PASSWORD;
 
-  if (!apiKey) {
+  if (!smtpPass) {
     return NextResponse.json(
       { error: "Email service is not configured." },
       { status: 500 },
@@ -201,31 +204,36 @@ export async function POST(request: Request) {
 
   const to = process.env.CONTACT_TO_EMAIL ?? defaultToEmail;
   const from = process.env.CONTACT_FROM_EMAIL ?? `NotAgency <${defaultToEmail}>`;
+  const smtpHost = process.env.SMTP_HOST ?? defaultSmtpHost;
+  const smtpPort = Number(process.env.SMTP_PORT ?? defaultSmtpPort);
   const subject =
     clean(payload.form) === "brief"
-      ? "New project brief from notagency.dev"
-      : "New contact request from notagency.dev";
+      ? "Новый клиент: бриф с notagency.io"
+      : "Новый клиент: заявка с notagency.io";
   const text = buildMessage(payload);
   const html = buildHtmlMessage(payload);
   const replyTo = findReplyEmail(payload);
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
+  const transporter = nodemailer.createTransport({
+    host: smtpHost,
+    port: smtpPort,
+    secure: smtpPort === 465,
+    auth: {
+      user: smtpUser,
+      pass: smtpPass,
     },
-    body: JSON.stringify({
+  });
+
+  try {
+    await transporter.sendMail({
       from,
       to,
       subject,
       text,
       html,
-      ...(replyTo ? { reply_to: replyTo } : {}),
-    }),
-  });
-
-  if (!response.ok) {
+      ...(replyTo ? { replyTo } : {}),
+    });
+  } catch {
     return NextResponse.json(
       { error: "Email service rejected the message." },
       { status: 502 },

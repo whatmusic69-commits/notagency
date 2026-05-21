@@ -1812,20 +1812,58 @@ a {
   font-weight: 700;
   line-height: 1.35;
   margin: 0;
-  padding: 12px 14px;
+  overflow: hidden;
+  padding: 12px 14px 22px;
+  position: relative;
+}
+
+.form-status::before,
+.form-status::after {
+  border-radius: 999px;
+  bottom: 8px;
+  content: "";
+  height: 6px;
+  left: 14px;
+  position: absolute;
+  right: 14px;
+}
+
+.form-status::before {
+  background: rgba(8, 8, 8, 0.18);
+}
+
+.form-status::after {
+  background: var(--ink);
+  right: auto;
+  width: 0;
 }
 
 .form-status.sending {
   background: var(--white);
 }
 
+.form-status.sending::after {
+  animation: formStatusLoading 1.05s ease-in-out infinite;
+  width: 44%;
+}
+
 .form-status.sent {
   background: var(--cyan);
+}
+
+.form-status.sent::after {
+  transition: width 0.36s ease;
+  width: calc(100% - 28px);
 }
 
 .form-status.error {
   background: var(--pink);
   color: var(--white);
+}
+
+.form-status.error::before,
+.form-status.error::after {
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .process-shell {
@@ -2845,6 +2883,20 @@ a {
 @keyframes spinSnap {
   50% {
     transform: rotate(8deg) scale(1.06);
+  }
+}
+
+@keyframes formStatusLoading {
+  0% {
+    transform: translateX(-12%);
+  }
+
+  50% {
+    transform: translateX(128%);
+  }
+
+  100% {
+    transform: translateX(-12%);
   }
 }
 

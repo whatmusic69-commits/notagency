@@ -14,7 +14,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { type Lang, storeLang } from "../lib/language";
 
-const email = "hello@notagency.dev";
+const email = "hello@notagency.io";
 
 const copy = {
   en: {

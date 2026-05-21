@@ -17,16 +17,18 @@ const copy = {
     company: "Company / project",
     details: "What are we building?",
     namePlaceholder: "Founder, CEO, owner of the mess",
-    contactPlaceholder: "you@company.com or Telegram handle",
+    contactPlaceholder: "you@company.com",
     companyPlaceholder: "Company, product or project name",
     detailsPlaceholder:
       "What exists now, what is broken, what needs to go live, and what result should the site or app create.",
     projectType: "Project type",
     budget: "Budget",
+    customProject: "Custom",
+    customProjectPlaceholder: "Write the project type",
     send: "Email the brief",
     sending: "Sending...",
-    sent: "Brief sent. We will reply by email or messenger.",
-    error: "Could not send. Write to hello@notagency.dev.",
+    sent: "Brief sent. We will reply by email.",
+    error: "Could not send. Write to hello@notagency.io.",
     options: ["Landing", "Web app", "E-commerce", "Brand + site", "Rescue / redesign"],
   },
   ru: {
@@ -39,16 +41,18 @@ const copy = {
     company: "Компания / проект",
     details: "Что строим?",
     namePlaceholder: "Фаундер, CEO, владелец хаоса",
-    contactPlaceholder: "you@company.com или Telegram",
+    contactPlaceholder: "you@company.com",
     companyPlaceholder: "Название компании, продукта или проекта",
     detailsPlaceholder:
       "Что уже есть, что сломано, что должно выйти в жизнь и какой результат сайт или app должен принести.",
     projectType: "Тип проекта",
     budget: "Бюджет",
+    customProject: "Свой вариант",
+    customProjectPlaceholder: "Напиши тип проекта",
     send: "Отправить бриф",
     sending: "Отправляем...",
-    sent: "Бриф ушел. Ответим на почту или в мессенджер.",
-    error: "Не получилось отправить. Напиши на hello@notagency.dev.",
+    sent: "Бриф ушел. Ответим на почту.",
+    error: "Не получилось отправить. Напиши на hello@notagency.io.",
     options: ["Лендинг", "Web app", "E-commerce", "Бренд + сайт", "Спасение / редизайн"],
   },
   lv: {
@@ -61,16 +65,18 @@ const copy = {
     company: "Uzņēmums / projekts",
     details: "Ko būvējam?",
     namePlaceholder: "Founder, CEO, haosa īpašnieks",
-    contactPlaceholder: "you@company.com vai Telegram",
+    contactPlaceholder: "you@company.com",
     companyPlaceholder: "Uzņēmuma, produkta vai projekta nosaukums",
     detailsPlaceholder:
       "Kas jau eksistē, kas nestrādā, kam jāiet gaisā un kādu rezultātu lapai vai app jāatnes.",
     projectType: "Projekta tips",
     budget: "Budžets",
+    customProject: "Savs variants",
+    customProjectPlaceholder: "Ieraksti projekta tipu",
     send: "Nosūtīt briefu",
     sending: "Sūtām...",
-    sent: "Briefs aizgāja. Atbildēsim uz email vai messenger.",
-    error: "Neizdevās nosūtīt. Raksti uz hello@notagency.dev.",
+    sent: "Briefs aizgāja. Atbildēsim uz email.",
+    error: "Neizdevās nosūtīt. Raksti uz hello@notagency.io.",
     options: ["Landing", "Web app", "E-commerce", "Zīmols + lapa", "Glābšana / redesign"],
   },
 };
@@ -83,12 +89,13 @@ type BriefClientProps = {
 
 export default function BriefClient({ initialLang }: BriefClientProps) {
   const [lang, setLang] = useState<Lang>(initialLang);
-  const [projectType, setProjectType] = useState(1);
+  const [projectType, setProjectType] = useState<number | "custom">(1);
   const [budget, setBudget] = useState(2);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [company, setCompany] = useState("");
   const [details, setDetails] = useState("");
+  const [customProjectType, setCustomProjectType] = useState("");
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const t = copy[lang];
 
@@ -111,10 +118,11 @@ export default function BriefClient({ initialLang }: BriefClientProps) {
           form: "brief",
           lang,
           name,
-          contact,
+          email: contact,
           company,
           details,
-          projectType: t.options[projectType],
+          projectType:
+            projectType === "custom" ? customProjectType : t.options[projectType],
           budget: budgets[budget],
         }),
       });
@@ -127,6 +135,8 @@ export default function BriefClient({ initialLang }: BriefClientProps) {
       setContact("");
       setCompany("");
       setDetails("");
+      setCustomProjectType("");
+      setProjectType(1);
       setSubmitStatus("sent");
     } catch {
       setSubmitStatus("error");
@@ -169,6 +179,7 @@ export default function BriefClient({ initialLang }: BriefClientProps) {
               onChange={(event) => setContact(event.target.value)}
               placeholder={t.contactPlaceholder}
               required
+              type="email"
               value={contact}
             />
           </label>
@@ -204,7 +215,24 @@ export default function BriefClient({ initialLang }: BriefClientProps) {
                   {item}
                 </button>
               ))}
+              <button
+                className={projectType === "custom" ? "selected" : ""}
+                onClick={() => setProjectType("custom")}
+                type="button"
+              >
+                {projectType === "custom" && <Check size={16} />}
+                {t.customProject}
+              </button>
             </div>
+            {projectType === "custom" ? (
+              <input
+                className="custom-project-input"
+                onChange={(event) => setCustomProjectType(event.target.value)}
+                placeholder={t.customProjectPlaceholder}
+                required
+                value={customProjectType}
+              />
+            ) : null}
           </div>
 
           <div className="brief-fieldset">

@@ -10,7 +10,7 @@ const enSections = [
   { title: "Data retention", body: "We keep data only as long as needed for communication, delivery, accounting, legal records, dispute prevention, or useful business history." },
   { title: "Security", body: "We use reasonable technical and organizational measures to protect data from unauthorized access, misuse, loss, or disclosure." },
   { title: "International work", body: "Digital tools are often global, so data may be processed outside your country with appropriate providers and safeguards." },
-  { title: "Your rights", body: "You can ask to access, correct, export, restrict, or delete your personal data by writing to hello@notagency.dev." },
+  { title: "Your rights", body: "You can ask to access, correct, export, restrict, or delete your personal data by writing to hello@notagency.io." },
   { title: "Policy updates", body: "We may update this Privacy Policy when tools, legal requirements, or business processes change. The latest version on this page applies." },
 ];
 
@@ -40,7 +40,7 @@ export default async function PrivacyPage({ searchParams }: PageWithLangProps) {
             { title: "Срок хранения", body: "Мы храним данные только пока они нужны для коммуникации, проекта, бухгалтерии, юридических записей, предотвращения споров или полезной истории." },
             { title: "Безопасность", body: "Мы используем разумные технические и организационные меры для защиты данных от доступа, потери, злоупотребления или раскрытия." },
             { title: "Международная работа", body: "Digital-инструменты часто глобальные, поэтому данные могут обрабатываться за пределами твоей страны через подходящих провайдеров." },
-            { title: "Твои права", body: "Ты можешь запросить доступ, исправление, экспорт, ограничение или удаление персональных данных через hello@notagency.dev." },
+            { title: "Твои права", body: "Ты можешь запросить доступ, исправление, экспорт, ограничение или удаление персональных данных через hello@notagency.io." },
             { title: "Обновления", body: "Мы можем обновлять эту политику, когда меняются инструменты, закон или процессы. Актуальная версия опубликована здесь." },
           ],
         },
@@ -57,7 +57,7 @@ export default async function PrivacyPage({ searchParams }: PageWithLangProps) {
             { title: "Glabāšanas laiks", body: "Datus glabājam tikai tik ilgi, cik vajag komunikācijai, projektam, grāmatvedībai, juridiskiem ierakstiem vai strīdu novēršanai." },
             { title: "Drošība", body: "Izmantojam saprātīgus tehniskus un organizatoriskus pasākumus, lai pasargātu datus no piekļuves, zuduma vai ļaunprātīgas izmantošanas." },
             { title: "Starptautisks darbs", body: "Digital rīki bieži ir globāli, tāpēc dati var tikt apstrādāti ārpus tavas valsts ar atbilstošiem pakalpojumu sniedzējiem." },
-            { title: "Tavas tiesības", body: "Vari prasīt piekļuvi, labošanu, eksportu, ierobežošanu vai dzēšanu, rakstot uz hello@notagency.dev." },
+            { title: "Tavas tiesības", body: "Vari prasīt piekļuvi, labošanu, eksportu, ierobežošanu vai dzēšanu, rakstot uz hello@notagency.io." },
             { title: "Atjauninājumi", body: "Šī politika var mainīties, ja mainās rīki, likums vai procesi. Spēkā ir šeit publicētā versija." },
           ],
         },

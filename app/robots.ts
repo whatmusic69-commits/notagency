@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://notagency.dev/sitemap.xml",
-    host: "https://notagency.dev",
+    sitemap: "https://notagency.io/sitemap.xml",
+    host: "https://notagency.io",
   };
 }

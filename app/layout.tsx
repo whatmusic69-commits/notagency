@@ -6,7 +6,7 @@ import "@fontsource/archivo-black/400.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://notagency.dev"),
+  metadataBase: new URL("https://notagency.io"),
   title: {
     default: "NotAgency - Websites, Apps and Digital Systems",
     template: "%s | NotAgency",
@@ -97,8 +97,8 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "NotAgency",
   alternateName: ["Not Agency", "NotAgency Riga"],
-  url: "https://notagency.dev",
-  email: "hello@notagency.dev",
+  url: "https://notagency.io",
+  email: "hello@notagency.io",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Riga",
@@ -118,7 +118,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "NotAgency",
-  url: "https://notagency.dev",
+  url: "https://notagency.io",
   inLanguage: ["en", "ru", "lv"],
   description:
     "Websites, web apps, MVPs and digital systems for founders and businesses in Latvia, Europe and remote.",

@@ -57,9 +57,9 @@ export function SiteFooter({ lang = "en" }: { lang?: Lang }) {
         </nav>
 
         <div className="footer-contact">
-          <a href="mailto:hello@notagency.dev">
+          <a href="mailto:hello@notagency.io">
             <Mail size={18} />
-            hello@notagency.dev
+            hello@notagency.io
           </a>
           <span>
             <MapPin size={18} />

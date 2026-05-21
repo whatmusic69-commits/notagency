@@ -123,12 +123,14 @@ const copy = {
     formSub: "Выбери формат. О нет, он такой грустный — заставь его улыбнуться.",
     send: "Отправить заявку",
     sending: "Отправляем...",
-    sent: "Заявка ушла. Ответим на почту или в мессенджер.",
-    error: "Не получилось отправить. Напиши на hello@notagency.dev.",
+    sent: "Заявка ушла. Ответим на почту.",
+    error: "Не получилось отправить. Напиши на hello@notagency.io.",
     name: "Кто ты?",
     email: "Куда писать?",
     idea: "Что строим?",
     budgetField: "Бюджет",
+    customProject: "Свой вариант",
+    customProjectPlaceholder: "Напиши тип проекта",
     namePlaceholder: "CEO, фаундер, владелец хаоса",
     ideaPlaceholder:
       "Сайт, который продает. Приложение, за которое не стыдно. Запуск вчера.",
@@ -206,12 +208,14 @@ const copy = {
     formSub: "Izvēlies formātu. Ak nē, viņš ir tik skumjš — liec viņam pasmaidīt.",
     send: "Nosūtīt pieteikumu",
     sending: "Sūtām...",
-    sent: "Pieteikums aizgāja. Atbildēsim uz email vai messenger.",
-    error: "Neizdevās nosūtīt. Raksti uz hello@notagency.dev.",
+    sent: "Pieteikums aizgāja. Atbildēsim uz email.",
+    error: "Neizdevās nosūtīt. Raksti uz hello@notagency.io.",
     name: "Kas tu esi?",
     email: "Kur rakstīt?",
     idea: "Ko būvējam?",
     budgetField: "Budžets",
+    customProject: "Savs variants",
+    customProjectPlaceholder: "Ieraksti projekta tipu",
     namePlaceholder: "CEO, founderis, haosa īpašnieks",
     ideaPlaceholder:
       "Lapa, kas pārdod. Aplikācija, par kuru nav kauns. Palaišana bija vajadzīga vakar.",
@@ -289,12 +293,14 @@ const copy = {
     formSub: "Pick the shape. Oh no, he looks so sad — make him smile.",
     send: "Send request",
     sending: "Sending...",
-    sent: "Request sent. We will reply by email or messenger.",
-    error: "Could not send. Write to hello@notagency.dev.",
+    sent: "Request sent. We will reply by email.",
+    error: "Could not send. Write to hello@notagency.io.",
     name: "Who are you?",
     email: "Where do we write?",
     idea: "What are we building?",
     budgetField: "Budget",
+    customProject: "Custom",
+    customProjectPlaceholder: "Write the project type",
     namePlaceholder: "CEO, founder, chaos owner",
     ideaPlaceholder:
       "A site that sells. An app that does not embarrass us. A launch page yesterday.",
@@ -336,11 +342,12 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   const [lang, setLang] = useState<Lang>(initialLang);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [countdown, setCountdown] = useState(initialCountdown);
-  const [choice, setChoice] = useState<number | null>(null);
+  const [choice, setChoice] = useState<number | "custom" | null>(null);
   const [budget, setBudget] = useState<number | null>(null);
   const [briefName, setBriefName] = useState("");
   const [briefEmail, setBriefEmail] = useState("");
   const [briefIdea, setBriefIdea] = useState("");
+  const [customProjectType, setCustomProjectType] = useState("");
   const [briefStatus, setBriefStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
   const t = copy[lang];
@@ -432,13 +439,14 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   const characterStyle = useMemo(
     () => {
       const choiceValue = choice ?? 0;
+      const numericChoice = choiceValue === "custom" ? t.options.length : choiceValue;
       const budgetValue = budget ?? 0;
 
       return {
-        transform: `translate(${choiceValue * 22 - budgetValue * 8}px, ${budgetValue * 8 - choiceValue * 5}px) rotate(${choiceValue * 5 - budgetValue * 3}deg)`,
+        transform: `translate(${numericChoice * 22 - budgetValue * 8}px, ${budgetValue * 8 - numericChoice * 5}px) rotate(${numericChoice * 5 - budgetValue * 3}deg)`,
       };
     },
-    [choice, budget],
+    [choice, budget, t.options.length],
   );
 
   const submitBrief = async (event: FormEvent<HTMLFormElement>) => {
@@ -457,7 +465,12 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
           name: briefName,
           email: briefEmail,
           idea: briefIdea,
-          projectType: choice === null ? "" : t.options[choice],
+          projectType:
+            choice === "custom"
+              ? customProjectType
+              : choice === null
+                ? ""
+                : t.options[choice],
           budget: budget === null ? "" : budgets[budget],
         }),
       });
@@ -469,6 +482,8 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
       setBriefName("");
       setBriefEmail("");
       setBriefIdea("");
+      setCustomProjectType("");
+      setChoice(null);
       setBriefStatus("sent");
     } catch {
       setBriefStatus("error");
@@ -883,7 +898,24 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                     {item}
                   </button>
                 ))}
+                <button
+                  className={choice === "custom" ? "selected" : ""}
+                  onClick={() => setChoice("custom")}
+                  type="button"
+                >
+                  {choice === "custom" && <Check size={16} />}
+                  {t.customProject}
+                </button>
               </div>
+              {choice === "custom" ? (
+                <input
+                  className="custom-project-input"
+                  onChange={(event) => setCustomProjectType(event.target.value)}
+                  placeholder={t.customProjectPlaceholder}
+                  required
+                  value={customProjectType}
+                />
+              ) : null}
               <div className="budget-group">
                 <span>{t.budgetField}</span>
                 <div className="budget-options">

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://notagency.dev";
+const baseUrl = "https://notagency.io";
 const routes = [
   "",
   "/about",
