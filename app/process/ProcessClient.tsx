@@ -24,7 +24,7 @@ const copy = {
       "We do not disappear after the first invoice. We build in public enough for you to stay calm and private enough for the work to stay sharp.",
     back: "Back home",
     brief: "Start brief",
-    brutal: "If you need ten approval committees, we are already tired.",
+    brutal: "If every decision needs ten approvals, the launch will drown before it starts.",
     steps: [
       ["01", "Damage scan", "We find what is broken: offer, structure, visuals, tech, trust. No polite lies."],
       ["02", "Sharp concept", "One direction, strong enough to sell. Not fifty beige options and a funeral moodboard."],
@@ -35,7 +35,7 @@ const copy = {
     cards: [
       ["Fast feedback", "You see progress before panic starts."],
       ["Clear ownership", "One team owns the mess until it becomes order."],
-      ["Real launch", "Not a Figma shrine. A working website."],
+      ["Real launch", "Not just a Figma mockup. A working website."],
     ],
   },
   ru: {
@@ -45,7 +45,7 @@ const copy = {
       "Мы не пропадаем после первого счета. Показываем прогресс достаточно часто, чтобы тебе было спокойно, и держим фокус достаточно жестко, чтобы работа не расползлась.",
     back: "На главную",
     brief: "Заполнить бриф",
-    brutal: "Если тебе нужно десять комитетов согласования, мы уже устали.",
+    brutal: "Если каждое решение согласуют десять человек, запуск утонет до старта.",
     steps: [
       ["01", "Скан ущерба", "Находим, что сломано: оффер, структура, визуал, техника, доверие. Без вежливой лжи."],
       ["02", "Жесткая концепция", "Один внятный вектор, который может продавать. Не пятьдесят бежевых вариантов."],
@@ -56,7 +56,7 @@ const copy = {
     cards: [
       ["Быстрый фидбек", "Ты видишь прогресс до того, как начинается паника."],
       ["Четкая ответственность", "Одна команда держит хаос, пока он не станет порядком."],
-      ["Реальный запуск", "Не храм в Figma. Рабочий сайт."],
+      ["Реальный запуск", "Не просто макет в Figma. Рабочий сайт."],
     ],
   },
   lv: {
@@ -66,7 +66,7 @@ const copy = {
       "Mēs nepazūdam pēc pirmā rēķina. Tu redzi progresu pietiekami bieži, lai būtu miers, un mēs turam fokusu pietiekami stingri, lai darbs neizjuktu.",
     back: "Uz sākumu",
     brief: "Sākt briefu",
-    brutal: "Ja tev vajag desmit apstiprināšanas komitejas, mēs jau esam noguruši.",
+    brutal: "Ja katru lēmumu apstiprina desmit cilvēki, palaišana noslīks pirms starta.",
     steps: [
       ["01", "Bojājumu skenēšana", "Atrodam, kas nestrādā: piedāvājums, struktūra, vizuālais, tehnika, uzticība."],
       ["02", "Ass koncepts", "Viens skaidrs virziens, kas spēj pārdot. Ne piecdesmit bēši varianti."],
@@ -77,7 +77,7 @@ const copy = {
     cards: [
       ["Ātrs feedback", "Tu redzi progresu pirms sākas panika."],
       ["Skaidra atbildība", "Viena komanda tur haosu, līdz tas kļūst par kārtību."],
-      ["Īsta palaišana", "Ne Figma templis. Strādājoša lapa."],
+      ["Īsta palaišana", "Ne tikai Figma makets. Strādājoša lapa."],
     ],
   },
 };

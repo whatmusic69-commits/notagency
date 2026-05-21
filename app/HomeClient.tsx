@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -24,6 +25,36 @@ import { projects } from "./lib/projects";
 type WelcomeStage = "hidden" | "broken" | "repairing";
 
 const launchDate = new Date("2026-06-01T12:00:00+03:00").getTime();
+
+function WaveText({ text }: { text: string }) {
+  let letterIndex = 0;
+
+  return (
+    <span aria-label={text} className="wave-text">
+      <span aria-hidden="true">
+        {text.split(/(\s+)/).map((part, partIndex) => {
+          if (/^\s+$/.test(part)) {
+            return " ";
+          }
+
+          return (
+            <span className="wave-word" key={`${part}-${partIndex}`}>
+              {Array.from(part).map((letter) => (
+                <span
+                  className="wave-letter"
+                  key={`${letter}-${letterIndex}`}
+                  style={{ "--wave-index": letterIndex++ } as React.CSSProperties}
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+          );
+        })}
+      </span>
+    </span>
+  );
+}
 
 function getLaunchCountdown() {
   const distance = Math.max(0, launchDate - Date.now());
@@ -58,6 +89,9 @@ const copy = {
     portfolioTitle: "Портфолио без скучных кейсов",
     portfolioAll: "Все проекты",
     projectLink: "Смотреть проект",
+    projectMore: "Подробнее",
+    projectModalClose: "Закрыть",
+    projectModalVisit: "Открыть сайт",
     fitTitle: "Кому мы подходим",
     fitSub:
       "Мы не продаем спокойствие людям, которые сами не верят в свой проект. Мы входим туда, где есть амбиция, бюджет и готовность принимать решения.",
@@ -82,11 +116,11 @@ const copy = {
       "Собираем сильную концепцию и рабочие экраны.",
       "Доводим до deploy, аналитики, форм и реального запуска.",
     ],
-    aboutTitle: "NotAgency — не витрина, а цех.",
+    aboutTitle: "NotAgency — не витрина, а мастерская.",
     about:
       "Мы собираем сайты и приложения, которые выглядят громко, продают спокойно и не разваливаются после первого обновления.",
     formTitle: "Чего надо?",
-    formSub: "Выбери формат. Персонаж сайта двигается вместе с твоими решениями.",
+    formSub: "Выбери формат. О нет, он такой грустный — заставь его улыбнуться.",
     send: "Отправить заявку",
     sending: "Отправляем...",
     sent: "Заявка ушла. Ответим на почту или в мессенджер.",
@@ -105,7 +139,7 @@ const copy = {
       },
       {
         title: "Приложения",
-        text: "Дашборды, SaaS-инструменты, клиентские кабинеты и MVP, которые могут вырасти дальше демо.",
+        text: "Web apps, iOS/Android-приложения, SaaS-инструменты, клиентские кабинеты, MVP и Web3-интерфейсы.",
       },
       {
         title: "Brand UI",
@@ -131,13 +165,16 @@ const copy = {
     cta: "Aizpildīt briefu",
     secondary: "Skatīt darbus",
     counterLabel: "Līdz klienta domēna startam",
-    budget: "Ja budžets ir 200€ — aizver lapu. Mēs neesam tev.",
+    budget: "Ja budžets ir 200€ — aizver lapu. Mēs nebūsim īstie.",
     budgetSub: "Atnāc, kad gribi rezultātu, nevis tikai bildīti.",
     servicesTitle: "Ko mēs darām",
     servicesSub: "Tirgus ir haoss. Mēs tajā esam kārtība.",
     portfolioTitle: "Portfolio bez garlaicīgiem keisiem",
     portfolioAll: "Visi projekti",
     projectLink: "Skatīt projektu",
+    projectMore: "Vairāk",
+    projectModalClose: "Aizvērt",
+    projectModalVisit: "Atvērt lapu",
     fitTitle: "Kam mēs deram",
     fitSub:
       "Mēs nepārdodam mierinājumu cilvēkiem, kuri paši netic savam projektam. Mēs ejam tur, kur ir ambīcija, budžets un gatavība pieņemt lēmumus.",
@@ -166,7 +203,7 @@ const copy = {
     about:
       "Mēs būvējam mājaslapas un aplikācijas, kas izskatās skaļi, pārdod mierīgi un nesabrūk pēc pirmā update.",
     formTitle: "Ko vajag?",
-    formSub: "Izvēlies formātu. Lapas tēls kustas kopā ar tavām izvēlēm.",
+    formSub: "Izvēlies formātu. Ak nē, viņš ir tik skumjš — liec viņam pasmaidīt.",
     send: "Nosūtīt pieteikumu",
     sending: "Sūtām...",
     sent: "Pieteikums aizgāja. Atbildēsim uz email vai messenger.",
@@ -185,7 +222,7 @@ const copy = {
       },
       {
         title: "Aplikācijas",
-        text: "Dashboardi, SaaS rīki, klientu portāli un MVP, kas var izaugt tālāk par demo.",
+        text: "Web apps, iOS/Android aplikācijas, SaaS rīki, klientu portāli, MVP un Web3 interfeisi.",
       },
       {
         title: "Brand UI",
@@ -218,6 +255,9 @@ const copy = {
     portfolioTitle: "Portfolio without sleepy case studies",
     portfolioAll: "All projects",
     projectLink: "View project",
+    projectMore: "Details",
+    projectModalClose: "Close",
+    projectModalVisit: "Open site",
     fitTitle: "Who we are for",
     fitSub:
       "We do not sell comfort to people who do not believe in their own project. We enter when there is ambition, budget and a willingness to decide.",
@@ -246,7 +286,7 @@ const copy = {
     about:
       "We build sites and apps that look loud, sell calmly and do not fall apart after the first update.",
     formTitle: "What do you need?",
-    formSub: "Pick the shape. The site character moves with your choices.",
+    formSub: "Pick the shape. Oh no, he looks so sad — make him smile.",
     send: "Send request",
     sending: "Sending...",
     sent: "Request sent. We will reply by email or messenger.",
@@ -265,7 +305,7 @@ const copy = {
       },
       {
         title: "Apps",
-        text: "Dashboards, SaaS tools, client portals and MVPs that can grow past the demo.",
+        text: "Web apps, iOS/Android apps, SaaS tools, client portals, MVPs and Web3 interfaces.",
       },
       {
         title: "Brand UI",
@@ -302,6 +342,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   const [briefEmail, setBriefEmail] = useState("");
   const [briefIdea, setBriefIdea] = useState("");
   const [briefStatus, setBriefStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
   const t = copy[lang];
 
   const changeLang = (nextLang: Lang) => {
@@ -371,6 +412,22 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
 
     return () => window.clearInterval(countdownTimer);
   }, []);
+
+  useEffect(() => {
+    if (!selectedProject) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedProject(null);
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [selectedProject]);
 
   const characterStyle = useMemo(
     () => {
@@ -642,6 +699,10 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                     {t.projectLink}
                     <ExternalLink size={16} />
                   </a>
+                  <button className="project-more-button" type="button" onClick={() => setSelectedProject(project)}>
+                    {t.projectMore}
+                    <ArrowRight size={16} />
+                  </button>
                   <div className="project-screen">
                     <div />
                     <div />
@@ -654,6 +715,48 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
               {t.portfolioAll}
               <ArrowRight size={22} />
             </a>
+            {selectedProject ? (
+              <div className="project-modal-backdrop" role="presentation" onClick={() => setSelectedProject(null)}>
+                <div
+                  aria-labelledby="project-modal-title"
+                  aria-modal="true"
+                  className="project-modal"
+                  role="dialog"
+                  style={{ "--accent": selectedProject.color } as React.CSSProperties}
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <button
+                    aria-label={t.projectModalClose}
+                    className="project-modal-close"
+                    type="button"
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    <X size={22} />
+                  </button>
+                  <p className="kicker">{selectedProject.type}</p>
+                  <h3 id="project-modal-title">{selectedProject.name}</h3>
+                  {selectedProject.modalImage ? (
+                    <Image
+                      alt={`${selectedProject.name} screenshot`}
+                      className="project-modal-image"
+                      placeholder="blur"
+                      src={selectedProject.modalImage}
+                    />
+                  ) : null}
+                  <p className="project-modal-summary">{selectedProject.summary[lang]}</p>
+                  <p className="project-modal-details">{(selectedProject.modalDetails ?? selectedProject.details)[lang]}</p>
+                  <div className="project-tags">
+                    {selectedProject.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <a className="project-modal-link" href={selectedProject.url} rel="noreferrer" target="_blank">
+                    {t.projectModalVisit}
+                    <ExternalLink size={17} />
+                  </a>
+                </div>
+              </div>
+            ) : null}
           </section>
 
           <section className="fit-check">
@@ -667,9 +770,9 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                 <h3>{t.goodFit}</h3>
                 <ul>
                   {t.fitGood.map((item) => (
-                    <li key={item}>
+                    <li className="wave-list-item" key={item}>
                       <Check size={18} />
-                      <span>{item}</span>
+                      <WaveText text={item} />
                     </li>
                   ))}
                 </ul>
@@ -678,9 +781,9 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                 <h3>{t.badFit}</h3>
                 <ul>
                   {t.fitBad.map((item) => (
-                    <li key={item}>
+                    <li className="wave-list-item" key={item}>
                       <X size={18} />
-                      <span>{item}</span>
+                      <WaveText text={item} />
                     </li>
                   ))}
                 </ul>
