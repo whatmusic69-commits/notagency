@@ -3,6 +3,7 @@ import "@fontsource/space-grotesk/400.css";
 import "@fontsource/space-grotesk/500.css";
 import "@fontsource/space-grotesk/700.css";
 import "@fontsource/archivo-black/400.css";
+import { FloatingMascot } from "./components/FloatingMascot";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -139,6 +140,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <FloatingMascot />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@ export type Lang = "en" | "ru" | "lv";
 
 export const defaultLang: Lang = "en";
 export const languageStorageKey = "notagency-language";
+export const languageChangeEventName = "notagency-language-change";
 const languageCookieMaxAge = 60 * 60 * 24 * 365;
 
 export function isLang(value: string | null): value is Lang {
@@ -47,6 +48,7 @@ export function persistLang(lang: Lang) {
   document.cookie = `${languageStorageKey}=${encodeURIComponent(
     lang,
   )}; path=/; max-age=${languageCookieMaxAge}; SameSite=Lax`;
+  window.dispatchEvent(new CustomEvent(languageChangeEventName, { detail: lang }));
 }
 
 export function storeLang(lang: Lang) {

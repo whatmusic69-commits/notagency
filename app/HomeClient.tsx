@@ -138,18 +138,30 @@ const copy = {
       {
         title: "Сайты",
         text: "Лендинги, корпоративные, промо и контентные сайты с понятной логикой конверсии.",
+        detail:
+          "Собираем сайт вокруг задачи бизнеса: кто должен прийти, что он должен понять и какое действие совершить. Не рисуем витрину ради витрины.",
+        bullets: ["Структура и оффер", "Дизайн ключевых экранов", "Адаптивная разработка", "Формы, аналитика и запуск"],
       },
       {
         title: "Приложения",
         text: "Web apps, iOS/Android-приложения, SaaS-инструменты, клиентские кабинеты, MVP и Web3-интерфейсы.",
+        detail:
+          "Проектируем интерфейс и логику продукта так, чтобы MVP можно было показать, проверить и развивать без переписывания с нуля.",
+        bullets: ["User flow и роли", "UI для сценариев", "Frontend-разработка", "Интеграции и рабочий MVP"],
       },
       {
         title: "Brand UI",
         text: "Визуальные системы, motion-направление, компоненты и экраны, которые запоминают.",
+        detail:
+          "Делаем digital-образ, который не разваливается после первого баннера: компоненты, визуальный тон, движение и правила для дальнейшей работы.",
+        bullets: ["Визуальное направление", "UI-kit и компоненты", "Motion-принципы", "Экраны для продукта и маркетинга"],
       },
       {
         title: "Запуск",
         text: "Домен, deploy, аналитика, формы, интеграции и launch-баннер, который не выглядит мертвым.",
+        detail:
+          "Доводим проект до состояния, где он реально живет в интернете: открывается, собирает заявки, измеряется и не выглядит брошенным.",
+        bullets: ["Deploy и домен", "Формы и email", "Базовая аналитика", "Проверка перед стартом"],
       },
     ],
     options: ["Лендинг", "Web app", "E-commerce", "Бренд + сайт"],
@@ -223,18 +235,30 @@ const copy = {
       {
         title: "Mājaslapas",
         text: "Landing, korporatīvās, promo un satura lapas ar skaidru konversijas loģiku.",
+        detail:
+          "Būvējam lapu ap biznesa uzdevumu: kam jāatnāk, kas jāsaprot un kāda darbība jāizdara. Nezīmējam vitrīnu vitrīnas pēc.",
+        bullets: ["Struktūra un offeris", "Galveno ekrānu dizains", "Responsīva izstrāde", "Formas, analītika un palaišana"],
       },
       {
         title: "Aplikācijas",
         text: "Web apps, iOS/Android aplikācijas, SaaS rīki, klientu portāli, MVP un Web3 interfeisi.",
+        detail:
+          "Projektējam produkta loģiku un interfeisu tā, lai MVP var parādīt, pārbaudīt un attīstīt bez pārrakstīšanas no nulles.",
+        bullets: ["User flow un lomas", "UI scenārijiem", "Frontend izstrāde", "Integrācijas un strādājošs MVP"],
       },
       {
         title: "Brand UI",
         text: "Vizuālās sistēmas, motion virziens, komponentes un ekrāni, kurus atceras.",
+        detail:
+          "Veidojam digital tēlu, kas nesabrūk pēc pirmā banera: komponentes, vizuālais tonis, kustība un noteikumi tālākai darbībai.",
+        bullets: ["Vizuālais virziens", "UI-kit un komponentes", "Motion principi", "Ekrāni produktam un mārketingam"],
       },
       {
         title: "Palaišana",
         text: "Domēns, deploy, analītika, formas, integrācijas un launch baneris, kas neizskatās miris.",
+        detail:
+          "Aizvedam projektu līdz stāvoklim, kur tas tiešām dzīvo internetā: atveras, vāc pieteikumus, ir izmērāms un neizskatās pamests.",
+        bullets: ["Deploy un domēns", "Formas un email", "Bāzes analītika", "Pārbaude pirms starta"],
       },
     ],
     options: ["Landing", "Web app", "E-commerce", "Zīmols + lapa"],
@@ -308,18 +332,30 @@ const copy = {
       {
         title: "Websites",
         text: "Landing, corporate, promo and content-heavy sites with clear conversion logic.",
+        detail:
+          "We build the site around the business job: who should arrive, what they should understand and what action they should take.",
+        bullets: ["Structure and offer", "Key screen design", "Responsive development", "Forms, analytics and launch"],
       },
       {
         title: "Apps",
         text: "Web apps, iOS/Android apps, SaaS tools, client portals, MVPs and Web3 interfaces.",
+        detail:
+          "We shape product logic and interface flows so the MVP can be shown, tested and extended without starting over.",
+        bullets: ["User flows and roles", "Scenario-based UI", "Frontend development", "Integrations and working MVP"],
       },
       {
         title: "Brand UI",
         text: "Visual systems, motion direction, components and the screens people remember.",
+        detail:
+          "We create a digital look that survives past one banner: components, visual tone, motion rules and reusable screens.",
+        bullets: ["Visual direction", "UI kit and components", "Motion principles", "Product and marketing screens"],
       },
       {
         title: "Launch",
         text: "Domain, deploy, analytics, forms, integrations and a launch banner that does not look dead.",
+        detail:
+          "We get the project to the point where it actually lives online: opens, collects leads, can be measured and feels alive.",
+        bullets: ["Deploy and domain", "Forms and email", "Baseline analytics", "Pre-launch check"],
       },
     ],
     options: ["Landing", "Web app", "E-commerce", "Brand + site"],
@@ -327,6 +363,7 @@ const copy = {
 };
 
 const serviceIcons = [LayoutDashboard, Cpu, Palette, Rocket];
+const serviceAccents = ["var(--white)", "var(--lime)", "var(--cyan)", "var(--orange)"];
 
 const budgets = ["< 1k", "1k-3k", "3k-8k", "8k+"];
 const initialCountdown = "00 : 00 : 00 : 00";
@@ -350,7 +387,10 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   const [customProjectType, setCustomProjectType] = useState("");
   const [briefStatus, setBriefStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
+  const [selectedServiceIndex, setSelectedServiceIndex] = useState<number | null>(null);
   const t = copy[lang];
+  const selectedService =
+    selectedServiceIndex === null ? null : t.services[selectedServiceIndex];
 
   const changeLang = (nextLang: Lang) => {
     storeLang(nextLang);
@@ -435,6 +475,22 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
 
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [selectedProject]);
+
+  useEffect(() => {
+    if (selectedServiceIndex === null) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedServiceIndex(null);
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [selectedServiceIndex]);
 
   const characterStyle = useMemo(
     () => {
@@ -671,7 +727,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
             </div>
           </section>
 
-          <section className="section" id="work">
+          <section className="section services-section" id="work">
             <div className="section-head">
               <p className="kicker">SYSTEM / CHAOS</p>
               <h2>{t.servicesTitle}</h2>
@@ -681,15 +737,54 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
               {t.services.map((service, index) => {
                 const Icon = serviceIcons[index];
                 return (
-                  <article className="service-card" key={service.title}>
+                  <button
+                    className="service-card"
+                    key={service.title}
+                    onClick={() => setSelectedServiceIndex(index)}
+                    type="button"
+                  >
                     <Icon size={28} />
                     <h3>{service.title}</h3>
                     <p>{service.text}</p>
                     <ChevronRight size={22} />
-                  </article>
+                  </button>
                 );
               })}
             </div>
+            {selectedService ? (
+              <div className="project-modal-backdrop" role="presentation" onClick={() => setSelectedServiceIndex(null)}>
+                <div
+                  aria-labelledby="service-modal-title"
+                  aria-modal="true"
+                  className="project-modal service-modal"
+                  role="dialog"
+                  style={{ "--accent": serviceAccents[selectedServiceIndex ?? 0] } as React.CSSProperties}
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <button
+                    aria-label={t.projectModalClose}
+                    className="project-modal-close"
+                    type="button"
+                    onClick={() => setSelectedServiceIndex(null)}
+                  >
+                    <X size={22} />
+                  </button>
+                  <p className="kicker">NOTAGENCY / SERVICE</p>
+                  <h3 id="service-modal-title">{selectedService.title}</h3>
+                  <p className="project-modal-summary">{selectedService.text}</p>
+                  <p className="project-modal-details">{selectedService.detail}</p>
+                  <div className="service-modal-list">
+                    {selectedService.bullets.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+                  <a className="project-modal-link" href="/brief" onClick={() => setSelectedServiceIndex(null)}>
+                    {t.cta}
+                    <ArrowRight size={17} />
+                  </a>
+                </div>
+              </div>
+            ) : null}
           </section>
 
           <section className="portfolio" id="portfolio">

@@ -1038,7 +1038,6 @@ a {
 .section-head h2,
 .portfolio h2,
 .home-process h2,
-.about h2,
 .brief h2 {
   font-family: var(--font-display);
   font-size: clamp(38px, 6vw, 84px);
@@ -1047,9 +1046,21 @@ a {
   text-transform: uppercase;
 }
 
+.about h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 0.95;
+  margin: 0;
+  text-transform: uppercase;
+}
+
 .section-head p:not(.kicker) {
   font-size: 20px;
   font-weight: 700;
+}
+
+.services-section .section-head h2 {
+  font-size: clamp(34px, 4.8vw, 64px);
 }
 
 .portfolio h2 {
@@ -1068,10 +1079,15 @@ a {
   border: 3px solid var(--ink);
   border-radius: 8px;
   box-shadow: 7px 7px 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  display: block;
   min-height: 270px;
   padding: 22px;
   position: relative;
+  text-align: left;
   transition: transform 0.25s ease;
+  width: 100%;
 }
 
 .service-card:hover {
@@ -1101,6 +1117,11 @@ a {
   bottom: 18px;
   position: absolute;
   right: 18px;
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover > svg:last-child {
+  transform: translateX(5px);
 }
 
 .portfolio {
@@ -1321,6 +1342,27 @@ a {
 .project-modal-link:hover {
   box-shadow: 3px 3px 0 rgba(8, 8, 8, 0.68);
   transform: translate(3px, 3px);
+}
+
+.service-modal {
+  max-width: 680px;
+}
+
+.service-modal-list {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 22px 0 4px;
+}
+
+.service-modal-list span {
+  background: rgba(255, 255, 255, 0.72);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 12px;
+  text-transform: uppercase;
 }
 
 .project-screen {
@@ -1896,7 +1938,7 @@ a {
 
 .portfolio-hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(52px, 8vw, 112px);
+  font-size: clamp(42px, 6.4vw, 84px);
   line-height: 0.92;
   margin: 0;
   max-width: 920px;
@@ -1904,7 +1946,7 @@ a {
 }
 
 .lang-lv .portfolio-hero h1 {
-  font-size: clamp(44px, 6.4vw, 90px);
+  font-size: clamp(38px, 5.4vw, 72px);
   line-height: 1;
 }
 
@@ -2740,6 +2782,145 @@ a {
   margin: 0;
 }
 
+.floating-mascot-widget {
+  align-items: flex-end;
+  animation: floatingMascotEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  bottom: 24px;
+  display: flex;
+  gap: 14px;
+  pointer-events: none;
+  position: fixed;
+  right: 24px;
+  z-index: 70;
+}
+
+.floating-mascot-bubble {
+  animation: floatingBubbleEnter 0.62s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 7px 7px 0 var(--pink);
+  color: var(--ink);
+  max-width: 280px;
+  padding: 18px 44px 18px 18px;
+  pointer-events: auto;
+  position: relative;
+}
+
+.floating-mascot-bubble::after {
+  background: var(--paper);
+  border-bottom: 3px solid var(--ink);
+  border-right: 3px solid var(--ink);
+  bottom: 24px;
+  content: "";
+  height: 16px;
+  position: absolute;
+  right: -11px;
+  transform: rotate(-45deg);
+  width: 16px;
+}
+
+.floating-mascot-bubble p {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.28;
+  margin: 0 0 12px;
+}
+
+.floating-mascot-bubble a {
+  align-items: center;
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 rgba(8, 8, 8, 0.52);
+  color: var(--white);
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  min-height: 40px;
+  padding: 0 12px;
+  text-transform: uppercase;
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.floating-mascot-bubble a:hover {
+  box-shadow: 2px 2px 0 rgba(8, 8, 8, 0.62);
+  transform: translate(2px, 2px);
+}
+
+.floating-mascot-close {
+  align-items: center;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  height: 28px;
+  justify-content: center;
+  padding: 0;
+  pointer-events: auto;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  transition: transform 0.18s ease;
+  width: 28px;
+}
+
+.floating-mascot-close:hover {
+  transform: rotate(8deg) scale(1.05);
+}
+
+.floating-mascot {
+  animation:
+    floatingMascotPop 0.7s cubic-bezier(0.16, 1, 0.3, 1) both,
+    mascotBounce 2.8s ease-in-out 0.7s infinite;
+  background: var(--lime);
+  border: 4px solid var(--ink);
+  border-radius: 30% 70% 44% 56%;
+  box-shadow: 8px 8px 0 var(--ink);
+  display: block;
+  flex: 0 0 auto;
+  height: 96px;
+  pointer-events: auto;
+  position: relative;
+  transition: transform 0.18s ease;
+  width: 96px;
+}
+
+.floating-mascot:hover {
+  transform: translateY(-5px) rotate(-4deg);
+}
+
+.floating-eye {
+  background: var(--ink);
+  border-radius: 50%;
+  height: 12px;
+  position: absolute;
+  top: 32px;
+  width: 12px;
+}
+
+.floating-eye.left {
+  left: 27px;
+}
+
+.floating-eye.right {
+  right: 27px;
+}
+
+.floating-mouth {
+  background: var(--pink);
+  border: 3px solid var(--ink);
+  border-radius: 0 0 999px 999px;
+  height: 18px;
+  left: 50%;
+  position: absolute;
+  top: 54px;
+  transform: translateX(-50%);
+  width: 34px;
+}
+
 @keyframes glitch {
   0%, 100% {
     transform: translate(0);
@@ -2969,6 +3150,42 @@ a {
   }
 }
 
+@keyframes floatingMascotEnter {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatingMascotPop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.82) rotate(8deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes floatingBubbleEnter {
+  from {
+    opacity: 0;
+    transform: translate(12px, 10px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0) scale(1);
+  }
+}
+
 @media (max-width: 920px) {
   .error-grid,
   .repair-panel,
@@ -3114,6 +3331,42 @@ a {
 
   .process-step > div:last-child {
     grid-column: 1 / -1;
+  }
+
+  .floating-mascot-widget {
+    bottom: 18px;
+    gap: 10px;
+    right: 18px;
+  }
+
+  .floating-mascot {
+    height: 78px;
+    width: 78px;
+  }
+
+  .floating-eye {
+    height: 10px;
+    top: 26px;
+    width: 10px;
+  }
+
+  .floating-eye.left {
+    left: 22px;
+  }
+
+  .floating-eye.right {
+    right: 22px;
+  }
+
+  .floating-mouth {
+    height: 15px;
+    top: 44px;
+    width: 28px;
+  }
+
+  .floating-mascot-bubble {
+    max-width: min(260px, calc(100vw - 128px));
+    padding: 16px 40px 16px 16px;
   }
 }
 
@@ -3337,5 +3590,22 @@ a {
   .option-group,
   .budget-options {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .floating-mascot-widget {
+    align-items: flex-end;
+    bottom: 14px;
+    flex-direction: column;
+    right: 14px;
+  }
+
+  .floating-mascot-bubble {
+    max-width: min(280px, calc(100vw - 28px));
+  }
+
+  .floating-mascot-bubble::after {
+    bottom: -10px;
+    right: 28px;
+    transform: rotate(45deg);
   }
 }
