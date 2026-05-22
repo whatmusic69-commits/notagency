@@ -1418,7 +1418,7 @@ a {
 
 .fit-card h3 {
   font-family: var(--font-display);
-  font-size: clamp(32px, 4vw, 58px);
+  font-size: clamp(26px, 3vw, 42px);
   line-height: 0.96;
   margin: 0 0 28px;
   text-transform: uppercase;
@@ -1471,7 +1471,8 @@ a {
   transform-origin: 50% 75%;
 }
 
-.wave-list-item:hover .wave-letter {
+.wave-list-item:hover .wave-letter,
+.contact-brief li:hover .wave-letter {
   animation: fit-letter-wave 0.56s ease both;
   animation-delay: calc(var(--wave-index) * 18ms);
 }
@@ -1488,7 +1489,8 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wave-list-item:hover .wave-letter {
+  .wave-list-item:hover .wave-letter,
+  .contact-brief li:hover .wave-letter {
     animation: none;
   }
 }
@@ -2432,18 +2434,36 @@ a {
   gap: 16px;
   grid-template-columns: 34px minmax(0, 1fr);
   padding: 20px;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.contact-card:hover {
+  box-shadow: 11px 11px 0 var(--ink);
+  transform: translate(-4px, -8px) rotate(-1deg);
 }
 
 .contact-card:nth-child(2) {
   background: var(--lime);
 }
 
+.contact-card:nth-child(2):hover {
+  transform: translate(4px, -8px) rotate(1deg);
+}
+
 .contact-card:nth-child(3) {
   background: var(--cyan);
 }
 
+.contact-card:nth-child(3):hover {
+  transform: translate(-2px, -8px) rotate(1.5deg);
+}
+
 .contact-card:nth-child(4) {
   background: var(--orange);
+}
+
+.contact-card:nth-child(4):hover {
+  transform: translate(3px, -8px) rotate(-1deg);
 }
 
 .contact-card h2 {
@@ -2498,7 +2518,7 @@ a {
 .contact-brief h2 {
   color: var(--lime);
   font-family: var(--font-display);
-  font-size: clamp(34px, 5vw, 66px);
+  font-size: clamp(28px, 3.7vw, 48px);
   line-height: 0.98;
   margin: 0 0 26px;
   text-transform: uppercase;
@@ -2534,7 +2554,7 @@ a {
   color: rgba(255, 255, 255, 0.78);
 }
 
-.contact-no li span {
+.contact-no-mark {
   color: var(--pink);
   font-family: var(--font-display);
   font-size: 24px;
@@ -2681,14 +2701,28 @@ a {
   box-shadow: 7px 7px 0 var(--ink);
   min-height: 230px;
   padding: 24px;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.info-card:hover {
+  box-shadow: 11px 11px 0 var(--ink);
+  transform: translate(-4px, -8px) rotate(-1deg);
 }
 
 .info-card:nth-child(2n) {
   background: var(--lime);
 }
 
+.info-card:nth-child(2n):hover {
+  transform: translate(4px, -8px) rotate(1deg);
+}
+
 .info-card:nth-child(3n) {
   background: var(--cyan);
+}
+
+.info-card:nth-child(3n):hover {
+  transform: translate(-2px, -8px) rotate(1.5deg);
 }
 
 .info-card h2 {

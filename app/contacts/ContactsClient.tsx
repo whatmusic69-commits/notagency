@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type CSSProperties, useState } from "react";
 import {
   ArrowRight,
   BadgeEuro,
@@ -15,6 +15,36 @@ import { SiteHeader } from "../components/SiteHeader";
 import { type Lang, storeLang } from "../lib/language";
 
 const email = "hello@notagency.io";
+
+function WaveText({ text }: { text: string }) {
+  let letterIndex = 0;
+
+  return (
+    <span aria-label={text} className="wave-text">
+      <span aria-hidden="true">
+        {text.split(/(\s+)/).map((part, partIndex) => {
+          if (/^\s+$/.test(part)) {
+            return " ";
+          }
+
+          return (
+            <span className="wave-word" key={`${part}-${partIndex}`}>
+              {Array.from(part).map((letter) => (
+                <span
+                  className="wave-letter"
+                  key={`${letter}-${letterIndex}`}
+                  style={{ "--wave-index": letterIndex++ } as CSSProperties}
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+          );
+        })}
+      </span>
+    </span>
+  );
+}
 
 const copy = {
   en: {
@@ -171,7 +201,7 @@ export default function ContactsClient({ initialLang }: ContactsClientProps) {
             {t.brief.map((item) => (
               <li key={item}>
                 <MessageSquareText size={18} />
-                <span>{item}</span>
+                <WaveText text={item} />
               </li>
             ))}
           </ul>
@@ -182,8 +212,8 @@ export default function ContactsClient({ initialLang }: ContactsClientProps) {
           <ul>
             {t.no.map((item) => (
               <li key={item}>
-                <span>×</span>
-                {item}
+                <span className="contact-no-mark">×</span>
+                <WaveText text={item} />
               </li>
             ))}
           </ul>
