@@ -28,6 +28,8 @@ const copy = {
     send: "Email the brief",
     sending: "Sending...",
     sent: "Brief sent. We will reply by email.",
+    sentMascot:
+      "Finally. You are getting a proper website and project. We will stay in touch, bro.",
     error: "Could not send. Write to hello@notagency.io.",
     options: ["Landing", "Web app", "E-commerce", "Brand + site", "Rescue / redesign"],
   },
@@ -52,6 +54,8 @@ const copy = {
     send: "Отправить бриф",
     sending: "Отправляем...",
     sent: "Бриф ушел. Ответим на почту.",
+    sentMascot:
+      "Ура. Наконец-то у тебя будет нормальный сайт и проект. Будем на связи, бро.",
     error: "Не получилось отправить. Напиши на hello@notagency.io.",
     options: ["Лендинг", "Web app", "E-commerce", "Бренд + сайт", "Спасение / редизайн"],
   },
@@ -76,6 +80,8 @@ const copy = {
     send: "Nosūtīt briefu",
     sending: "Sūtām...",
     sent: "Briefs aizgāja. Atbildēsim uz email.",
+    sentMascot:
+      "Urrā. Beidzot tev būs normāla lapa un projekts. Būsim kontaktā, bro.",
     error: "Neizdevās nosūtīt. Raksti uz hello@notagency.io.",
     options: ["Landing", "Web app", "E-commerce", "Zīmols + lapa", "Glābšana / redesign"],
   },
@@ -156,11 +162,19 @@ export default function BriefClient({ initialLang }: BriefClientProps) {
           </p>
           <h1>{t.title}</h1>
           <p>{t.text}</p>
-          <div className="brief-page-mascot" aria-hidden="true">
+          <div
+            className={`brief-page-mascot ${submitStatus === "sent" ? "is-brief-sent" : ""}`}
+            aria-hidden="true"
+          >
             <span className="eye left" />
             <span className="eye right" />
             <span className="mouth" />
           </div>
+          {submitStatus === "sent" ? (
+            <div className="brief-mascot-bubble brief-page-mascot-bubble" role="status">
+              {t.sentMascot}
+            </div>
+          ) : null}
         </div>
 
         <form className="brief-form brief-page-form" onSubmit={submitBrief}>

@@ -124,6 +124,8 @@ const copy = {
     send: "Отправить заявку",
     sending: "Отправляем...",
     sent: "Заявка ушла. Ответим на почту.",
+    sentMascot:
+      "Ура. Наконец-то у тебя будет нормальный сайт и проект. Будем на связи, бро.",
     error: "Не получилось отправить. Напиши на hello@notagency.io.",
     name: "Кто ты?",
     email: "Куда писать?",
@@ -221,6 +223,8 @@ const copy = {
     send: "Nosūtīt pieteikumu",
     sending: "Sūtām...",
     sent: "Pieteikums aizgāja. Atbildēsim uz email.",
+    sentMascot:
+      "Urrā. Beidzot tev būs normāla lapa un projekts. Būsim kontaktā, bro.",
     error: "Neizdevās nosūtīt. Raksti uz hello@notagency.io.",
     name: "Kas tu esi?",
     email: "Kur rakstīt?",
@@ -318,6 +322,8 @@ const copy = {
     send: "Send request",
     sending: "Sending...",
     sent: "Request sent. We will reply by email.",
+    sentMascot:
+      "Finally. You are getting a proper website and project. We will stay in touch, bro.",
     error: "Could not send. Write to hello@notagency.io.",
     name: "Who are you?",
     email: "Where do we write?",
@@ -391,6 +397,12 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   const t = copy[lang];
   const selectedService =
     selectedServiceIndex === null ? null : t.services[selectedServiceIndex];
+  const mascotMoodClass =
+    briefStatus === "sent"
+      ? `is-brief-active is-brief-sent mood-${budget ?? 3}`
+      : choice === null
+        ? "mood-sad"
+        : `is-brief-active mood-${budget ?? 0}`;
 
   const changeLang = (nextLang: Lang) => {
     storeLang(nextLang);
@@ -950,13 +962,18 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
               <h2>{t.formTitle}</h2>
               <p>{t.formSub}</p>
               <div
-                className={`brief-mascot ${choice === null ? "mood-sad" : `is-brief-active mood-${budget ?? 0}`}`}
+                className={`brief-mascot ${mascotMoodClass}`}
                 style={characterStyle}
               >
                 <span className="eye left" />
                 <span className="eye right" />
                 <span className="mouth" />
               </div>
+              {briefStatus === "sent" ? (
+                <div className="brief-mascot-bubble" role="status">
+                  {t.sentMascot}
+                </div>
+              ) : null}
             </div>
             <form className="brief-form" onSubmit={submitBrief}>
               <label>

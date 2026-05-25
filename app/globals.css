@@ -1744,6 +1744,49 @@ a {
   width: 56px;
 }
 
+.brief-mascot.is-brief-sent .mouth {
+  height: 34px;
+  top: 88px;
+  width: 62px;
+}
+
+.brief-page-mascot.is-brief-sent .mouth {
+  height: 34px;
+  top: 88px;
+  width: 62px;
+}
+
+.brief-mascot-bubble {
+  animation: briefMascotBubbleIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  background: var(--lime);
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 7px 7px 0 var(--pink);
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 900;
+  left: calc(18% + 138px);
+  line-height: 1.22;
+  max-width: 330px;
+  padding: 16px;
+  position: absolute;
+  top: calc(58% - 10px);
+  z-index: 3;
+}
+
+.brief-mascot-bubble::before {
+  background: var(--lime);
+  border-bottom: 3px solid var(--ink);
+  border-left: 3px solid var(--ink);
+  content: "";
+  height: 16px;
+  left: -11px;
+  position: absolute;
+  top: 34px;
+  transform: rotate(45deg);
+  width: 16px;
+}
+
 .brief-form {
   background: var(--paper);
   border: 3px solid var(--white);
@@ -2671,6 +2714,11 @@ a {
   width: 170px;
 }
 
+.brief-page-mascot-bubble {
+  left: calc(14% + 138px);
+  top: calc(58% - 10px);
+}
+
 .brief-page-form {
   align-self: start;
 }
@@ -3202,6 +3250,18 @@ a {
   }
 }
 
+@keyframes briefMascotBubbleIn {
+  from {
+    opacity: 0;
+    transform: translate(-12px, 8px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0) scale(1);
+  }
+}
+
 @media (max-width: 920px) {
   .error-grid,
   .repair-panel,
@@ -3306,6 +3366,17 @@ a {
 
   .brief-copy {
     min-height: 430px;
+  }
+
+  .brief-mascot-bubble {
+    left: min(48%, 260px);
+    max-width: min(310px, calc(100vw - 54px));
+    top: 58%;
+  }
+
+  .brief-page-mascot-bubble {
+    left: min(44%, 250px);
+    top: 58%;
   }
 
   .repair-browser {
@@ -3585,6 +3656,24 @@ a {
   .brief-mascot {
     height: 132px;
     width: 132px;
+  }
+
+  .brief-mascot-bubble {
+    font-size: 15px;
+    left: 18px;
+    max-width: calc(100% - 36px);
+    top: 270px;
+  }
+
+  .brief-mascot-bubble::before {
+    left: 56px;
+    top: -11px;
+    transform: rotate(135deg);
+  }
+
+  .brief-page-mascot-bubble {
+    left: 18px;
+    top: 300px;
   }
 
   .eye {
