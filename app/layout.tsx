@@ -9,6 +9,7 @@ import { SeoMetadataUpdater } from "./components/SeoMetadataUpdater";
 import { projects } from "./lib/projects";
 import { seoBaseUrl } from "./lib/seo";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://notagency.io"),
@@ -190,6 +191,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+    <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-Y2HVV7CMGE"
+  strategy="afterInteractive"
+/>
+
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Y2HVV7CMGE');
+  `}
+</Script>
       <body>
         <script
           type="application/ld+json"
