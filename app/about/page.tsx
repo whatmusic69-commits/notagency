@@ -1,5 +1,10 @@
 import { InfoPage } from "../components/InfoPage";
+import { getPageMetadata } from "../lib/page-metadata";
 import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
+
+export function generateMetadata({ searchParams }: PageWithLangProps) {
+  return getPageMetadata("about", searchParams);
+}
 
 export default async function AboutPage({ searchParams }: PageWithLangProps) {
   const initialLang = await getInitialLang(searchParams);

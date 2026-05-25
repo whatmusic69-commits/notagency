@@ -119,14 +119,17 @@ export default function PortfolioClient({ initialLang }: PortfolioClientProps) {
                 {t.projectLink}
                 <ExternalLink size={16} />
               </a>
-              <button
+              <a
                 className="project-more-button"
-                type="button"
-                onClick={() => setSelectedProject(project)}
+                href={`/portfolio/${project.slug}`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  setSelectedProject(project);
+                }}
               >
                 {t.projectMore}
                 <ArrowRight size={16} />
-              </button>
+              </a>
               <div className="project-screen">
                 <div />
                 <div />
@@ -157,7 +160,7 @@ export default function PortfolioClient({ initialLang }: PortfolioClientProps) {
               <h3 id="portfolio-project-modal-title">{selectedProject.name}</h3>
               {selectedProject.modalImage ? (
                 <Image
-                  alt={`${selectedProject.name} screenshot`}
+                  alt={selectedProject.imageAlt[lang]}
                   className="project-modal-image"
                   placeholder="blur"
                   priority

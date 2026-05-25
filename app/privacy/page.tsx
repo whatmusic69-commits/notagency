@@ -1,5 +1,10 @@
 import { InfoPage } from "../components/InfoPage";
+import { getPageMetadata } from "../lib/page-metadata";
 import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
+
+export function generateMetadata({ searchParams }: PageWithLangProps) {
+  return getPageMetadata("privacy", searchParams);
+}
 
 const enSections = [
   { title: "What we collect", body: "We may collect your name, company name, email, phone or messenger handle, project notes, budget range, deadlines, files you send us, and messages submitted through the website or email." },

@@ -5,6 +5,9 @@ import "@fontsource/space-grotesk/700.css";
 import "@fontsource/archivo-black/400.css";
 import { FloatingMascot } from "./components/FloatingMascot";
 import { PortfolioImagePreloader } from "./components/PortfolioImagePreloader";
+import { SeoMetadataUpdater } from "./components/SeoMetadataUpdater";
+import { projects } from "./lib/projects";
+import { seoBaseUrl } from "./lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -126,6 +129,60 @@ const websiteJsonLd = {
     "Websites, web apps, MVPs and digital systems for founders and businesses in Latvia, Europe and remote.",
 };
 
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "NotAgency",
+  url: seoBaseUrl,
+  email: "hello@notagency.io",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Riga",
+    addressCountry: "LV",
+  },
+  areaServed: ["Latvia", "Europe", "Remote"],
+  serviceType: [
+    "Website design and development",
+    "Web application development",
+    "MVP development",
+    "Landing page design",
+    "Design systems",
+    "Launch support",
+  ],
+  offers: [
+    "Websites",
+    "Web apps",
+    "MVPs",
+    "Client portals",
+    "Brand UI",
+    "Launch support",
+  ].map((name) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name,
+    },
+  })),
+};
+
+const portfolioJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "NotAgency portfolio",
+  itemListElement: projects.map((project, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: `${seoBaseUrl}/portfolio/${project.slug}`,
+    item: {
+      "@type": "CreativeWork",
+      name: project.name,
+      description: project.summary.en,
+      image: project.modalImage ? `${seoBaseUrl}${project.modalImage.src}` : undefined,
+      url: `${seoBaseUrl}/portfolio/${project.slug}`,
+    },
+  })),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -137,10 +194,16 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
+            __html: JSON.stringify([
+              organizationJsonLd,
+              websiteJsonLd,
+              serviceJsonLd,
+              portfolioJsonLd,
+            ]),
           }}
         />
         {children}
+        <SeoMetadataUpdater />
         <PortfolioImagePreloader />
         <FloatingMascot />
       </body>

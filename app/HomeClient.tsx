@@ -809,10 +809,17 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                     {t.projectLink}
                     <ExternalLink size={16} />
                   </a>
-                  <button className="project-more-button" type="button" onClick={() => setSelectedProject(project)}>
+                  <a
+                    className="project-more-button"
+                    href={`/portfolio/${project.slug}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setSelectedProject(project);
+                    }}
+                  >
                     {t.projectMore}
                     <ArrowRight size={16} />
-                  </button>
+                  </a>
                   <div className="project-screen">
                     <div />
                     <div />
@@ -847,7 +854,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                   <h3 id="project-modal-title">{selectedProject.name}</h3>
                   {selectedProject.modalImage ? (
                     <Image
-                      alt={`${selectedProject.name} screenshot`}
+                      alt={selectedProject.imageAlt[lang]}
                       className="project-modal-image"
                       placeholder="blur"
                       priority
