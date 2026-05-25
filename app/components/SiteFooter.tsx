@@ -5,21 +5,27 @@ type Lang = "en" | "ru" | "lv";
 const footerCopy = {
   en: {
     links: ["About", "Contacts", "FAQ", "Privacy Policy", "Terms"],
-    title: "Internet should hit harder.",
+    titleEnd: "harder.",
+    titleHit: "hit",
+    titleStart: "Internet should",
     text: "Websites, apps and digital systems for people who are done paying for polite mediocrity.",
     location: "Riga / Remote",
     bottom: "No cheap templates were harmed. They deserved worse.",
   },
   ru: {
     links: ["О нас", "Контакты", "FAQ", "Приватность", "Условия"],
-    title: "Интернет должен бить сильнее.",
+    titleEnd: "сильнее.",
+    titleHit: "бить",
+    titleStart: "Интернет должен",
     text: "Сайты, приложения и digital-системы для тех, кто устал платить за вежливую посредственность.",
     location: "Рига / Удаленно",
     bottom: "Дешевые шаблоны не пострадали. Хотя заслужили этого!",
   },
   lv: {
     links: ["Par mums", "Kontakti", "FAQ", "Privātums", "Noteikumi"],
-    title: "Internetam jāsit stiprāk.",
+    titleEnd: "stiprāk.",
+    titleHit: "jāsit",
+    titleStart: "Internetam",
     text: "Mājaslapas, aplikācijas un digital sistēmas tiem, kuriem apnikusi pieklājīga viduvējība.",
     location: "Rīga / Attālināti",
     bottom: "Lētie template necieta. Lai gan bija pelnījuši.",
@@ -42,7 +48,11 @@ export function SiteFooter({ lang = "en" }: { lang?: Lang }) {
           </span>
           NotAgency
         </a>
-        <h2>{t.title}</h2>
+        <h2>
+          {t.titleStart}{" "}
+          <span className="footer-hit-word">{t.titleHit}</span>{" "}
+          {t.titleEnd}
+        </h2>
         <p>{t.text}</p>
       </div>
 

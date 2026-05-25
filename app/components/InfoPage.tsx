@@ -19,9 +19,14 @@ type InfoPageProps = {
     }
   >;
   initialLang: Lang;
+  pageClassName?: string;
 };
 
-export function InfoPage({ content, initialLang }: InfoPageProps) {
+export function InfoPage({
+  content,
+  initialLang,
+  pageClassName = "",
+}: InfoPageProps) {
   const [lang, setLang] = useState<Lang>(initialLang);
   const changeLang = (nextLang: Lang) => {
     storeLang(nextLang);
@@ -31,7 +36,7 @@ export function InfoPage({ content, initialLang }: InfoPageProps) {
   const page = content[lang];
 
   return (
-    <main className={`info-shell lang-${lang}`}>
+    <main className={`info-shell lang-${lang} ${pageClassName}`.trim()}>
       <div className="noise" />
       <SiteHeader lang={lang} onLangChange={changeLang} />
 

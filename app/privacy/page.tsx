@@ -25,6 +25,7 @@ export default async function PrivacyPage({ searchParams }: PageWithLangProps) {
   return (
     <InfoPage
       initialLang={initialLang}
+      pageClassName="privacy-info-page"
       content={{
         en: {
           kicker: "Legal / Privacy",

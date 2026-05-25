@@ -12,6 +12,7 @@ export default async function TermsPage({ searchParams }: PageWithLangProps) {
   return (
     <InfoPage
       initialLang={initialLang}
+      pageClassName="terms-info-page"
       content={{
         en: {
           kicker: "Legal / Terms",
