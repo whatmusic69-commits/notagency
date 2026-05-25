@@ -2794,6 +2794,22 @@ a {
   z-index: 70;
 }
 
+.portfolio-image-preloader {
+  height: 1px;
+  left: -10000px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 1px;
+}
+
+.portfolio-image-preloader img {
+  height: 360px;
+  width: 720px;
+}
+
 .floating-mascot-bubble {
   animation: floatingBubbleEnter 0.62s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
   background: var(--paper);

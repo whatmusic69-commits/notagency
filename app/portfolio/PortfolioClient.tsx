@@ -160,6 +160,7 @@ export default function PortfolioClient({ initialLang }: PortfolioClientProps) {
                   alt={`${selectedProject.name} screenshot`}
                   className="project-modal-image"
                   placeholder="blur"
+                  priority
                   src={selectedProject.modalImage}
                 />
               ) : null}

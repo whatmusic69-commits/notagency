@@ -850,6 +850,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                       alt={`${selectedProject.name} screenshot`}
                       className="project-modal-image"
                       placeholder="blur"
+                      priority
                       src={selectedProject.modalImage}
                     />
                   ) : null}
