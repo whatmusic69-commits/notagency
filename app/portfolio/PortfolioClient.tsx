@@ -165,6 +165,7 @@ export default function PortfolioClient({ initialLang }: PortfolioClientProps) {
                   placeholder="blur"
                   priority
                   src={selectedProject.modalImage}
+                  unoptimized
                 />
               ) : null}
               <p className="project-modal-summary">{selectedProject.summary[lang]}</p>

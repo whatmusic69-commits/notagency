@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { projects } from "../lib/projects";
 
-const preloadDelayMs = 1800;
+const preloadDelayMs = 350;
 
 export function PortfolioImagePreloader() {
   const [active, setActive] = useState(false);
@@ -32,6 +32,7 @@ export function PortfolioImagePreloader() {
             loading="eager"
             sizes="720px"
             src={project.modalImage}
+            unoptimized
           />
         ) : null,
       )}
