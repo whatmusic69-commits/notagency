@@ -3735,6 +3735,14 @@ a {
     right: 37px;
   }
 
+  .brief-page-mascot .eye.left {
+    left: 44px;
+  }
+
+  .brief-page-mascot .eye.right {
+    right: 44px;
+  }
+
   .mouth {
     top: 72px;
   }
