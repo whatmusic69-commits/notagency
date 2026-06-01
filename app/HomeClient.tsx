@@ -24,7 +24,20 @@ import { projects } from "./lib/projects";
 
 type WelcomeStage = "hidden" | "broken" | "repairing";
 
-const launchDate = new Date("2026-06-01T12:00:00+03:00").getTime();
+function getRandomLaunchDate() {
+  const minDays = 90;
+  const maxDays = 420;
+  const randomDays = minDays + Math.floor(Math.random() * (maxDays - minDays + 1));
+  const randomHours = Math.floor(Math.random() * 24);
+  const randomMinutes = Math.floor(Math.random() * 60);
+  const randomSeconds = Math.floor(Math.random() * 60);
+
+  return Date.now()
+    + randomDays * 24 * 60 * 60 * 1000
+    + randomHours * 60 * 60 * 1000
+    + randomMinutes * 60 * 1000
+    + randomSeconds * 1000;
+}
 
 function WaveText({ text }: { text: string }) {
   let letterIndex = 0;
@@ -56,7 +69,7 @@ function WaveText({ text }: { text: string }) {
   );
 }
 
-function getLaunchCountdown() {
+function getLaunchCountdown(launchDate: number) {
   const distance = Math.max(0, launchDate - Date.now());
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
@@ -372,7 +385,7 @@ const serviceIcons = [LayoutDashboard, Cpu, Palette, Rocket];
 const serviceAccents = ["var(--white)", "var(--lime)", "var(--cyan)", "var(--orange)"];
 
 const budgets = ["< 1k", "1k-3k", "3k-8k", "8k+"];
-const initialCountdown = "00 : 00 : 00 : 00";
+const initialCountdown = "365 : 23 : 59 : 59";
 const welcomeShownAtKey = "notagency-welcome-shown-at";
 const welcomeCooldownMs = 7 * 24 * 60 * 60 * 1000;
 
@@ -463,10 +476,12 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   }, [welcomeStage]);
 
   useEffect(() => {
-    setCountdown(getLaunchCountdown());
+    const launchDate = getRandomLaunchDate();
+
+    setCountdown(getLaunchCountdown(launchDate));
 
     const countdownTimer = window.setInterval(() => {
-      setCountdown(getLaunchCountdown());
+      setCountdown(getLaunchCountdown(launchDate));
     }, 1000);
 
     return () => window.clearInterval(countdownTimer);
