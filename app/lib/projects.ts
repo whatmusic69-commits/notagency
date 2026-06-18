@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import coinerHeroScreenshot from "../src/COINER HERO.png";
 import hidyScreenshot from "../src/hidy-case.jpg";
 import isologicScreenshot from "../src/isologic-case.jpg";
 import underbpmScreenshot from "../src/underbpm-case.jpg";
@@ -19,6 +20,35 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    name: "COINER HERO",
+    slug: "coiner-hero",
+    type: "Web3 bridge platform",
+    url: "https://coinerhero.com/",
+    color: "var(--violet)",
+    summary: {
+      ru: "Платформа для кроссчейн-обмена криптовалют, которую мы спроектировали и собрали с нуля.",
+      lv: "Kriptovalūtu cross-chain apmaiņas platforma, kuru projektējām un uzbūvējām no nulles.",
+      en: "A cross-chain crypto exchange platform designed and built from scratch.",
+    },
+    details: {
+      ru: "Разработали интерфейс, интегрировали подключение кошельков и настроили маршрутизацию обменов через Li.Fi для переводов активов между разными сетями.",
+      lv: "Izstrādājām interfeisu, integrējām wallet pieslēgšanu un sakārtojām apmaiņas maršrutēšanu caur Li.Fi aktīvu pārskaitījumiem starp dažādiem tīkliem.",
+      en: "We designed the interface, integrated wallet connection and configured swap routing through Li.Fi for moving assets across different networks.",
+    },
+    imageAlt: {
+      ru: "Интерфейс Coiner Hero, Web3-платформы для обмена и перевода криптовалют между различными блокчейн-сетями, спроектированный и разработанный NotAgency.",
+      lv: "Coiner Hero interfeiss, Web3 platforma kriptovalūtu apmaiņai un pārskaitījumiem starp dažādiem blockchain tīkliem, ko projektēja un izstrādāja NotAgency.",
+      en: "Coiner Hero interface, a Web3 platform for exchanging and transferring crypto between different blockchain networks, designed and developed by NotAgency.",
+    },
+    modalDetails: {
+      ru: "Клиент пришел с задачей создать простой и понятный сервис для работы с криптовалютами через собственный кошелек пользователя. Мы разработали интерфейс, интегрировали подключение кошельков и настроили маршрутизацию обменов через Li.Fi, чтобы пользователи могли переводить активы между различными сетями через единый интерфейс. Особое внимание уделили удобству использования, скорости работы и адаптации под разные устройства.",
+      lv: "Klients atnāca ar uzdevumu izveidot vienkāršu un saprotamu servisu darbam ar kriptovalūtām caur paša lietotāja wallet. Mēs izstrādājām interfeisu, integrējām wallet pieslēgšanu un sakārtojām apmaiņas maršrutēšanu caur Li.Fi, lai lietotāji varētu pārvietot aktīvus starp dažādiem tīkliem vienā interfeisā. Īpašu uzmanību pievērsām lietošanas ērtumam, darbības ātrumam un adaptācijai dažādām ierīcēm.",
+      en: "The client came with the task of creating a simple, understandable service for working with crypto through the user's own wallet. We designed the interface, integrated wallet connection and configured exchange routing through Li.Fi so users could transfer assets between different networks from one interface. We paid particular attention to usability, performance and adaptation across different devices.",
+    },
+    modalImage: coinerHeroScreenshot,
+    tags: ["Web3", "Wallet integration", "Cross-chain swaps"],
+  },
   {
     name: "UNDERBPM",
     slug: "underbpm",
