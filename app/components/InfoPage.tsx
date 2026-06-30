@@ -22,6 +22,22 @@ type InfoPageProps = {
   pageClassName?: string;
 };
 
+function renderTextWithEmailLinks(text: string) {
+  const emailPattern = /([^\s@]+@[^\s@]+\.[^\s@.]+)/g;
+  const emailOnlyPattern = /^[^\s@]+@[^\s@]+\.[^\s@.]+$/;
+  const parts = text.split(emailPattern);
+
+  return parts.map((part, index) =>
+    emailOnlyPattern.test(part) ? (
+      <a href={`mailto:${part}`} key={`${part}-${index}`}>
+        {part}
+      </a>
+    ) : (
+      part
+    ),
+  );
+}
+
 export function InfoPage({
   content,
   initialLang,
@@ -50,7 +66,7 @@ export function InfoPage({
         {page.sections.map((section) => (
           <article className="info-card" key={section.title}>
             <h2>{section.title}</h2>
-            <p>{section.body}</p>
+            <p>{renderTextWithEmailLinks(section.body)}</p>
           </article>
         ))}
       </section>

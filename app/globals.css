@@ -937,10 +937,11 @@ a {
   background: var(--ink);
   color: var(--white);
   display: grid;
-  gap: 20px;
+  gap: 20px clamp(44px, 6vw, 88px);
   grid-template-columns: minmax(250px, 0.45fr) minmax(0, 1fr);
   overflow: hidden;
-  padding: 24px max(24px, calc((100vw - 1180px) / 2));
+  padding: 24px max(24px, calc((100vw - 1320px) / 2)) 24px
+    max(24px, calc((100vw - 1180px) / 2));
 }
 
 .launch-strip p {
@@ -965,7 +966,7 @@ a {
 }
 
 .ticker-track {
-  animation: ticker 22s linear infinite;
+  animation: ticker 18s linear infinite;
   display: flex;
   width: max-content;
 }
@@ -1149,6 +1150,72 @@ a {
   overflow: hidden;
   padding: 22px 22px 206px;
   position: relative;
+}
+
+.portfolio-hover-mascot {
+  height: 74px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transform: translate3d(var(--portfolio-mascot-x, 0), var(--portfolio-mascot-y, 0), 0)
+    translate(-50%, -50%) scale(1) rotate(4deg);
+  transition:
+    transform 3.5s cubic-bezier(0.19, 0.78, 0.22, 1),
+    opacity 0.16s ease;
+  will-change: transform, opacity;
+  width: 74px;
+  z-index: 90;
+}
+
+.portfolio-hover-mascot.is-active {
+  opacity: 1;
+  transform: translate3d(var(--portfolio-mascot-x, 0), var(--portfolio-mascot-y, 0), 0)
+    translate(-50%, -50%) scale(1) rotate(4deg);
+}
+
+.portfolio-hover-mascot-face {
+  animation: portfolioMascotPulse 1.7s ease-in-out infinite;
+  background: var(--lime);
+  border: 3px solid var(--ink);
+  border-radius: 30% 70% 44% 56%;
+  box-shadow: 7px 7px 0 var(--ink);
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.portfolio-hover-eye {
+  background: var(--ink);
+  border-radius: 50%;
+  height: 9px;
+  position: absolute;
+  top: 24px;
+  width: 9px;
+  z-index: 1;
+}
+
+.portfolio-hover-eye.left {
+  left: 21px;
+}
+
+.portfolio-hover-eye.right {
+  right: 21px;
+}
+
+.portfolio-hover-mouth {
+  background: var(--pink);
+  border: 2px solid var(--ink);
+  border-radius: 0 0 999px 999px;
+  height: 14px;
+  left: 50%;
+  position: absolute;
+  top: 40px;
+  transform: translateX(-50%);
+  width: 27px;
+  z-index: 1;
 }
 
 .project-index {
@@ -1534,6 +1601,18 @@ a {
   .wave-list-item:hover .wave-letter,
   .contact-brief li:hover .wave-letter {
     animation: none;
+  }
+
+  .portfolio-hover-mascot,
+  .portfolio-hover-mascot-face {
+    animation: none;
+    transition: opacity 0.12s ease;
+  }
+}
+
+@media (hover: none) {
+  .portfolio-hover-mascot {
+    display: none;
   }
 }
 
@@ -2859,6 +2938,14 @@ a {
   margin: 0;
 }
 
+.info-card a {
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
 .floating-mascot-widget {
   align-items: flex-end;
   animation: floatingMascotEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -3222,6 +3309,13 @@ a {
   }
 }
 
+@keyframes portfolioMascotPulse {
+  50% {
+    border-radius: 61% 39% 55% 45%;
+    transform: translateY(-4px) rotate(-5deg);
+  }
+}
+
 @keyframes floatGood {
   50% {
     transform: translateY(-18px) rotate(8deg);
@@ -3310,6 +3404,10 @@ a {
 }
 
 @media (max-width: 920px) {
+  .portfolio-hover-mascot {
+    display: none;
+  }
+
   .error-grid,
   .repair-panel,
   .hero,
@@ -3404,6 +3502,7 @@ a {
   }
 
   .launch-strip {
+    gap: 20px;
     grid-template-columns: 1fr;
   }
 

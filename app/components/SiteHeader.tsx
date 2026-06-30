@@ -49,9 +49,21 @@ export function SiteHeader({
     persistLang(lang);
   }, [lang]);
 
+  const refreshHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setMenuOpen(false);
+
+    if (window.location.pathname === "/" && !window.location.search) {
+      window.location.reload();
+      return;
+    }
+
+    window.location.assign("/");
+  };
+
   return (
     <header className={`topbar ${className}`.trim()}>
-      <a className="brand" href="/#home">
+      <a className="brand" href="/" onClick={refreshHome}>
         <span className="brand-mascot" aria-hidden="true">
           <span className="brand-eye left" />
           <span className="brand-eye right" />

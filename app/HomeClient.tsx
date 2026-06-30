@@ -19,6 +19,10 @@ import {
 } from "lucide-react";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
+import {
+  PortfolioHoverMascot,
+  type PortfolioMascotTarget,
+} from "./components/PortfolioHoverMascot";
 import { type Lang, storeLang } from "./lib/language";
 import { projects } from "./lib/projects";
 
@@ -407,6 +411,8 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   const [briefStatus, setBriefStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
   const [selectedServiceIndex, setSelectedServiceIndex] = useState<number | null>(null);
+  const [portfolioMascotTarget, setPortfolioMascotTarget] =
+    useState<PortfolioMascotTarget>({ active: false, x: 0, y: 0 });
   const t = copy[lang];
   const selectedService =
     selectedServiceIndex === null ? null : t.services[selectedServiceIndex];
@@ -420,6 +426,29 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
   const changeLang = (nextLang: Lang) => {
     storeLang(nextLang);
     setLang(nextLang);
+  };
+
+  const movePortfolioMascot = (event: React.MouseEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const nextTarget = {
+      active: true,
+      x: rect.right - 22,
+      y: rect.top + 18,
+    };
+
+    if (!portfolioMascotTarget.active) {
+      setPortfolioMascotTarget({
+        active: true,
+        x: -90,
+        y: nextTarget.y,
+      });
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => setPortfolioMascotTarget(nextTarget));
+      });
+      return;
+    }
+
+    setPortfolioMascotTarget(nextTarget);
   };
 
   useEffect(() => {
@@ -815,13 +844,24 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
           </section>
 
           <section className="portfolio" id="portfolio">
+            <PortfolioHoverMascot target={portfolioMascotTarget} />
             <div className="section-head">
               <p className="kicker">LOUD BUT USEFUL</p>
               <h2>{t.portfolioTitle}</h2>
             </div>
-            <div className="project-rail">
+            <div
+              className="project-rail"
+              onMouseLeave={() =>
+                setPortfolioMascotTarget((target) => ({ ...target, active: false }))
+              }
+            >
               {projects.slice(0, 3).map((project, index) => (
-                <article className="project-card" key={project.name} style={{ "--accent": project.color } as React.CSSProperties}>
+                <article
+                  className="project-card"
+                  key={project.name}
+                  onMouseEnter={movePortfolioMascot}
+                  style={{ "--accent": project.color } as React.CSSProperties}
+                >
                   <span className="project-index">0{index + 1}</span>
                   <h3>{project.name}</h3>
                   <p className="project-type">{project.type}</p>

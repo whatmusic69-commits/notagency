@@ -45,7 +45,10 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: "/icon.png",
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/faviconNotAgency.png", type: "image/png" },
+    ],
     apple: "/icon.png",
   },
   alternates: {
