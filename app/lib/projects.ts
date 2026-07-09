@@ -2,6 +2,7 @@ import type { StaticImageData } from "next/image";
 import coinerHeroScreenshot from "../src/COINER HERO.png";
 import hidyScreenshot from "../src/hidy-case.jpg";
 import isologicScreenshot from "../src/isologic-case.jpg";
+import joolpayScreenshot from "../src/Joolpay2.png";
 import splitMergeScreenshot from "../src/Split&Merge.png";
 import underbpmScreenshot from "../src/underbpm-case.jpg";
 import type { Lang } from "./language";
@@ -21,6 +22,35 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    name: "JOOLPAY",
+    slug: "joolpay",
+    type: "Cashless tips fintech",
+    url: "https://joolpay.com/",
+    color: "var(--lime)",
+    summary: {
+      ru: "Латвийский fintech для безналичных чаевых через QR-коды, где сайт, Android и iOS работают как один продукт.",
+      lv: "Latvijas fintech risinājums bezskaidras naudas dzeramnaudām ar QR kodiem, kur mājaslapa, Android un iOS strādā kā viens produkts.",
+      en: "A Latvian fintech product for cashless QR-code tips, with the website, Android and iOS working as one system.",
+    },
+    details: {
+      ru: "Собрали цифровую витрину и продуктовую систему для JoolPay: QR-оплата чаевых в браузере, личные профили сотрудников, бизнес-управление, статистика, отзывы и мобильные приложения для Android и iOS.",
+      lv: "Izveidojām JoolPay digitālo vitrīnu un produktu sistēmu: QR dzeramnaudas apmaksa pārlūkā, darbinieku profili, biznesa pārvaldība, statistika, atsauksmes un mobilās aplikācijas Android un iOS.",
+      en: "We shaped JoolPay's digital storefront and product system: browser-based QR tip payments, staff profiles, business management, statistics, reviews and mobile apps for Android and iOS.",
+    },
+    imageAlt: {
+      ru: "Интерфейс JoolPay, fintech-сервиса для безналичных чаевых через QR-коды, разработанный NotAgency.",
+      lv: "JoolPay interfeiss, fintech serviss bezskaidras naudas dzeramnaudām ar QR kodiem, ko izstrādāja NotAgency.",
+      en: "JoolPay interface, a fintech service for cashless QR-code tips developed by NotAgency.",
+    },
+    modalDetails: {
+      ru: "JoolPay — наш самый крупный кейс на данный момент. Это латвийская fintech-компания из Риги, которая делает безналичные чаевые нормальным, быстрым и понятным сценарием для ресторанов, кафе, гостиниц, курьеров, салонов красоты и других сервисных бизнесов. Логика простая: у сотрудника есть личный QR-код, клиент сканирует его обычной камерой телефона, открывает страницу оплаты в браузере и оставляет чаевые без наличных, терминала и отдельного приложения. Со стороны бизнеса это уже не просто страница оплаты, а система: сотрудники, внутренние кошельки, уведомления, вывод денег, статистика, отзывы клиентов и прозрачный учет выплат. Мы работали не с одним экраном, а с целой экосистемой JoolPay: сайтом, продуктовым интерфейсом и мобильными приложениями для Android и iOS, чтобы весь путь от первого скана QR-кода до управления деньгами ощущался как один собранный продукт.",
+      lv: "JoolPay šobrīd ir mūsu lielākais case. Tā ir Latvijas fintech kompānija no Rīgas, kas padara bezskaidras naudas dzeramnaudas par normālu, ātru un saprotamu scenāriju restorāniem, kafejnīcām, viesnīcām, kurjeriem, skaistumkopšanas saloniem un citiem servisa biznesiem. Loģika ir vienkārša: darbiniekam ir personīgs QR kods, klients to noskenē ar telefona kameru, pārlūkā atver maksājuma lapu un atstāj dzeramnaudu bez skaidras naudas, termināļa un atsevišķas aplikācijas. Biznesa pusē tā vairs nav tikai maksājuma lapa, bet sistēma: darbinieki, iekšējie maki, paziņojumi, naudas izmaksa, statistika, klientu atsauksmes un caurspīdīga izmaksu uzskaite. Mēs strādājām nevis ar vienu ekrānu, bet ar visu JoolPay ekosistēmu: mājaslapu, produkta interfeisu un mobilajām aplikācijām Android un iOS, lai viss ceļš no pirmā QR skena līdz naudas pārvaldībai justos kā viens sakārtots produkts.",
+      en: "JoolPay is our largest case so far. It is a Latvian fintech company from Riga that turns cashless tips into a fast, clear and normal flow for restaurants, cafes, hotels, couriers, beauty salons and other service businesses. The logic is simple: a staff member has a personal QR code, the customer scans it with the phone camera, opens a browser payment page and leaves a tip without cash, a terminal or a separate app. For the business, this is no longer just a payment page, but a system: staff management, internal wallets, notifications, withdrawals, statistics, customer reviews and transparent payout tracking. We worked not on one screen, but on the JoolPay ecosystem: the website, product interface and mobile apps for Android and iOS, so the whole path from the first QR scan to money management feels like one coherent product.",
+    },
+    modalImage: joolpayScreenshot,
+    tags: ["Fintech", "QR payments", "Cashless tips", "Android", "iOS"],
+  },
   {
     name: "SPLIT & MERGE",
     slug: "split-merge",
