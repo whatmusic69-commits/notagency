@@ -2,6 +2,7 @@ import type { StaticImageData } from "next/image";
 import coinerHeroScreenshot from "../src/COINER HERO.png";
 import hidyScreenshot from "../src/hidy-case.jpg";
 import isologicScreenshot from "../src/isologic-case.jpg";
+import splitMergeScreenshot from "../src/Split&Merge.png";
 import underbpmScreenshot from "../src/underbpm-case.jpg";
 import type { Lang } from "./language";
 
@@ -20,6 +21,35 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    name: "SPLIT & MERGE",
+    slug: "split-merge",
+    type: "Mobile puzzle game",
+    url: "https://apps.apple.com/lv/app/split-merge/id6763852350",
+    color: "var(--orange)",
+    summary: {
+      ru: "Мобильная puzzle-игра в духе 2048, но с прокачкой, улучшениями и полноценным путем до App Store.",
+      lv: "Mobilā puzzle spēle 2048 garā, bet ar progresu, uzlabojumiem un pilnu ceļu līdz App Store.",
+      en: "A mobile puzzle game in the spirit of 2048, expanded with progression, upgrades and a full App Store launch.",
+    },
+    details: {
+      ru: "Собрали механику split-and-merge, визуальный стиль, систему улучшений, рекламную монетизацию и полностью прошли публикацию iOS-версии в App Store.",
+      lv: "Izveidojām split-and-merge mehāniku, vizuālo stilu, uzlabojumu sistēmu, reklāmu monetizāciju un pilnībā izgājām iOS publicēšanu App Store.",
+      en: "We built the split-and-merge mechanic, visual style, upgrade system, ad monetization and carried the iOS version through the full App Store release.",
+    },
+    imageAlt: {
+      ru: "Интерфейс мобильной puzzle-игры Split & Merge с игровым полем, прогрессом и улучшениями, созданный NotAgency.",
+      lv: "Split & Merge mobilās puzzle spēles interfeiss ar spēles laukumu, progresu un uzlabojumiem, ko izveidoja NotAgency.",
+      en: "Split & Merge mobile puzzle game interface with the game board, progression and upgrades created by NotAgency.",
+    },
+    modalDetails: {
+      ru: "Split & Merge началась как простая мобильная игра по логике, знакомой игрокам 2048, но мы не остановились на базовом объединении чисел. Мы добавили механику разделения и объединения, прокачку, улучшения и игровой ритм, который держит интерес дольше одной короткой сессии. По визуалу игра намеренно близка к характеру NotAgency: яркая, быстрая, немного наглая и без ощущения шаблонного mobile UI. Отдельно собрали рекламную монетизацию, подготовили iOS-сборку и полностью прошли путь публикации в App Store: аккаунт, настройки, билды, ревью и релиз. Android-версия уже сделана и готовится к выходу на Android-платформах в ближайшем будущем.",
+      lv: "Split & Merge sākās kā vienkārša mobilā spēle ar 2048 spēlētājiem pazīstamu loģiku, bet mēs neapstājāmies pie parastas skaitļu apvienošanas. Pievienojām dalīšanas un apvienošanas mehāniku, progresu, uzlabojumus un spēles ritmu, kas notur uzmanību ilgāk par vienu īsu sesiju. Vizuāli spēle apzināti ir tuva NotAgency raksturam: spilgta, ātra, mazliet nekaunīga un bez šabloniska mobile UI sajūtas. Atsevišķi sakārtojām reklāmu monetizāciju, sagatavojām iOS buildu un pilnībā izgājām App Store publicēšanas ceļu: konts, iestatījumi, buildi, review un release. Android versija jau ir izstrādāta un tuvākajā laikā gatavojas iznākšanai Android platformās.",
+      en: "Split & Merge started as a simple mobile game built around the logic players know from 2048, but we pushed it beyond basic number merging. We added split-and-merge mechanics, progression, upgrades and a game rhythm that holds attention longer than one short session. Visually, the game stays close to NotAgency's character: bright, fast, slightly aggressive and far from generic mobile UI. We also implemented ad monetization, prepared the iOS build and carried the release through the full App Store path: account setup, configuration, builds, review and launch. The Android version is already built and is being prepared for Android platforms in the near future.",
+    },
+    modalImage: splitMergeScreenshot,
+    tags: ["Mobile game", "Game design", "Ad monetization", "App Store"],
+  },
   {
     name: "COINER HERO",
     slug: "coiner-hero",
