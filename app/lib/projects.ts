@@ -15,6 +15,7 @@ export type Project = {
   color: string;
   summary: Record<Lang, string>;
   details: Record<Lang, string>;
+  seoDescription: Record<Lang, string>;
   imageAlt: Record<Lang, string>;
   modalDetails?: Record<Lang, string>;
   modalImage?: StaticImageData;
@@ -37,6 +38,11 @@ export const projects: Project[] = [
       ru: "Собрали цифровую витрину и продуктовую систему для JoolPay: QR-оплата чаевых в браузере, личные профили сотрудников, бизнес-управление, статистика, отзывы и мобильные приложения для Android и iOS.",
       lv: "Izveidojām JoolPay digitālo vitrīnu un produktu sistēmu: QR dzeramnaudas apmaksa pārlūkā, darbinieku profili, biznesa pārvaldība, statistika, atsauksmes un mobilās aplikācijas Android un iOS.",
       en: "We shaped JoolPay's digital storefront and product system: browser-based QR tip payments, staff profiles, business management, statistics, reviews and mobile apps for Android and iOS.",
+    },
+    seoDescription: {
+      ru: "Кейс JoolPay: fintech-система безналичных чаевых через QR-коды, сайт и мобильные приложения для Android и iOS от NotAgency.",
+      lv: "JoolPay case: bezskaidras naudas QR dzeramnaudu fintech sistēma, mājaslapa un Android un iOS aplikācijas no NotAgency.",
+      en: "JoolPay case study: a cashless QR tipping fintech system, website and Android and iOS apps built by NotAgency.",
     },
     imageAlt: {
       ru: "Интерфейс JoolPay, fintech-сервиса для безналичных чаевых через QR-коды, разработанный NotAgency.",
@@ -67,6 +73,11 @@ export const projects: Project[] = [
       lv: "Izveidojām split-and-merge mehāniku, vizuālo stilu, uzlabojumu sistēmu, reklāmu monetizāciju un pilnībā izgājām iOS publicēšanu App Store.",
       en: "We built the split-and-merge mechanic, visual style, upgrade system, ad monetization and carried the iOS version through the full App Store release.",
     },
+    seoDescription: {
+      ru: "Кейс Split & Merge: разработка мобильной puzzle-игры, механики, дизайна, монетизации и запуск iOS-версии в App Store.",
+      lv: "Split & Merge case: mobilās puzzle spēles mehānika, dizains, monetizācija un iOS versijas palaišana App Store.",
+      en: "Split & Merge case study: mobile puzzle game mechanics, design, ad monetization and an iOS launch in the App Store.",
+    },
     imageAlt: {
       ru: "Интерфейс мобильной puzzle-игры Split & Merge с игровым полем, прогрессом и улучшениями, созданный NotAgency.",
       lv: "Split & Merge mobilās puzzle spēles interfeiss ar spēles laukumu, progresu un uzlabojumiem, ko izveidoja NotAgency.",
@@ -95,6 +106,11 @@ export const projects: Project[] = [
       ru: "Разработали интерфейс, интегрировали подключение кошельков и настроили маршрутизацию обменов через Li.Fi для переводов активов между разными сетями.",
       lv: "Izstrādājām interfeisu, integrējām wallet pieslēgšanu un sakārtojām apmaiņas maršrutēšanu caur Li.Fi aktīvu pārskaitījumiem starp dažādiem tīkliem.",
       en: "We designed the interface, integrated wallet connection and configured swap routing through Li.Fi for moving assets across different networks.",
+    },
+    seoDescription: {
+      ru: "Кейс Coiner Hero: дизайн и разработка Web3-платформы для кроссчейн-обмена криптовалют с подключением кошельков и Li.Fi.",
+      lv: "Coiner Hero case: Web3 cross-chain kriptovalūtu apmaiņas platformas dizains un izstrāde ar wallet un Li.Fi integrāciju.",
+      en: "Coiner Hero case study: a Web3 cross-chain crypto exchange platform with wallet connection and Li.Fi integration.",
     },
     imageAlt: {
       ru: "Интерфейс Coiner Hero, Web3-платформы для обмена и перевода криптовалют между различными блокчейн-сетями, спроектированный и разработанный NotAgency.",
@@ -125,6 +141,11 @@ export const projects: Project[] = [
       lv: "Klients atnāca bez unikālas idejas. Mēs izdomājām maksājumu loģiku, saikni ar YouTube, atjaunojām marketplace dizainu un pievienojām jaunus rīkus artistiem.",
       en: "The client came without a unique angle. We shaped the payment logic, connected YouTube, refreshed the marketplace design and added new tools for artists.",
     },
+    seoDescription: {
+      ru: "Кейс UNDERBPM: marketplace для покупки и продажи битов с платежами, подписками, Stripe и автоматической публикацией на YouTube.",
+      lv: "UNDERBPM case: bītu marketplace ar maksājumiem, abonementiem, Stripe un automatizētu publicēšanu YouTube.",
+      en: "UNDERBPM case study: a beats marketplace with payments, subscriptions, Stripe and automated publishing to YouTube.",
+    },
     imageAlt: {
       ru: "Интерфейс UNDERBPM, marketplace для покупки и продажи битов, спроектированный и разработанный NotAgency.",
       lv: "UNDERBPM bītu pirkšanas un pārdošanas marketplace interfeiss, ko projektēja un izstrādāja NotAgency.",
@@ -154,6 +175,11 @@ export const projects: Project[] = [
       lv: "Izveidojām ideju, spēles mehāniku, maksas režīmus monetizācijai, palīdzējām ar App Store publicēšanu un pielāgojām projektu Android.",
       en: "We shaped the concept, gameplay, paid modes for monetization, App Store submission and Android adaptation.",
     },
+    seoDescription: {
+      ru: "Кейс HIDY: мобильная игра в прятки на машинах с живой картой, игровыми режимами, монетизацией и запуском в App Store.",
+      lv: "HIDY case: mobilā paslēpju spēle ar auto, dzīvo karti, spēles režīmiem, monetizāciju un palaišanu App Store.",
+      en: "HIDY case study: a mobile car hide-and-seek game with a live map, game modes, monetization and an App Store launch.",
+    },
     imageAlt: {
       ru: "Интерфейс мобильной игры HIDY с картой и игровыми сценариями, созданный NotAgency.",
       lv: "HIDY mobilās spēles interfeiss ar karti un spēles scenārijiem, ko izveidoja NotAgency.",
@@ -182,6 +208,11 @@ export const projects: Project[] = [
       ru: "У клиента был только примерный набросок. Мы придумали остальную структуру, подняли сайт, все настроили и сделали удобную админку для поддержки.",
       lv: "Klientam bija tikai aptuvens virziens. Mēs izdomājām struktūru, palaidām lapu, visu sakārtojām un izveidojām ērtu admin paneli uzturēšanai.",
       en: "The client had a rough direction. We shaped the structure, launched the site, configured everything and built a practical admin panel for support.",
+    },
+    seoDescription: {
+      ru: "Кейс ISOLOGIC: разработка сайта для ISO и compliance-компании с удобной админкой, контактной формой, автодеплоем и SEO.",
+      lv: "ISOLOGIC case: ISO un compliance uzņēmuma mājaslapa ar admin paneli, kontaktformu, autodeploy un SEO.",
+      en: "ISOLOGIC case study: an ISO and compliance company website with an admin panel, contact form, autodeploy and SEO.",
     },
     imageAlt: {
       ru: "Сайт ISOLOGIC для компании в сфере ISO и compliance, разработанный NotAgency.",

@@ -167,19 +167,19 @@ export const seoCopy: Record<SeoPageKey, Record<Lang, SeoEntry>> = {
     en: {
       title: "Portfolio",
       description:
-        "NotAgency portfolio: shipped websites, apps, marketplaces and product work shaped from rough context into usable digital products.",
+        "Explore NotAgency work for JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM and ISOLOGIC: websites, apps, games and digital products.",
       keywords: ["NotAgency portfolio", "web design portfolio", "app portfolio"],
     },
     ru: {
       title: "Портфолио",
       description:
-        "Портфолио NotAgency: запущенные сайты, приложения, marketplaces и продуктовая работа, доведенная до результата.",
+        "Кейсы NotAgency для JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM и ISOLOGIC: сайты, приложения, игры и digital-продукты.",
       keywords: ["портфолио NotAgency", "портфолио сайтов", "портфолио приложений"],
     },
     lv: {
       title: "Portfolio",
       description:
-        "NotAgency portfolio: palaistas mājaslapas, aplikācijas, marketplace un produktu darbs, kas pārvērsts strādājošā rezultātā.",
+        "NotAgency darbi JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM un ISOLOGIC: mājaslapas, aplikācijas, spēles un digital produkti.",
       keywords: ["NotAgency portfolio", "mājaslapu portfolio", "aplikāciju portfolio"],
     },
   },
@@ -261,9 +261,15 @@ export function getProjectSeoEntry(slug: string, lang: Lang): SeoEntry | null {
     return null;
   }
 
+  const titleByLang: Record<Lang, string> = {
+    en: `${project.name} case study - NotAgency`,
+    ru: `${project.name}: кейс проекта - NotAgency`,
+    lv: `${project.name}: projekta case - NotAgency`,
+  };
+
   return {
-    title: `${project.name} case study - NotAgency`,
-    description: project.modalDetails?.[lang] ?? project.details[lang],
+    title: titleByLang[lang],
+    description: project.seoDescription[lang],
     keywords: [
       ...commonKeywords[lang],
       project.name,
