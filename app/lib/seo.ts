@@ -87,19 +87,19 @@ export const seoCopy: Record<SeoPageKey, Record<Lang, SeoEntry>> = {
     en: {
       title: "About NotAgency",
       description:
-        "Meet NotAgency: a web and app studio built around loud visuals, clear systems and zero tolerance for dead digital products.",
+        "NotAgency is an independent web and app studio run by two developers who design, build and launch digital products directly with clients.",
       keywords: ["about NotAgency", "digital studio", "web studio Riga"],
     },
     ru: {
       title: "О NotAgency",
       description:
-        "NotAgency - студия сайтов и приложений с громким визуалом, четкими системами и нулевой терпимостью к мертвым digital-продуктам.",
+        "NotAgency — независимая web и app студия из двух разработчиков, которые напрямую с клиентами проектируют и запускают digital-продукты.",
       keywords: ["о NotAgency", "digital студия", "веб студия Рига"],
     },
     lv: {
       title: "Par NotAgency",
       description:
-        "NotAgency ir mājaslapu un aplikāciju studija ar skaļu vizuālo valodu, skaidrām sistēmām un nulles pacietību pret mirušiem digital produktiem.",
+        "NotAgency ir neatkarīga web un lietotņu studija, ko veido divi izstrādātāji, kuri kopā ar klientiem projektē un palaiž digitālus produktus.",
       keywords: ["par NotAgency", "digital studija", "web studija Rīga"],
     },
   },

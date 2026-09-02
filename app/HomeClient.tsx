@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
+import { ProofSection } from "./components/ProofSection";
 import {
   PortfolioHoverMascot,
   type PortfolioMascotTarget,
@@ -842,6 +843,8 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
               </div>
             ) : null}
           </section>
+
+          <ProofSection lang={lang} />
 
           <section className="portfolio" id="portfolio">
             <PortfolioHoverMascot target={portfolioMascotTarget} />

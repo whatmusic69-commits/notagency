@@ -4,6 +4,11 @@ import { getProjectPageMetadata } from "../../lib/page-metadata";
 import { getProjectBySlug, projects } from "../../lib/projects";
 import { getInitialLang, type PageWithLangProps } from "../../lib/server-language";
 import { seoBaseUrl } from "../../lib/seo";
+import HidyCaseStudy from "./HidyCaseStudy";
+import IsologicCaseStudy from "./IsologicCaseStudy";
+import UnderbpmCaseStudy from "./UnderbpmCaseStudy";
+import CoinerHeroCaseStudy from "./CoinerHeroCaseStudy";
+import JoolpayCaseStudy from "./JoolpayCaseStudy";
 
 type ProjectPageProps = PageWithLangProps & {
   params: Promise<{
@@ -48,6 +53,66 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     },
     keywords: project.tags.join(", "),
   };
+
+  if (project.slug === "hidy") {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        />
+        <HidyCaseStudy initialLang={initialLang} />
+      </>
+    );
+  }
+
+  if (project.slug === "underbpm") {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        />
+        <UnderbpmCaseStudy initialLang={initialLang} />
+      </>
+    );
+  }
+
+  if (project.slug === "isologic") {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        />
+        <IsologicCaseStudy initialLang={initialLang} />
+      </>
+    );
+  }
+
+  if (project.slug === "coiner-hero") {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        />
+        <CoinerHeroCaseStudy initialLang={initialLang} />
+      </>
+    );
+  }
+
+  if (project.slug === "joolpay") {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        />
+        <JoolpayCaseStudy initialLang={initialLang} />
+      </>
+    );
+  }
 
   return (
     <>

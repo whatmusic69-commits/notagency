@@ -12,6 +12,7 @@ type InfoPageProps = {
       kicker: string;
       title: string;
       text: string;
+      manifesto?: string[];
       sections: Array<{
         title: string;
         body: string;
@@ -60,6 +61,13 @@ export function InfoPage({
         <p className="kicker">{page.kicker}</p>
         <h1>{page.title}</h1>
         <p>{page.text}</p>
+        {page.manifesto ? (
+          <div className="info-manifesto" aria-label={page.manifesto.join(" / ")}>
+            {page.manifesto.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        ) : null}
       </section>
 
       <section className="info-content">
