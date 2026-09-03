@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Lang } from "../lib/language";
 
 const proofCopy = {
@@ -12,6 +12,7 @@ const proofCopy = {
     appStore: "App Store",
     hidyContext: "HIDY / first month",
     projectsTitle: "Shipped by us",
+    portfolioAction: "View all portfolio projects",
     industries: "Fintech / SaaS / Marketplaces / Games / Digital systems",
   },
   ru: {
@@ -24,6 +25,7 @@ const proofCopy = {
     appStore: "App Store",
     hidyContext: "HIDY / первый месяц",
     projectsTitle: "Запущено нами",
+    portfolioAction: "Смотреть всё портфолио",
     industries: "Финтех / SaaS / Маркетплейсы / Игры / Цифровые системы",
   },
   lv: {
@@ -36,6 +38,7 @@ const proofCopy = {
     appStore: "App Store",
     hidyContext: "HIDY / pirmais mēnesis",
     projectsTitle: "Mūsu palaistie projekti",
+    portfolioAction: "Skatīt visu portfolio",
     industries: "Fintech / SaaS / Tirgus platformas / Spēles / Digitālās sistēmas",
   },
 } satisfies Record<Lang, {
@@ -48,6 +51,7 @@ const proofCopy = {
   appStore: string;
   hidyContext: string;
   projectsTitle: string;
+  portfolioAction: string;
   industries: string;
 }>;
 
@@ -112,6 +116,14 @@ export function ProofSection({ lang }: { lang: Lang }) {
               <ArrowUpRight aria-hidden="true" size={22} />
             </a>
           ))}
+          <a
+            className="proof-projects-all"
+            href="/portfolio"
+            aria-label={t.portfolioAction}
+            title={t.portfolioAction}
+          >
+            <ArrowRight aria-hidden="true" size={42} strokeWidth={3} />
+          </a>
         </nav>
       </div>
 

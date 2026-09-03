@@ -2100,7 +2100,7 @@ a {
 
 .proof-projects nav {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr)) 88px;
 }
 
 .proof-projects a {
@@ -2148,6 +2148,24 @@ a {
   position: absolute;
   right: 13px;
   top: 13px;
+}
+
+.proof-projects .proof-projects-all {
+  align-items: center;
+  background: var(--pink);
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+}
+
+.proof-projects .proof-projects-all > svg {
+  position: static;
+  transition: transform 0.18s ease;
+}
+
+.proof-projects .proof-projects-all:hover > svg,
+.proof-projects .proof-projects-all:focus-visible > svg {
+  transform: translateX(7px);
 }
 
 .proof-industries {
@@ -5392,6 +5410,11 @@ a {
 
   .proof-projects nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .proof-projects .proof-projects-all {
+    grid-column: 1 / -1;
+    min-height: 90px;
   }
 
   .joolpay-case .case-result-number {
