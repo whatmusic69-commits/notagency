@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { SiteFooter } from "../../components/SiteFooter";
 import { SiteHeader } from "../../components/SiteHeader";
@@ -49,18 +50,6 @@ export default function JoolpayCaseStudy({ initialLang }: { initialLang: Lang })
         <CaseStudyNarrative section={t.solution} tone="acid" />
       </section>
 
-      <section className="case-flow case-section" aria-labelledby="joolpay-flow-title">
-        <h2 id="joolpay-flow-title">{t.flowTitle}</h2>
-        <ol>
-          {t.flow.map((step, index) => (
-            <li key={step}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step}</strong>
-            </li>
-          ))}
-        </ol>
-      </section>
-
       <FeatureGrid title={t.builtTitle} features={t.features} />
       <CaseStudyProcess title={t.processTitle} steps={t.process} />
 
@@ -76,6 +65,16 @@ export default function JoolpayCaseStudy({ initialLang }: { initialLang: Lang })
           {t.resultSection.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>
       </section>
+
+      {t.serviceLink && (
+        <aside className="case-service-link">
+          <span>{t.serviceLink.label}</span>
+          <a href="/mobile-app-development">
+            {t.serviceLink.action}
+            <ArrowRight size={20} />
+          </a>
+        </aside>
+      )}
 
       <CaseStudyCTA copy={t.cta} />
       <SiteFooter lang={lang} />

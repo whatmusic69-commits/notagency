@@ -48,18 +48,6 @@ export default function CoinerHeroCaseStudy({ initialLang }: { initialLang: Lang
         <CaseStudyNarrative section={t.solution} tone="acid" />
       </section>
 
-      <section className="case-flow case-section" aria-labelledby="coiner-flow-title">
-        <h2 id="coiner-flow-title">{t.flowTitle}</h2>
-        <ol>
-          {t.flow.map((step, index) => (
-            <li key={step}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step}</strong>
-            </li>
-          ))}
-        </ol>
-      </section>
-
       <FeatureGrid title={t.builtTitle} features={t.features} />
       <CaseStudyProcess title={t.processTitle} steps={t.process} />
 

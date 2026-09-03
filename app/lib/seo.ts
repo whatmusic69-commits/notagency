@@ -3,6 +3,7 @@ import { getProjectBySlug } from "./projects";
 
 export type SeoPageKey =
   | "home"
+  | "mobileAppDevelopment"
   | "about"
   | "brief"
   | "contacts"
@@ -22,6 +23,7 @@ export const seoBaseUrl = "https://notagency.io";
 
 export const seoPaths: Record<SeoPageKey, string> = {
   home: "/",
+  mobileAppDevelopment: "/mobile-app-development",
   about: "/about",
   brief: "/brief",
   contacts: "/contacts",
@@ -81,6 +83,23 @@ export const seoCopy: Record<SeoPageKey, Record<Lang, SeoEntry>> = {
       description:
         "NotAgency būvē asas mājaslapas, web app, MVP un digital sistēmas uzņēmumiem, kas gatavi normālai palaišanai.",
       keywords: ["mājaslapas", "web app", "digital sistēmas", "landing lapas"],
+    },
+  },
+  mobileAppDevelopment: {
+    en: {
+      title: "Mobile App Development Studio | iOS & Android — NotAgency",
+      description: "NotAgency designs, develops and launches mobile apps for iOS and Android. Product strategy, UX/UI, development, real-time systems and App Store launch.",
+      keywords: ["mobile app development", "iOS app development", "Android app development", "mobile MVP", "App Store launch"],
+    },
+    ru: {
+      title: "Разработка мобильных приложений для iOS и Android — NotAgency",
+      description: "NotAgency проектирует, разрабатывает и запускает мобильные приложения для iOS и Android: продуктовая стратегия, UX/UI, real-time системы и публикация в App Store.",
+      keywords: ["разработка мобильных приложений", "разработка приложений iOS", "разработка Android приложений", "мобильный MVP", "публикация в App Store"],
+    },
+    lv: {
+      title: "Mobilo lietotņu izstrāde iOS un Android — NotAgency",
+      description: "NotAgency projektē, izstrādā un palaiž mobilās lietotnes iOS un Android: produkta stratēģija, UX/UI, reāllaika sistēmas un publicēšana App Store.",
+      keywords: ["mobilo lietotņu izstrāde", "iOS lietotņu izstrāde", "Android lietotņu izstrāde", "mobilais MVP", "App Store publicēšana"],
     },
   },
   about: {
@@ -261,11 +280,44 @@ export function getProjectSeoEntry(slug: string, lang: Lang): SeoEntry | null {
     return null;
   }
 
-  const titleByLang: Record<Lang, string> = {
-    en: `${project.name} case study - NotAgency`,
-    ru: `${project.name}: кейс проекта - NotAgency`,
-    lv: `${project.name}: projekta case - NotAgency`,
+  const projectTitles: Record<string, Record<Lang, string>> = {
+    hidy: {
+      en: "HIDY Mobile Game Development Case Study — NotAgency",
+      ru: "HIDY — кейс разработки мобильной игры | NotAgency",
+      lv: "HIDY mobilās spēles izstrādes case study — NotAgency",
+    },
+    joolpay: {
+      en: "JoolPay Fintech Platform Development Case Study — NotAgency",
+      ru: "JoolPay — кейс разработки fintech-платформы | NotAgency",
+      lv: "JoolPay fintech platformas izstrādes case study — NotAgency",
+    },
+    underbpm: {
+      en: "UNDERBPM Music Marketplace Development Case Study — NotAgency",
+      ru: "UNDERBPM — кейс разработки музыкального marketplace | NotAgency",
+      lv: "UNDERBPM mūzikas marketplace izstrādes case study — NotAgency",
+    },
+    isologic: {
+      en: "ISOLOGIC Website & CMS Development Case Study — NotAgency",
+      ru: "ISOLOGIC — кейс разработки сайта и CMS | NotAgency",
+      lv: "ISOLOGIC mājaslapas un CMS izstrādes case study — NotAgency",
+    },
+    "coiner-hero": {
+      en: "Coiner Hero Web3 Platform Development Case Study — NotAgency",
+      ru: "Coiner Hero — кейс разработки Web3-платформы | NotAgency",
+      lv: "Coiner Hero Web3 platformas izstrādes case study — NotAgency",
+    },
+    "split-merge": {
+      en: "Split & Merge Mobile Game Development Case Study — NotAgency",
+      ru: "Split & Merge — кейс разработки мобильной игры | NotAgency",
+      lv: "Split & Merge mobilās spēles izstrādes case study — NotAgency",
+    },
   };
+  const fallbackTitles: Record<Lang, string> = {
+    en: `${project.name} Development Case Study — NotAgency`,
+    ru: `${project.name} — кейс разработки | NotAgency`,
+    lv: `${project.name} izstrādes case study — NotAgency`,
+  };
+  const titleByLang = projectTitles[project.slug] ?? fallbackTitles;
 
   return {
     title: titleByLang[lang],

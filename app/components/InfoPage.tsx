@@ -1,5 +1,6 @@
- "use client";
+"use client";
 
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
@@ -13,6 +14,7 @@ type InfoPageProps = {
       title: string;
       text: string;
       manifesto?: string[];
+      contextualLink?: { label: string; action: string; href: string };
       sections: Array<{
         title: string;
         body: string;
@@ -78,6 +80,16 @@ export function InfoPage({
           </article>
         ))}
       </section>
+
+      {page.contextualLink ? (
+        <aside className="case-service-link">
+          <span>{page.contextualLink.label}</span>
+          <a href={page.contextualLink.href}>
+            {page.contextualLink.action}
+            <ArrowRight size={20} />
+          </a>
+        </aside>
+      ) : null}
 
       <SiteFooter lang={lang} />
     </main>

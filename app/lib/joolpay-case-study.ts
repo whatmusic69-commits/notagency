@@ -61,6 +61,7 @@ export const joolpayCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
         "One QR scan leads into a product spanning the browser, internal management tools and mobile apps for iOS and Android.",
       ],
     },
+    serviceLink: { label: "Building a mobile product?", action: "Mobile app development" },
     cta: { title: "Have a system that needs to become a product?", text: "Tell us what you are building.", action: "Start a project" },
   },
   ru: {
@@ -122,6 +123,7 @@ export const joolpayCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
         "Один QR-скан ведёт в продукт, который охватывает браузер, внутренние инструменты управления и мобильные приложения для iOS и Android.",
       ],
     },
+    serviceLink: { label: "Планируете мобильный продукт?", action: "Разработка мобильных приложений" },
     cta: { title: "Есть система, которую пора превратить в продукт?", text: "Расскажите, что вы создаёте.", action: "Обсудить проект" },
   },
   lv: {
@@ -183,6 +185,7 @@ export const joolpayCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
         "Viens QR skens ved uz produktu, kas aptver pārlūku, iekšējos pārvaldības rīkus un mobilās lietotnes iOS un Android.",
       ],
     },
+    serviceLink: { label: "Plānojat mobilo produktu?", action: "Mobilo lietotņu izstrāde" },
     cta: { title: "Ir sistēma, kas jāpārvērš produktā?", text: "Pastāstiet, ko veidojat.", action: "Sākt projektu" },
   },
 };

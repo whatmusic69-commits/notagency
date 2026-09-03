@@ -22,6 +22,7 @@ export type CaseStudyCopy = {
   techTitle: string;
   systems: string[];
   resultSection: { title: string; paragraphs: string[] };
+  serviceLink?: { label: string; action: string };
   cta: { title: string; text: string; action: string };
 };
 
@@ -91,6 +92,7 @@ export const hidyCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
         "During its first month after launch, the game reached #4 in the App Store charts.",
       ],
     },
+    serviceLink: { label: "Planning a mobile product?", action: "Mobile app development" },
     cta: { title: "Have something we should build?", text: "Tell us what you are working on.", action: "Start a project" },
   },
   ru: {
@@ -152,6 +154,7 @@ export const hidyCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
         "В течение первого месяца после запуска игра поднялась до #4 в чартах App Store.",
       ],
     },
+    serviceLink: { label: "Планируете мобильный продукт?", action: "Разработка мобильных приложений" },
     cta: { title: "Есть идея, которую стоит собрать?", text: "Расскажите, над чем вы работаете.", action: "Обсудить проект" },
   },
   lv: {
@@ -213,6 +216,7 @@ export const hidyCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
         "Pirmajā mēnesī pēc palaišanas spēle sasniedza #4 vietu App Store čartos.",
       ],
     },
+    serviceLink: { label: "Plānojat mobilo produktu?", action: "Mobilo lietotņu izstrāde" },
     cta: { title: "Ir ideja, ko vajag izveidot?", text: "Pastāstiet, pie kā strādājat.", action: "Sākt projektu" },
   },
 };

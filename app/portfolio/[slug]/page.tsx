@@ -53,13 +53,44 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     },
     keywords: project.tags.join(", "),
   };
+  const breadcrumbLabels = {
+    en: { home: "Home", portfolio: "Portfolio" },
+    ru: { home: "Главная", portfolio: "Портфолио" },
+    lv: { home: "Sākums", portfolio: "Portfolio" },
+  }[initialLang];
+  const languageSuffix = initialLang === "en" ? "" : `?lang=${initialLang}`;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: breadcrumbLabels.home,
+        item: `${seoBaseUrl}/${languageSuffix}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: breadcrumbLabels.portfolio,
+        item: `${seoBaseUrl}/portfolio${languageSuffix}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.name,
+        item: `${seoBaseUrl}/portfolio/${project.slug}${languageSuffix}`,
+      },
+    ],
+  };
+  const structuredData = [projectJsonLd, breadcrumbJsonLd];
 
   if (project.slug === "hidy") {
     return (
       <>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <HidyCaseStudy initialLang={initialLang} />
       </>
@@ -71,7 +102,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
       <>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <UnderbpmCaseStudy initialLang={initialLang} />
       </>
@@ -83,7 +114,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
       <>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <IsologicCaseStudy initialLang={initialLang} />
       </>
@@ -95,7 +126,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
       <>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <CoinerHeroCaseStudy initialLang={initialLang} />
       </>
@@ -107,7 +138,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
       <>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <JoolpayCaseStudy initialLang={initialLang} />
       </>
@@ -118,7 +149,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <InfoPage
         initialLang={initialLang}
@@ -127,6 +158,11 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
             kicker: "Portfolio / Case study",
             title: `${project.name} case study`,
             text: project.summary.en,
+            contextualLink: project.slug === "split-merge" ? {
+              label: "Planning a mobile product?",
+              action: "Mobile app development",
+              href: "/mobile-app-development",
+            } : undefined,
             sections: [
               { title: "Project type", body: project.type },
               { title: "What we did", body: project.details.en },
@@ -138,6 +174,11 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
             kicker: "Портфолио / Кейс",
             title: `${project.name}: кейс`,
             text: project.summary.ru,
+            contextualLink: project.slug === "split-merge" ? {
+              label: "Планируете мобильный продукт?",
+              action: "Разработка мобильных приложений",
+              href: "/mobile-app-development",
+            } : undefined,
             sections: [
               { title: "Тип проекта", body: project.type },
               { title: "Что сделали", body: project.details.ru },
@@ -149,6 +190,11 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
             kicker: "Portfolio / Case",
             title: `${project.name}: case`,
             text: project.summary.lv,
+            contextualLink: project.slug === "split-merge" ? {
+              label: "Plānojat mobilo produktu?",
+              action: "Mobilo lietotņu izstrāde",
+              href: "/mobile-app-development",
+            } : undefined,
             sections: [
               { title: "Projekta tips", body: project.type },
               { title: "Ko izdarījām", body: project.details.lv },

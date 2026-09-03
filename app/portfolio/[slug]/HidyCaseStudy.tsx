@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import hidyVisual from "../../src/hidy 1.png";
 import hidyTopFour from "../../src/top4.jpg";
@@ -93,6 +94,16 @@ export default function HidyCaseStudy({ initialLang }: { initialLang: Lang }) {
           {t.resultSection.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>
       </section>
+
+      {t.serviceLink && (
+        <aside className="case-service-link">
+          <span>{t.serviceLink.label}</span>
+          <a href="/mobile-app-development">
+            {t.serviceLink.action}
+            <ArrowRight size={20} />
+          </a>
+        </aside>
+      )}
 
       <CaseStudyCTA copy={t.cta} />
       <SiteFooter lang={lang} />
