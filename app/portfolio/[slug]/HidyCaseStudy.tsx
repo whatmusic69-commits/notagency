@@ -88,7 +88,7 @@ export default function HidyCaseStudy({ initialLang }: { initialLang: Lang }) {
       </section>
 
       <section className="case-final-result">
-        <div className="case-final-seven" aria-hidden="true">#4</div>
+        <div className="case-final-seven" aria-hidden="true"># 4</div>
         <div>
           <h2>{t.resultSection.title}</h2>
           {t.resultSection.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}

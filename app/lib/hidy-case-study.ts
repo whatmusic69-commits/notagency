@@ -45,7 +45,7 @@ export const hidyCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
       { label: "Work", value: "Product / Game logic / Development / Launch" },
       { label: "Release", value: "App Store / Play Market preparation" },
     ],
-    result: { mark: "#4", label: "In the App Store", text: "Reached #4 in the App Store charts during the first month after launch." },
+    result: { mark: "# 4", label: "In the App Store", text: "Reached #4 in the App Store charts during the first month after launch." },
     resultProof: {
       alt: "App Store Top Free Apps chart showing HIDY in fourth place.",
       caption: "The receipt: HIDY at #4 in the App Store chart during its first month.",
@@ -107,7 +107,7 @@ export const hidyCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
       { label: "Работа", value: "Продукт / Игровая логика / Разработка / Запуск" },
       { label: "Релиз", value: "App Store / подготовка к Play Market" },
     ],
-    result: { mark: "#4", label: "В App Store", text: "В течение первого месяца после запуска HIDY поднялся до #4 в чартах App Store." },
+    result: { mark: "# 4", label: "В App Store", text: "В течение первого месяца после запуска HIDY поднялся до #4 в чартах App Store." },
     resultProof: {
       alt: "Чарт бесплатных приложений App Store, где HIDY занимает четвёртое место.",
       caption: "Доказательство: HIDY на #4 в чарте App Store в течение первого месяца.",
@@ -169,7 +169,7 @@ export const hidyCaseStudyCopy: Record<Lang, CaseStudyCopy> = {
       { label: "Darbs", value: "Produkts / Spēles loģika / Izstrāde / Palaišana" },
       { label: "Relīze", value: "App Store / gatavošana Play Market" },
     ],
-    result: { mark: "#4", label: "App Store", text: "Pirmajā mēnesī pēc palaišanas HIDY sasniedza #4 vietu App Store čartos." },
+    result: { mark: "# 4", label: "App Store", text: "Pirmajā mēnesī pēc palaišanas HIDY sasniedza #4 vietu App Store čartos." },
     resultProof: {
       alt: "App Store bezmaksas lietotņu tops, kurā HIDY ieņem ceturto vietu.",
       caption: "Pierādījums: HIDY #4 vietā App Store topā pirmajā mēnesī.",
