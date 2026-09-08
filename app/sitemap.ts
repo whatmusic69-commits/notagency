@@ -1,3 +1,4 @@
+import { localizedHref, type Lang } from "./lib/language";
 import type { MetadataRoute } from "next";
 import { projects } from "./lib/projects";
 import { seoBaseUrl } from "./lib/seo";
@@ -8,7 +9,8 @@ const routes: Array<{
   path: string;
   priority: number;
 }> = [
-  { path: "", changeFrequency: "weekly", priority: 1 },
+  { path: "/", changeFrequency: "weekly", priority: 1 },
+  { path: "/web-app-development", changeFrequency: "monthly", priority: 0.9 },
   { path: "/portfolio", changeFrequency: "weekly", priority: 0.9 },
   { path: "/mobile-app-development", changeFrequency: "monthly", priority: 0.9 },
   { path: "/brief", changeFrequency: "monthly", priority: 0.85 },
@@ -44,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.76,
-      images: project.modalImage ? [`${seoBaseUrl}${project.modalImage.src}`] : undefined,
+      images: project.modalImage ? [`${seoBaseUrl}${project.modalImage.src.replaceAll("&", "%26")}`] : undefined,
       alternates: {
         languages: {
           en: `${seoBaseUrl}${path}`,
@@ -56,5 +58,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  return [...mainRoutes, ...projectRoutes];
+  return [...mainRoutes, ...projectRoutes].flatMap((entry) =>
+    (["en", "ru", "lv"] as Lang[]).map((lang) => ({
+      ...entry,
+      url: `${seoBaseUrl}${localizedHref(new URL(entry.url).pathname, lang)}`,
+    })),
+  );
 }

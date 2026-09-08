@@ -1,38 +1,39 @@
+import { localizedHref } from "../lib/language";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 
 type Lang = "en" | "ru" | "lv";
 
 const footerCopy = {
   en: {
-    links: ["About", "Contacts", "FAQ", "Privacy Policy", "Terms"],
+    links: ["Web app development", "Mobile app development", "About", "Contacts", "FAQ", "Privacy Policy", "Terms"],
     titleEnd: "harder.",
     titleHit: "hit",
     titleStart: "Internet should",
     text: "Websites, apps and digital systems for people who are done paying for polite mediocrity.",
-    location: "Riga / Remote",
+    location: "Based in Riga. Working worldwide.",
     bottom: "No cheap templates were harmed. They deserved worse.",
   },
   ru: {
-    links: ["О нас", "Контакты", "FAQ", "Приватность", "Условия"],
+    links: ["Веб-приложения", "Мобильные приложения", "О нас", "Контакты", "FAQ", "Приватность", "Условия"],
     titleEnd: "сильнее.",
     titleHit: "бить",
     titleStart: "Интернет должен",
     text: "Сайты, приложения и digital-системы для тех, кто устал платить за вежливую посредственность.",
-    location: "Рига / Удаленно",
+    location: "Мы в Риге. Работаем по всему миру.",
     bottom: "Дешевые шаблоны не пострадали. Хотя заслужили этого!",
   },
   lv: {
-    links: ["Par mums", "Kontakti", "FAQ", "Privātums", "Noteikumi"],
+    links: ["Tīmekļa lietotnes", "Mobilās lietotnes", "Par mums", "Kontakti", "FAQ", "Privātums", "Noteikumi"],
     titleEnd: "stiprāk.",
     titleHit: "jāsit",
     titleStart: "Internetam",
     text: "Mājaslapas, aplikācijas un digital sistēmas tiem, kuriem apnikusi pieklājīga viduvējība.",
-    location: "Rīga / Attālināti",
+    location: "No Rīgas. Visai pasaulei.",
     bottom: "Lētie template necieta. Lai gan bija pelnījuši.",
   },
 };
 
-const footerHrefs = ["/about", "/contacts", "/faq", "/privacy", "/terms"];
+const footerHrefs = ["/web-app-development", "/mobile-app-development", "/about", "/contacts", "/faq", "/privacy", "/terms"];
 
 export function SiteFooter({ lang = "en" }: { lang?: Lang }) {
   const t = footerCopy[lang];
@@ -40,7 +41,7 @@ export function SiteFooter({ lang = "en" }: { lang?: Lang }) {
   return (
     <footer className="site-footer">
       <div className="footer-main">
-        <a className="footer-brand" href="/#home">
+        <a className="footer-brand" href={localizedHref("/#home", lang)}>
           <span className="brand-mascot" aria-hidden="true">
             <span className="brand-eye left" />
             <span className="brand-eye right" />
@@ -59,7 +60,7 @@ export function SiteFooter({ lang = "en" }: { lang?: Lang }) {
       <div className="footer-columns">
         <nav className="footer-nav" aria-label="Footer navigation">
           {t.links.map((label, index) => (
-            <a href={footerHrefs[index]} key={footerHrefs[index]}>
+            <a href={localizedHref(footerHrefs[index], lang)} key={footerHrefs[index]}>
               {label}
               <ArrowRight size={16} />
             </a>

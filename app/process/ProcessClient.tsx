@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "../lib/language";
+
 import { useState } from "react";
 import {
   ArrowLeft,
@@ -114,11 +116,11 @@ export default function ProcessClient({ initialLang }: ProcessClientProps) {
           <h1>{t.title}</h1>
           <p>{t.text}</p>
           <div className="hero-actions">
-            <a className="secondary" href="/#home">
+            <a className="secondary" href={localizedHref("/#home", lang)}>
               <ArrowLeft size={20} />
               {t.back}
             </a>
-            <a className="primary" href="/brief">
+            <a className="primary" href={localizedHref("/brief", lang)}>
               {t.brief}
               <Rocket size={20} />
             </a>

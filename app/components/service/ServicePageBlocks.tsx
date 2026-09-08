@@ -1,10 +1,12 @@
+import type { Lang } from "../../lib/language";
+import { localizedHref } from "../../lib/language";
 import { ArrowRight } from "lucide-react";
 import type { MobileAppDevelopmentCopy } from "../../lib/mobile-app-development";
 
-export function ServiceProof({ copy }: { copy: MobileAppDevelopmentCopy["proof"] }) {
+export function ServiceProof({ copy, lang }: { lang: Lang; copy: MobileAppDevelopmentCopy["proof"] }) {
   return (
     <section className="mobile-service-proof" aria-labelledby="mobile-proof-title">
-      <a className="mobile-proof-rank" href="/portfolio/hidy">
+      <a className="mobile-proof-rank" href={localizedHref("/portfolio/hidy", lang)}>
         <span className="mobile-proof-number">#4</span>
         <strong id="mobile-proof-title">{copy.appStore}</strong>
         <small>{copy.context}</small>
@@ -50,7 +52,7 @@ export function ServiceCards({
   );
 }
 
-export function ServiceProcess({ copy }: { copy: MobileAppDevelopmentCopy["process"] }) {
+export function ServiceProcess({ copy, lang }: { lang: Lang; copy: MobileAppDevelopmentCopy["process"] }) {
   return (
     <section className="mobile-service-process" aria-labelledby="mobile-process-title">
       <p className="kicker">{copy.label}</p>
@@ -64,7 +66,7 @@ export function ServiceProcess({ copy }: { copy: MobileAppDevelopmentCopy["proce
           </li>
         ))}
       </ol>
-      <a className="secondary" href="/process">
+      <a className="secondary" href={localizedHref("/process", lang)}>
         {copy.action}
         <ArrowRight size={20} />
       </a>
@@ -94,12 +96,12 @@ export function ServiceFAQ({ copy }: { copy: MobileAppDevelopmentCopy["faq"] }) 
   );
 }
 
-export function ServiceCTA({ copy }: { copy: MobileAppDevelopmentCopy["cta"] }) {
+export function ServiceCTA({ copy, lang }: { lang: Lang; copy: MobileAppDevelopmentCopy["cta"] }) {
   return (
     <section className="mobile-service-cta">
       <h2>{copy.title.map((line) => <span key={line}>{line}</span>)}</h2>
       <p>{copy.text}</p>
-      <a className="primary" href="/brief">
+      <a className="primary" href={localizedHref("/brief", lang)}>
         {copy.action}
         <ArrowRight size={22} />
       </a>

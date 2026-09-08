@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "../../lib/language";
+
 import Image from "next/image";
 import { useState } from "react";
 import marketplaceVisual from "../../src/underbpm 1.png";
@@ -88,7 +90,12 @@ export default function UnderbpmCaseStudy({ initialLang }: { initialLang: Lang }
         </div>
       </section>
 
-      <CaseStudyCTA copy={t.cta} />
+      <aside className="case-service-link">
+        <a href={localizedHref("/web-app-development", lang)}>
+          {{ en: "Planning a web product? Explore web app development", ru: "Планируете веб-продукт? Разработка веб-приложений", lv: "Plānojat tīmekļa produktu? Tīmekļa lietotņu izstrāde" }[lang]}
+        </a>
+      </aside>
+      <CaseStudyCTA lang={lang} copy={t.cta} />
       <SiteFooter lang={lang} />
     </main>
   );

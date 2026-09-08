@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "../../lib/language";
+
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
@@ -69,14 +71,19 @@ export default function JoolpayCaseStudy({ initialLang }: { initialLang: Lang })
       {t.serviceLink && (
         <aside className="case-service-link">
           <span>{t.serviceLink.label}</span>
-          <a href="/mobile-app-development">
+          <a href={localizedHref("/mobile-app-development", lang)}>
             {t.serviceLink.action}
             <ArrowRight size={20} />
           </a>
         </aside>
       )}
 
-      <CaseStudyCTA copy={t.cta} />
+      <aside className="case-service-link">
+        <a href={localizedHref("/web-app-development", lang)}>
+          {{ en: "Planning a web product? Explore web app development", ru: "Планируете веб-продукт? Разработка веб-приложений", lv: "Plānojat tīmekļa produktu? Tīmekļa lietotņu izstrāde" }[lang]}
+        </a>
+      </aside>
+      <CaseStudyCTA lang={lang} copy={t.cta} />
       <SiteFooter lang={lang} />
     </main>
   );

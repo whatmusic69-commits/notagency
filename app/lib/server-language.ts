@@ -1,5 +1,4 @@
-import { cookies } from "next/headers";
-import { defaultLang, isLang, languageStorageKey, type Lang } from "./language";
+import { defaultLang, isLang, type Lang } from "./language";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
@@ -16,9 +15,5 @@ export async function getInitialLang(searchParams?: SearchParams): Promise<Lang>
     return lang;
   }
 
-  const cookieLang = (await cookies()).get(languageStorageKey)?.value;
-
-  return typeof cookieLang === "string" && isLang(cookieLang)
-    ? cookieLang
-    : defaultLang;
+  return defaultLang;
 }

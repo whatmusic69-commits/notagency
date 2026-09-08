@@ -1,3 +1,4 @@
+import { localizedHref } from "../../lib/language";
 import { notFound } from "next/navigation";
 import { InfoPage } from "../../components/InfoPage";
 import { getProjectPageMetadata } from "../../lib/page-metadata";
@@ -44,7 +45,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     "@type": "CreativeWork",
     name: project.name,
     description: project.summary[initialLang],
-    url: `${seoBaseUrl}/portfolio/${project.slug}`,
+    url: `${seoBaseUrl}${localizedHref(`/portfolio/${project.slug}`, initialLang)}`,
     image: project.modalImage ? `${seoBaseUrl}${project.modalImage.src}` : undefined,
     creator: {
       "@type": "Organization",

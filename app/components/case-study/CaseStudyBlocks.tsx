@@ -1,3 +1,5 @@
+import type { Lang } from "../../lib/language";
+import { localizedHref } from "../../lib/language";
 import { ArrowRight } from "lucide-react";
 import type { CaseStudyCopy } from "../../lib/hidy-case-study";
 
@@ -69,12 +71,12 @@ export function CaseStudyProcess({ title, steps }: { title: string; steps: CaseS
   );
 }
 
-export function CaseStudyCTA({ copy }: { copy: CaseStudyCopy["cta"] }) {
+export function CaseStudyCTA({ copy, lang }: { lang: Lang; copy: CaseStudyCopy["cta"] }) {
   return (
     <section className="case-cta">
       <h2>{copy.title}</h2>
       <p>{copy.text}</p>
-      <a className="primary" href="/brief">
+      <a className="primary" href={localizedHref("/brief", lang)}>
         {copy.action}
         <ArrowRight size={22} />
       </a>

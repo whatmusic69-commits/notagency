@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "../lib/language";
+
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -38,11 +40,11 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
           <h1>{t.hero.title.map((line) => <span key={line}>{line}</span>)}</h1>
           <p>{t.hero.description}</p>
           <div className="hero-actions">
-            <a className="primary" href="/brief">
+            <a className="primary" href={localizedHref("/brief", lang)}>
               {t.hero.primary}
               <ArrowRight size={21} />
             </a>
-            <a className="secondary" href="/portfolio/hidy">
+            <a className="secondary" href={localizedHref("/portfolio/hidy", lang)}>
               {t.hero.secondary}
               <ArrowRight size={21} />
             </a>
@@ -54,7 +56,7 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
         </figure>
       </header>
 
-      <ServiceProof copy={t.proof} />
+      <ServiceProof lang={lang} copy={t.proof} />
       <ServiceCards className="mobile-service-build" copy={t.build} />
 
       <section className="mobile-hidy-spotlight" aria-labelledby="mobile-hidy-title">
@@ -62,7 +64,7 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
           <p className="kicker">{t.hidy.label}</p>
           <h2 id="mobile-hidy-title">{t.hidy.title}</h2>
           <p>{t.hidy.text}</p>
-          <a className="primary" href="/portfolio/hidy">
+          <a className="primary" href={localizedHref("/portfolio/hidy", lang)}>
             {t.hidy.action}
             <ArrowRight size={21} />
           </a>
@@ -80,7 +82,7 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
         <div>{t.team.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
       </section>
 
-      <ServiceProcess copy={t.process} />
+      <ServiceProcess lang={lang} copy={t.process} />
 
       <section className="mobile-secondary-work" aria-labelledby="mobile-secondary-title">
         <figure>
@@ -90,7 +92,7 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
           <p className="kicker">{t.secondary.label}</p>
           <h2 id="mobile-secondary-title">{t.secondary.title}</h2>
           <p>{t.secondary.text}</p>
-          <a className="secondary" href="/portfolio/split-merge">
+          <a className="secondary" href={localizedHref("/portfolio/split-merge", lang)}>
             {t.secondary.action}
             <ArrowRight size={20} />
           </a>
@@ -98,7 +100,7 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
       </section>
 
       <ServiceFAQ copy={t.faq} />
-      <ServiceCTA copy={t.cta} />
+      <ServiceCTA lang={lang} copy={t.cta} />
       <SiteFooter lang={lang} />
     </main>
   );

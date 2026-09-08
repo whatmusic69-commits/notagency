@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "./lib/language";
+
 import Image from "next/image";
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import {
@@ -94,9 +96,9 @@ const copy = {
     glitchTitle: "404. Такой сайт ты получишь у дешевых фрилансеров.",
     glitchText:
       "Кривые блоки, мертвые кнопки, логотип в PNG и фраза «почти готово» три недели подряд.",
-    normalTitle: "У нас есть идея, как должен выглядеть интернет.",
+    normalTitle: "Ваш новый сайт. Приложение. Преимущество.",
     normalText:
-      "Снаружи дерзко. Внутри четкий бизнес: стратегия, дизайн, разработка, запуск и нормальная коммуникация.",
+      "Проектируем и разрабатываем сайты, веб-приложения и MVP для предпринимателей и бизнеса по всему миру. Напрямую с разработчиками, которые запускают ваш продукт.",
     cta: "Заполнить бриф",
     secondary: "Смотреть работы",
     counterLabel: "До запуска клиентского домена",
@@ -193,9 +195,9 @@ const copy = {
     glitchTitle: "404. Tā izskatīsies tava lapa pie lētiem freelanceriem.",
     glitchText:
       "Šķībi bloki, mirušas pogas, PNG logo un frāze 'gandrīz gatavs' trīs nedēļas pēc kārtas.",
-    normalTitle: "Mums ir ideja, kā internetam ir jāizskatās.",
+    normalTitle: "Jūsu jaunā mājaslapa. Lietotne. Priekšrocība.",
     normalText:
-      "Ārpusē drosmīgi. Iekšpusē skaidrs bizness: stratēģija, dizains, izstrāde, palaišana un normāla komunikācija.",
+      "Projektējam un izstrādājam mājaslapas, tīmekļa lietotnes un MVP uzņēmējiem visā pasaulē. Sadarbojieties tieši ar izstrādātājiem, kuri īsteno jūsu produktu.",
     cta: "Aizpildīt briefu",
     secondary: "Skatīt darbus",
     counterLabel: "Līdz klienta domēna startam",
@@ -292,9 +294,9 @@ const copy = {
     glitchTitle: "404. This is your site if cheap freelancers build it.",
     glitchText:
       "Broken layouts, dead buttons, a PNG logo and 'almost done' repeated for three weeks.",
-    normalTitle: "We have an idea of what the internet should look like.",
+    normalTitle: "Your next website. App. Unfair advantage.",
     normalText:
-      "Loud outside. Clean business inside: strategy, design, development, launch and actual communication.",
+      "We design and build websites, web apps and MVPs for founders and businesses worldwide. Work directly with the developers who ship your product.",
     cta: "Fill the brief",
     secondary: "View work",
     counterLabel: "Until the client domain goes live",
@@ -636,17 +638,15 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                 </button>
                 <div className="language-menu">
                   {(["en", "ru", "lv"] as Lang[]).map((item) => (
-                    <button
+                    <a
                       className={item === lang ? "active" : ""}
                       key={item}
-                      onClick={() => {
-                        changeLang(item);
-                        setLanguageOpen(false);
-                      }}
-                      type="button"
+                      href={localizedHref("/", item)}
+                      hrefLang={item}
+                      aria-current={item === lang ? "page" : undefined}
                     >
                       {item.toUpperCase()}
-                    </button>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -741,8 +741,11 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
               </p>
               <h1>{t.normalTitle}</h1>
               <p>{t.normalText}</p>
+              <a className="service-text-link" href={localizedHref("/web-app-development", lang)}>
+                {{ en: "Explore web application development", ru: "Разработка веб-приложений", lv: "Tīmekļa lietotņu izstrāde" }[lang]} <ArrowRight size={18} />
+              </a>
               <div className="hero-actions">
-                <a className="primary" href="/brief">
+                <a className="primary" href={localizedHref("/brief", lang)}>
                   {t.cta}
                   <ArrowRight size={20} />
                 </a>
@@ -835,7 +838,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                       <span key={item}>{item}</span>
                     ))}
                   </div>
-                  <a className="project-modal-link" href="/brief" onClick={() => setSelectedServiceIndex(null)}>
+                  <a className="project-modal-link" href={localizedHref("/brief", lang)} onClick={() => setSelectedServiceIndex(null)}>
                     {t.cta}
                     <ArrowRight size={17} />
                   </a>
@@ -881,7 +884,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                   </a>
                   <a
                     className="project-more-button"
-                    href={`/portfolio/${project.slug}`}
+                    href={localizedHref(`/portfolio/${project.slug}`, lang)}
                     onClick={(event) => {
                       event.preventDefault();
                       setSelectedProject(project);
@@ -898,7 +901,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                 </article>
               ))}
             </div>
-            <a className="portfolio-more" href="/portfolio">
+            <a className="portfolio-more" href={localizedHref("/portfolio", lang)}>
               {t.portfolioAll}
               <ArrowRight size={22} />
             </a>
@@ -988,7 +991,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
               </p>
               <h2>{t.processHomeTitle}</h2>
               <p>{t.processHomeSub}</p>
-              <a className="primary" href="/process">
+              <a className="primary" href={localizedHref("/process", lang)}>
                 {t.processHomeCta}
                 <ArrowRight size={20} />
               </a>

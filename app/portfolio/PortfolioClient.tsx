@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "../lib/language";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, ExternalLink, FolderKanban, X } from "lucide-react";
@@ -115,7 +117,7 @@ export default function PortfolioClient({ initialLang }: PortfolioClientProps) {
         </p>
         <h1>{t.title}</h1>
         <p>{t.text}</p>
-        <a className="secondary" href="/#home">
+        <a className="secondary" href={localizedHref("/#home", lang)}>
           <ArrowLeft size={20} />
           {t.back}
         </a>
@@ -157,7 +159,7 @@ export default function PortfolioClient({ initialLang }: PortfolioClientProps) {
               </a>
               <a
                 className="project-more-button"
-                href={`/portfolio/${project.slug}`}
+                href={localizedHref(`/portfolio/${project.slug}`, lang)}
                 onClick={(event) => {
                   event.preventDefault();
                   setSelectedProject(project);

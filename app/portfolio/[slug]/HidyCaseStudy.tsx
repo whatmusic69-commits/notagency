@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "../../lib/language";
+
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
@@ -98,14 +100,14 @@ export default function HidyCaseStudy({ initialLang }: { initialLang: Lang }) {
       {t.serviceLink && (
         <aside className="case-service-link">
           <span>{t.serviceLink.label}</span>
-          <a href="/mobile-app-development">
+          <a href={localizedHref("/mobile-app-development", lang)}>
             {t.serviceLink.action}
             <ArrowRight size={20} />
           </a>
         </aside>
       )}
 
-      <CaseStudyCTA copy={t.cta} />
+      <CaseStudyCTA lang={lang} copy={t.cta} />
       <SiteFooter lang={lang} />
     </main>
   );

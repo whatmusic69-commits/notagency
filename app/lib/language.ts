@@ -9,38 +9,18 @@ export function isLang(value: string | null): value is Lang {
   return value === "ru" || value === "lv" || value === "en";
 }
 
-function readCookieLang() {
-  if (typeof document === "undefined") {
-    return null;
-  }
-
-  const cookie = document.cookie
-    .split("; ")
-    .find((item) => item.startsWith(`${languageStorageKey}=`));
-
-  return cookie ? decodeURIComponent(cookie.split("=")[1] ?? "") : null;
+export function localizedHref(href: string, lang: Lang): string {
+  if (!href.startsWith("/") || href.startsWith("//")) return href;
+  const url = new URL(href, "https://notagency.io");
+  if (lang === defaultLang) url.searchParams.delete("lang");
+  else url.searchParams.set("lang", lang);
+  return `${url.pathname}${url.search}${url.hash}`;
 }
 
 export function readStoredLang(): Lang {
-  if (typeof window === "undefined") {
-    return defaultLang;
-  }
-
+  if (typeof window === "undefined") return defaultLang;
   const queryLang = new URLSearchParams(window.location.search).get("lang");
-
-  if (isLang(queryLang)) {
-    return queryLang;
-  }
-
-  const cookieLang = readCookieLang();
-
-  if (isLang(cookieLang)) {
-    return cookieLang;
-  }
-
-  const storedLang = window.localStorage.getItem(languageStorageKey);
-
-  return isLang(storedLang) ? storedLang : defaultLang;
+  return isLang(queryLang) ? queryLang : defaultLang;
 }
 
 export function persistLang(lang: Lang) {

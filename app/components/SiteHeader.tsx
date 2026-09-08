@@ -1,12 +1,13 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   type Lang,
   persistLang,
   readStoredLang,
-  storeLang,
+  localizedHref,
 } from "../lib/language";
 
 const navCopy = {
@@ -26,22 +27,14 @@ type SiteHeaderProps = {
 export function SiteHeader({
   className = "page-topbar",
   lang: controlledLang,
-  onLangChange,
 }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
-  const [internalLang, setInternalLang] = useState<Lang>(readStoredLang);
+  const [internalLang] = useState<Lang>(readStoredLang);
   const lang = controlledLang ?? internalLang;
-  const setLang = (nextLang: Lang) => {
-    storeLang(nextLang);
-    if (onLangChange) {
-      onLangChange(nextLang);
-    } else {
-      setInternalLang(nextLang);
-    }
-  };
+  const pathname = usePathname();
   const navLinks = navCopy[lang].map((label, index) => ({
-    href: navHrefs[index],
+    href: localizedHref(navHrefs[index], lang),
     label,
   }));
 
@@ -49,21 +42,9 @@ export function SiteHeader({
     persistLang(lang);
   }, [lang]);
 
-  const refreshHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    setMenuOpen(false);
-
-    if (window.location.pathname === "/" && !window.location.search) {
-      window.location.reload();
-      return;
-    }
-
-    window.location.assign("/");
-  };
-
   return (
     <header className={`topbar ${className}`.trim()}>
-      <a className="brand" href="/" onClick={refreshHome}>
+      <a className="brand" href={localizedHref("/", lang)}>
         <span className="brand-mascot" aria-hidden="true">
           <span className="brand-eye left" />
           <span className="brand-eye right" />
@@ -91,17 +72,15 @@ export function SiteHeader({
           </button>
           <div className="language-menu">
             {(["en", "ru", "lv"] as Lang[]).map((item) => (
-              <button
+              <a
                 className={item === lang ? "active" : ""}
                 key={item}
-                onClick={() => {
-                  setLang(item);
-                  setLanguageOpen(false);
-                }}
-                type="button"
+                href={localizedHref(pathname, item)}
+                hrefLang={item}
+                aria-current={item === lang ? "page" : undefined}
               >
                 {item.toUpperCase()}
-              </button>
+              </a>
             ))}
           </div>
         </div>

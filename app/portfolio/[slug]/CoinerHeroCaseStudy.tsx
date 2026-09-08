@@ -64,7 +64,7 @@ export default function CoinerHeroCaseStudy({ initialLang }: { initialLang: Lang
         </div>
       </section>
 
-      <CaseStudyCTA copy={t.cta} />
+      <CaseStudyCTA lang={lang} copy={t.cta} />
       <SiteFooter lang={lang} />
     </main>
   );

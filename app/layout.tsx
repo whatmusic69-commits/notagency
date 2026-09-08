@@ -113,7 +113,7 @@ const organizationJsonLd = {
     addressLocality: "Riga",
     addressCountry: "LV",
   },
-  areaServed: ["Latvia", "Europe", "Remote"],
+  areaServed: "Worldwide",
   knowsAbout: [
     "Website design",
     "Web application development",
@@ -130,7 +130,7 @@ const websiteJsonLd = {
   url: "https://notagency.io",
   inLanguage: ["en", "ru", "lv"],
   description:
-    "Websites, web apps, MVPs and digital systems for founders and businesses in Latvia, Europe and remote.",
+    "Websites, web apps, MVPs and digital systems for founders and businesses worldwide.",
 };
 
 const serviceJsonLd = {
@@ -144,7 +144,7 @@ const serviceJsonLd = {
     addressLocality: "Riga",
     addressCountry: "LV",
   },
-  areaServed: ["Latvia", "Europe", "Remote"],
+  areaServed: "Worldwide",
   serviceType: [
     "Website design and development",
     "Web application development",

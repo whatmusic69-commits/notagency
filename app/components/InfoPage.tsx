@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "../lib/language";
+
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { SiteFooter } from "./SiteFooter";
@@ -84,7 +86,7 @@ export function InfoPage({
       {page.contextualLink ? (
         <aside className="case-service-link">
           <span>{page.contextualLink.label}</span>
-          <a href={page.contextualLink.href}>
+          <a href={localizedHref(page.contextualLink.href, lang)}>
             {page.contextualLink.action}
             <ArrowRight size={20} />
           </a>

@@ -1,3 +1,4 @@
+import { localizedHref } from "./language";
 import type { Metadata } from "next";
 import { getProjectBySlug } from "./projects";
 import { getInitialLang, type PageWithLangProps } from "./server-language";
@@ -22,7 +23,8 @@ export async function getPageMetadata(
   const lang = await getInitialLang(searchParams);
   const seo = getSeoEntry(page, lang);
   const path = seoPaths[page];
-  const canonical = `${seoBaseUrl}${path}`;
+  const base = `${seoBaseUrl}${path}`;
+  const canonical = `${seoBaseUrl}${localizedHref(path, lang)}`;
 
   return {
     title: {
@@ -33,10 +35,10 @@ export async function getPageMetadata(
     alternates: {
       canonical,
       languages: {
-        en: canonical,
-        ru: `${canonical}?lang=ru`,
-        lv: `${canonical}?lang=lv`,
-        "x-default": canonical,
+        en: base,
+        ru: `${base}?lang=ru`,
+        lv: `${base}?lang=lv`,
+        "x-default": base,
       },
     },
     openGraph: {
@@ -68,7 +70,8 @@ export async function getProjectPageMetadata(
     return {};
   }
 
-  const canonical = `${seoBaseUrl}/portfolio/${project.slug}`;
+  const base = `${seoBaseUrl}/portfolio/${project.slug}`;
+  const canonical = `${seoBaseUrl}${localizedHref(`/portfolio/${project.slug}`, lang)}`;
 
   return {
     title: {
@@ -79,10 +82,10 @@ export async function getProjectPageMetadata(
     alternates: {
       canonical,
       languages: {
-        en: canonical,
-        ru: `${canonical}?lang=ru`,
-        lv: `${canonical}?lang=lv`,
-        "x-default": canonical,
+        en: base,
+        ru: `${base}?lang=ru`,
+        lv: `${base}?lang=lv`,
+        "x-default": base,
       },
     },
     openGraph: {

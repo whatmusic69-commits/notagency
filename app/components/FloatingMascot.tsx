@@ -1,5 +1,7 @@
 "use client";
 
+import { localizedHref } from "../lib/language";
+
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
@@ -99,9 +101,9 @@ export function FloatingMascot() {
           <X size={16} />
         </button>
         <p>{t.text}</p>
-        <a href="/contacts">{t.cta}</a>
+        <a href={localizedHref("/contacts", lang)}>{t.cta}</a>
       </div>
-      <a className="floating-mascot" href="/contacts" aria-label={t.cta}>
+      <a className="floating-mascot" href={localizedHref("/contacts", lang)} aria-label={t.cta}>
         <span className="floating-eye left" />
         <span className="floating-eye right" />
         <span className="floating-mouth" />

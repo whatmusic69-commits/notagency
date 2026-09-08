@@ -1408,7 +1408,8 @@ a {
 }
 
 .top-actions button,
-.welcome-language button {
+.welcome-language button,
+.language-menu a {
   background: var(--white);
   border: 2px solid var(--ink);
   border-radius: 7px;
@@ -1422,19 +1423,22 @@ a {
 }
 
 .top-actions button:hover,
-.welcome-language button:hover {
+.welcome-language button:hover,
+.language-menu a:hover {
   box-shadow: 2px 2px 0 var(--ink);
   transform: translate(2px, 2px);
 }
 
 .top-actions button:active,
-.welcome-language button:active {
+.welcome-language button:active,
+.language-menu a:active {
   box-shadow: 0 0 0 var(--ink);
   transform: translate(4px, 4px);
 }
 
 .top-actions button.active,
-.welcome-language button.active {
+.welcome-language button.active,
+.language-menu a.active {
   background: var(--lime);
   color: var(--ink);
 }
@@ -1473,7 +1477,16 @@ a {
   transform: translateY(0);
 }
 
-.language-menu button {
+.language-menu a {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.language-menu button,
+.language-menu a {
   min-width: 62px;
 }
 
@@ -5960,13 +5973,13 @@ a {
   }
 
   .underbpm-case .case-hero-name {
-    font-size: clamp(48px, 16vw, 68px);
-    text-shadow: 4px 4px 0 var(--pink);
+    font-size: clamp(36px, 11vw, 52px);
+    text-shadow: 3px 3px 0 var(--pink);
   }
 
   .underbpm-case .case-hero h1 {
-    font-size: clamp(34px, 10.5vw, 44px);
-    line-height: 1.06;
+    font-size: clamp(28px, 7.5vw, 34px);
+    line-height: 1.1;
   }
 
   .underbpm-case .case-narrative h2,
@@ -6380,5 +6393,54 @@ a {
     bottom: -10px;
     right: 28px;
     transform: rotate(45deg);
+  }
+}
+
+.service-text-link {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
+.web-service-page .mobile-service-hero h1 {
+  font-size: clamp(36px, 5.2vw, 74px);
+  line-height: 1.12;
+  margin-block: 32px 40px;
+  overflow-wrap: anywhere;
+}
+
+.web-service-page .mobile-service-hero-visual img {
+  height: auto;
+  object-fit: contain;
+}
+
+.web-service-page .mobile-service-build > h2 {
+  line-height: 1.12;
+  margin-block: 32px 40px;
+}
+
+.web-service-page .mobile-service-faq summary {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.web-service-page .mobile-service-faq details p {
+  padding-left: 0;
+}
+
+.web-cases-heading {
+  padding: 64px max(24px, calc((100vw - 1180px) / 2)) 0;
+}
+
+.web-cases-heading h2,
+.web-service-page .mobile-hidy-copy h3 {
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 1.08;
+}
+
+@media (max-width: 620px) {
+  .web-service-page .mobile-service-hero h1 {
+    font-size: clamp(30px, 8vw, 40px);
   }
 }

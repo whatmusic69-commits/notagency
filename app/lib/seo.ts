@@ -1,9 +1,11 @@
+import { webAppCopy } from "./web-app-development";
 import type { Lang } from "./language";
 import { getProjectBySlug } from "./projects";
 
 export type SeoPageKey =
   | "home"
   | "mobileAppDevelopment"
+  | "webAppDevelopment"
   | "about"
   | "brief"
   | "contacts"
@@ -23,6 +25,7 @@ export const seoBaseUrl = "https://notagency.io";
 
 export const seoPaths: Record<SeoPageKey, string> = {
   home: "/",
+  webAppDevelopment: "/web-app-development",
   mobileAppDevelopment: "/mobile-app-development",
   about: "/about",
   brief: "/brief",
@@ -65,23 +68,28 @@ const commonKeywords: Record<Lang, string[]> = {
 };
 
 export const seoCopy: Record<SeoPageKey, Record<Lang, SeoEntry>> = {
+  webAppDevelopment: {
+    en: { title: webAppCopy.en.title, description: webAppCopy.en.description, keywords: ["web application development", "customer portals", "marketplace development"] },
+    ru: { title: webAppCopy.ru.title, description: webAppCopy.ru.description, keywords: ["разработка веб-приложений", "личные кабинеты", "разработка маркетплейсов"] },
+    lv: { title: webAppCopy.lv.title, description: webAppCopy.lv.description, keywords: ["tīmekļa lietotņu izstrāde", "klientu portāli", "tirdzniecības platformu izstrāde"] },
+  },
   home: {
     en: {
-      title: "NotAgency - Websites, Apps and Digital Systems",
+      title: "Websites, Web Apps & MVP Development — NotAgency",
       description:
-        "NotAgency builds sharp websites, web apps, MVPs and digital systems for founders and businesses that are ready to launch properly.",
+        "Websites, web apps and MVPs for founders and businesses worldwide. Product design, development and launch directly with the NotAgency team.",
       keywords: ["websites", "web apps", "digital systems", "launch pages"],
     },
     ru: {
-      title: "NotAgency - сайты, приложения и digital-системы",
+      title: "Разработка сайтов, веб-приложений и MVP — NotAgency",
       description:
-        "NotAgency делает сильные сайты, web apps, MVP и digital-системы для бизнесов, которые готовы нормально запускаться.",
+        "Сайты, веб-приложения и MVP для предпринимателей и бизнеса по всему миру. Проектирование, разработка и запуск напрямую с командой NotAgency.",
       keywords: ["сайты", "web apps", "digital системы", "лендинги"],
     },
     lv: {
-      title: "NotAgency - mājaslapas, aplikācijas un digital sistēmas",
+      title: "Mājaslapu, tīmekļa lietotņu un MVP izstrāde — NotAgency",
       description:
-        "NotAgency būvē asas mājaslapas, web app, MVP un digital sistēmas uzņēmumiem, kas gatavi normālai palaišanai.",
+        "Mājaslapas, tīmekļa lietotnes un MVP uzņēmējiem visā pasaulē. Projektēšana, izstrāde un palaišana tiešā sadarbībā ar NotAgency komandu.",
       keywords: ["mājaslapas", "web app", "digital sistēmas", "landing lapas"],
     },
   },

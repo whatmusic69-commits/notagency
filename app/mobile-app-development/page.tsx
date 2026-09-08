@@ -1,3 +1,4 @@
+import { localizedHref } from "../lib/language";
 import { getPageMetadata } from "../lib/page-metadata";
 import { mobileAppDevelopmentCopy } from "../lib/mobile-app-development";
 import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
@@ -21,9 +22,9 @@ export default async function MobileAppDevelopmentPage({ searchParams }: PageWit
       name: "NotAgency",
       url: seoBaseUrl,
     },
-    areaServed: ["Latvia", "Europe", "Remote"],
+    areaServed: "Worldwide",
     serviceType: "Mobile app development",
-    url: `${seoBaseUrl}/mobile-app-development`,
+    url: `${seoBaseUrl}${localizedHref("/mobile-app-development", initialLang)}`,
   };
   const faqJsonLd = {
     "@context": "https://schema.org",

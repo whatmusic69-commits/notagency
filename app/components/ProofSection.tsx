@@ -1,3 +1,4 @@
+import { localizedHref } from "../lib/language";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Lang } from "../lib/language";
 
@@ -78,7 +79,7 @@ export function ProofSection({ lang }: { lang: Lang }) {
       </header>
 
       <div className="proof-grid">
-        <a className="proof-rank" href="/portfolio/hidy">
+        <a className="proof-rank" href={localizedHref("/portfolio/hidy", lang)}>
           <span className="proof-confetti" aria-hidden="true">
             {Array.from({ length: 40 }, (_, index) => <i key={index} />)}
           </span>
@@ -110,7 +111,7 @@ export function ProofSection({ lang }: { lang: Lang }) {
         <h3>{t.projectsTitle}</h3>
         <nav aria-label={t.projectsTitle}>
           {selectedProjects.map((project, index) => (
-            <a href={`/portfolio/${project.slug}`} key={project.slug}>
+            <a href={localizedHref(`/portfolio/${project.slug}`, lang)} key={project.slug}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{project.name}</strong>
               <ArrowUpRight aria-hidden="true" size={22} />
@@ -118,7 +119,7 @@ export function ProofSection({ lang }: { lang: Lang }) {
           ))}
           <a
             className="proof-projects-all"
-            href="/portfolio"
+            href={localizedHref("/portfolio", lang)}
             aria-label={t.portfolioAction}
             title={t.portfolioAction}
           >
