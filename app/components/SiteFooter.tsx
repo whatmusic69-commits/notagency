@@ -5,7 +5,7 @@ type Lang = "en" | "ru" | "lv";
 
 const footerCopy = {
   en: {
-    links: ["Web app development", "Mobile app development", "About", "Contacts", "FAQ", "Privacy Policy", "Terms"],
+    links: ["Website development", "Web app development", "Mobile app development", "About", "Contacts", "FAQ", "Privacy Policy", "Terms"],
     titleEnd: "harder.",
     titleHit: "hit",
     titleStart: "Internet should",
@@ -14,7 +14,7 @@ const footerCopy = {
     bottom: "No cheap templates were harmed. They deserved worse.",
   },
   ru: {
-    links: ["Веб-приложения", "Мобильные приложения", "О нас", "Контакты", "FAQ", "Приватность", "Условия"],
+    links: ["Разработка сайтов", "Веб-приложения", "Мобильные приложения", "О нас", "Контакты", "FAQ", "Приватность", "Условия"],
     titleEnd: "сильнее.",
     titleHit: "бить",
     titleStart: "Интернет должен",
@@ -23,7 +23,7 @@ const footerCopy = {
     bottom: "Дешевые шаблоны не пострадали. Хотя заслужили этого!",
   },
   lv: {
-    links: ["Tīmekļa lietotnes", "Mobilās lietotnes", "Par mums", "Kontakti", "FAQ", "Privātums", "Noteikumi"],
+    links: ["Mājaslapu izstrāde", "Tīmekļa lietotnes", "Mobilās lietotnes", "Par mums", "Kontakti", "FAQ", "Privātums", "Noteikumi"],
     titleEnd: "stiprāk.",
     titleHit: "jāsit",
     titleStart: "Internetam",
@@ -33,7 +33,7 @@ const footerCopy = {
   },
 };
 
-const footerHrefs = ["/web-app-development", "/mobile-app-development", "/about", "/contacts", "/faq", "/privacy", "/terms"];
+const footerHrefs = ["/website-development", "/web-app-development", "/mobile-app-development", "/about", "/contacts", "/faq", "/privacy", "/terms"];
 
 export function SiteFooter({ lang = "en" }: { lang?: Lang }) {
   const t = footerCopy[lang];

@@ -75,8 +75,8 @@
 }
 
 .mobile-service-hero h1 {
-  font-size: clamp(54px, 7.4vw, 108px);
-  line-height: 0.88;
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: 1.08;
   margin: 26px 0 30px;
   text-wrap: balance;
 }
@@ -139,19 +139,20 @@
   background: var(--black);
   color: var(--white);
   display: grid;
-  gap: 18px;
-  grid-template-columns: minmax(330px, 0.9fr) minmax(300px, 0.75fr) minmax(300px, 0.85fr);
+  gap: 32px;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
   padding: 88px max(24px, calc((100vw - 1180px) / 2));
 }
 
 .mobile-proof-rank {
   background: var(--lime);
-  border: 4px solid var(--white);
+  border: 2px solid var(--white);
   box-shadow: 9px 9px 0 var(--pink);
   color: var(--ink);
   display: grid;
-  min-height: 330px;
-  padding: 28px;
+  align-content: center;
+  min-height: 300px;
+  padding: 32px;
   position: relative;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -169,23 +170,25 @@
 }
 
 .mobile-proof-number {
+  display: inline-flex;
+  gap: 0.08em;
   font-family: var(--font-display);
-  font-size: clamp(145px, 18vw, 245px);
-  letter-spacing: -0.08em;
-  line-height: 0.7;
+  font-size: clamp(112px, 12vw, 168px);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
 }
 
 .mobile-proof-rank strong {
   font-family: var(--font-display);
-  font-size: clamp(32px, 4vw, 55px);
-  line-height: 0.9;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
   margin-top: 22px;
   text-transform: uppercase;
 }
 
 .mobile-proof-rank small {
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.06em;
   margin-top: 10px;
   text-transform: uppercase;
@@ -200,24 +203,43 @@
 
 .mobile-proof-facts {
   display: grid;
-  gap: 14px;
+  gap: 16px;
+  grid-template-rows: repeat(3, minmax(88px, auto));
+  min-width: 0;
 }
 
 .mobile-proof-facts strong {
   align-items: center;
   background: var(--cyan);
-  border: 4px solid var(--white);
+  border: 2px solid var(--white);
   color: var(--ink);
   display: flex;
-  font-family: var(--font-display);
-  font-size: clamp(21px, 2.2vw, 31px);
-  line-height: 1;
-  padding: 22px;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.7vw, 22px);
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 22px 24px;
+  text-transform: none;
 }
 
 .mobile-proof-facts strong:nth-child(2) {
   background: var(--pink);
+}
+
+.mobile-proof-facts .mobile-proof-path {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mobile-proof-path span {
+  align-items: center;
+  display: inline-flex;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.mobile-proof-path svg {
+  flex-shrink: 0;
 }
 
 .mobile-proof-facts strong:nth-child(3) {
@@ -225,13 +247,13 @@
 }
 
 .mobile-service-proof > p {
-  align-self: end;
-  border-left: 5px solid var(--lime);
-  font-size: clamp(20px, 2.3vw, 30px);
-  font-weight: 700;
-  line-height: 1.3;
+  grid-column: 1 / -1;
+  border-top: 2px solid var(--lime);
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 500;
+  line-height: 1.5;
   margin: 0;
-  padding-left: 24px;
+  padding-top: 24px;
 }
 
 .mobile-service-section,
@@ -374,7 +396,7 @@
 .mobile-service-team h2 {
   color: var(--lime);
   font-size: clamp(46px, 6.3vw, 86px);
-  line-height: 0.95;
+  line-height: 1.15;
   margin: 0;
   text-shadow: 6px 6px 0 var(--violet);
   text-wrap: balance;
@@ -383,7 +405,7 @@
 .mobile-service-team > div {
   align-self: end;
   border-top: 4px solid var(--cyan);
-  padding-top: 24px;
+  padding-top: 32px;
 }
 
 .mobile-service-team > div p {
@@ -485,6 +507,69 @@
   grid-template-columns: 42px minmax(0, 1fr);
   list-style: none;
   padding: 24px 0;
+  padding-right: 52px;
+  position: relative;
+  transition: color 180ms ease;
+}
+
+.mobile-service-faq .animated-faq-item {
+  overflow: hidden;
+  transition: border-color 220ms ease;
+}
+
+.mobile-service-faq .animated-faq-item[data-expanded="true"] {
+  border-bottom-color: var(--lime);
+}
+
+.mobile-service-faq summary:hover,
+.mobile-service-faq .animated-faq-item[data-expanded="true"] summary {
+  color: var(--lime);
+}
+
+.mobile-service-faq summary:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -3px;
+}
+
+.faq-toggle-icon {
+  position: absolute;
+  right: 4px;
+  top: 24px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid currentColor;
+  color: var(--lime);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), background-color 180ms ease, color 180ms ease;
+}
+
+.faq-toggle-icon::before,
+.faq-toggle-icon::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+  top: 12px;
+  left: 6px;
+  width: 14px;
+  height: 2px;
+}
+
+.faq-toggle-icon::after {
+  transform: rotate(90deg);
+}
+
+.animated-faq-item[data-expanded="true"] .faq-toggle-icon {
+  transform: rotate(135deg);
+  background: var(--lime);
+  color: var(--black);
+  border-color: var(--lime);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-service-faq .animated-faq-item,
+  .mobile-service-faq summary,
+  .faq-toggle-icon {
+    transition: none;
+  }
 }
 
 .mobile-service-faq summary::-webkit-details-marker {
@@ -557,7 +642,7 @@
 
   .mobile-service-proof > p {
     border-left: 0;
-    border-top: 5px solid var(--lime);
+    border-top: 2px solid var(--lime);
     grid-column: 1 / -1;
     padding: 25px 0 0;
   }
@@ -580,8 +665,8 @@
   }
 
   .mobile-service-hero h1 {
-    font-size: clamp(44px, 14vw, 66px);
-    line-height: 0.92;
+    font-size: clamp(30px, 8vw, 44px);
+    line-height: 1.08;
   }
 
   .mobile-service-hero .hero-actions {
@@ -605,11 +690,12 @@
   }
 
   .mobile-proof-rank {
-    min-height: 310px;
+    min-height: 280px;
+    padding: 28px;
   }
 
   .mobile-proof-number {
-    font-size: min(53vw, 210px);
+    font-size: clamp(112px, 35vw, 152px);
   }
 
   .mobile-service-proof > p {
@@ -6404,6 +6490,50 @@ a {
   text-underline-offset: 4px;
 }
 
+.web-service-page .service-text-link {
+  background: var(--lime);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  gap: 20px;
+  justify-content: space-between;
+  line-height: 1.5;
+  max-width: 100%;
+  min-height: 56px;
+  padding: 20px 24px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.web-service-page .service-text-link svg {
+  flex-shrink: 0;
+  height: 24px;
+  width: 24px;
+}
+
+.web-service-page .service-text-link:hover {
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(3px, 3px);
+}
+
+.web-service-page .service-text-link:active {
+  box-shadow: none;
+  transform: translate(6px, 6px);
+}
+
+.web-service-page .service-text-link:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .web-service-page .service-text-link {
+    transition: none;
+  }
+}
+
 .web-service-page .mobile-service-hero h1 {
   font-size: clamp(36px, 5.2vw, 74px);
   line-height: 1.12;
@@ -6429,6 +6559,12 @@ a {
   padding-left: 0;
 }
 
+.web-service-page .mobile-service-cta h2 {
+  line-height: 1.12;
+  margin-bottom: clamp(32px, 5vw, 56px);
+  text-wrap: balance;
+}
+
 .web-cases-heading {
   padding: 64px max(24px, calc((100vw - 1180px) / 2)) 0;
 }
@@ -6442,5 +6578,205 @@ a {
 @media (max-width: 620px) {
   .web-service-page .mobile-service-hero h1 {
     font-size: clamp(30px, 8vw, 40px);
+  }
+}
+
+.split-merge-case {
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: clip;
+}
+
+.split-merge-case .case-hero-name {
+  color: var(--orange);
+  font-size: clamp(40px, 8.5vw, 120px);
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+}
+
+.split-merge-case .case-hero h1 {
+  font-size: clamp(32px, 5.2vw, 74px);
+  line-height: 1.15;
+  margin-block: 32px;
+}
+
+.split-merge-case .case-hero .hero-actions {
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.split-merge-case .case-hero-visual img {
+  height: auto;
+  object-fit: contain;
+  box-shadow: 10px 10px 0 var(--orange);
+}
+
+.split-merge-case .case-result-highlight {
+  background: var(--orange);
+  color: var(--ink);
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 88px);
+}
+
+.split-merge-case .case-result-number {
+  font-size: clamp(72px, 10vw, 140px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  text-shadow: 5px 5px 0 var(--pink);
+}
+
+.split-merge-case .case-result-highlight h2 {
+  font-size: clamp(30px, 4vw, 56px);
+  line-height: 1.15;
+  margin-bottom: 28px;
+}
+
+.split-merge-case .case-result-highlight p {
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .split-merge-case .case-result-highlight {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+}
+
+.split-merge-case .case-narrative h2,
+.split-merge-case .case-section > h2,
+.split-merge-case .case-cta h2 {
+  line-height: 1.15;
+}
+
+.split-merge-case .case-narrative > div {
+  margin-top: 36px;
+}
+
+.split-merge-case .case-process ol {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.split-merge-case .case-process li {
+  min-width: 0;
+  min-height: 220px;
+}
+
+.split-merge-case .case-process li + li {
+  border-left: 3px solid var(--ink);
+}
+
+.split-merge-case .case-process h3 {
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  margin: 24px 0 18px;
+}
+
+@media (max-width: 620px) {
+  .split-merge-case .case-process ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Service pages and Split & Merge use a readable scale in every locale.
+   Size text for its column, rather than inheriting oversized display headings. */
+:is(.web-service-page, .split-merge-case) :is(h1, h2, h3) {
+  min-width: 0;
+  max-width: 100%;
+  letter-spacing: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.web-service-page .mobile-service-hero h1,
+.split-merge-case .case-hero h1 {
+  font-size: clamp(30px, 3.8vw, 54px);
+  line-height: 1.2;
+  margin-block: 28px 36px;
+}
+
+.web-service-page .mobile-service-section > h2,
+.web-service-page .mobile-service-process > h2,
+.web-service-page .mobile-service-faq h2,
+.web-service-page .mobile-service-team h2,
+.web-service-page .web-cases-heading h2,
+.split-merge-case .case-narrative h2,
+.split-merge-case .case-section > h2,
+.split-merge-case .case-result-highlight h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.25;
+}
+
+.web-service-page .mobile-service-team h2 {
+  text-shadow: 3px 3px 0 var(--violet);
+}
+
+.web-service-page .mobile-service-cta h2,
+.split-merge-case .case-cta h2 {
+  font-size: clamp(30px, 4vw, 56px);
+  line-height: 1.25;
+  margin-bottom: 36px;
+}
+
+.web-service-page .mobile-service-card-grid h3,
+.web-service-page .mobile-service-process h3,
+.split-merge-case .case-feature-grid h3,
+.split-merge-case .case-process h3 {
+  font-size: clamp(20px, 1.8vw, 25px);
+  line-height: 1.3;
+  margin-block: 24px 18px;
+}
+
+.web-service-page .mobile-hidy-copy h3 {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.25;
+  margin-block: 24px;
+}
+
+.web-service-page .mobile-service-faq summary strong {
+  font-size: clamp(18px, 1.7vw, 23px);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.web-service-page :is(.mobile-service-hero-copy, .mobile-service-team > *, .mobile-service-faq > *, .mobile-service-card-grid article, .mobile-service-process li),
+.split-merge-case :is(.case-narrative, .case-feature-grid article, .case-result-highlight > *, .case-meta > *) {
+  min-width: 0;
+}
+
+.web-service-page .mobile-service-process ol {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.split-merge-case .case-feature-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.split-merge-case .case-meta dd {
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+@media (max-width: 960px) {
+  .web-service-page .mobile-service-team,
+  .web-service-page .mobile-service-faq {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 620px) {
+  .web-service-page .mobile-service-process ol,
+  .web-service-page .mobile-service-card-grid,
+  .split-merge-case .case-feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .split-merge-case .case-hero-name {
+    font-size: clamp(30px, 8vw, 48px);
+    letter-spacing: normal;
+    line-height: 1.2;
+    text-shadow: 3px 3px 0 var(--ink);
   }
 }

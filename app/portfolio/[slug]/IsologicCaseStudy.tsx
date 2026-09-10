@@ -14,7 +14,7 @@ import {
   ResultHighlight,
 } from "../../components/case-study/CaseStudyBlocks";
 import { isologicCaseStudyCopy } from "../../lib/isologic-case-study";
-import { type Lang, storeLang } from "../../lib/language";
+import { type Lang, storeLang, localizedHref } from "../../lib/language";
 
 export default function IsologicCaseStudy({ initialLang }: { initialLang: Lang }) {
   const [lang, setLang] = useState(initialLang);
@@ -64,6 +64,11 @@ export default function IsologicCaseStudy({ initialLang }: { initialLang: Lang }
         </div>
       </section>
 
+      <section className="case-section">
+        <a className="service-text-link" href={localizedHref("/website-development", lang)}>
+          {{ en: "Website development: scope, process and handover", ru: "Разработка сайтов: состав работ, процесс и передача", lv: "Mājaslapu izstrāde: apjoms, process un nodošana" }[lang]}
+        </a>
+      </section>
       <CaseStudyCTA lang={lang} copy={t.cta} />
       <SiteFooter lang={lang} />
     </main>

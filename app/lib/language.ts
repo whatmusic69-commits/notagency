@@ -1,3 +1,5 @@
+import { siteUrl } from "./site-url";
+
 export type Lang = "en" | "ru" | "lv";
 
 export const defaultLang: Lang = "en";
@@ -11,7 +13,7 @@ export function isLang(value: string | null): value is Lang {
 
 export function localizedHref(href: string, lang: Lang): string {
   if (!href.startsWith("/") || href.startsWith("//")) return href;
-  const url = new URL(href, "https://notagency.io");
+  const url = new URL(href, siteUrl);
   if (lang === defaultLang) url.searchParams.delete("lang");
   else url.searchParams.set("lang", lang);
   return `${url.pathname}${url.search}${url.hash}`;

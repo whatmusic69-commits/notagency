@@ -14,7 +14,7 @@ export const webAppCopy: Record<Lang, Copy> = {
   en: {
     title: "Web Application Development Studio — NotAgency",
     description: "Custom web apps, customer portals and marketplaces for businesses worldwide. Product design, development and launch directly with the NotAgency team.",
-    heading: "Complex workflows. Usable products.",
+    heading: "Web apps for business. Built around you.",
     intro: "We design and build web applications around how your business works — from customer portals to marketplaces and connected payment flows. Based in Riga. Working worldwide.",
     action: "Discuss your web app", work: "Explore the case study", buildTitle: "What does your product need to do?",
     build: [
@@ -48,7 +48,7 @@ export const webAppCopy: Record<Lang, Copy> = {
   ru: {
     title: "Разработка веб-приложений для бизнеса — NotAgency",
     description: "Веб-приложения, личные кабинеты и маркетплейсы для бизнеса по всему миру. Проектирование, разработка и запуск напрямую с командой NotAgency.",
-    heading: "Сложные процессы. Понятные продукты.",
+    heading: "Веб-приложения для бизнеса. Под ваши задачи.",
     intro: "Проектируем и разрабатываем веб-приложения под задачи бизнеса: личные кабинеты, маркетплейсы и платёжные сервисы. Мы в Риге, наши клиенты — по всему миру.",
     action: "Обсудить веб-приложение", work: "Посмотреть кейс", buildTitle: "Что должен делать ваш продукт?",
     build: [
@@ -82,7 +82,7 @@ export const webAppCopy: Record<Lang, Copy> = {
   lv: {
     title: "Tīmekļa lietotņu izstrāde uzņēmumiem — NotAgency",
     description: "Individuālas tīmekļa lietotnes, klientu portāli un tirdzniecības platformas uzņēmumiem visā pasaulē. No projektēšanas līdz palaišanai ar NotAgency.",
-    heading: "Sarežģīti procesi. Ērti produkti.",
+    heading: "Tīmekļa lietotnes biznesam. Jūsu vajadzībām.",
     intro: "Projektējam un izstrādājam tīmekļa lietotnes jūsu biznesa vajadzībām: klientu portālus, tirdzniecības platformas un maksājumu risinājumus. Strādājam no Rīgas ar klientiem visā pasaulē.",
     action: "Apspriest tīmekļa lietotni", work: "Apskatīt projektu", buildTitle: "Kas jūsu produktam ir jāpaveic?",
     build: [

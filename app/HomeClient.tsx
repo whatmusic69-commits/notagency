@@ -96,7 +96,7 @@ const copy = {
     glitchTitle: "404. Такой сайт ты получишь у дешевых фрилансеров.",
     glitchText:
       "Кривые блоки, мертвые кнопки, логотип в PNG и фраза «почти готово» три недели подряд.",
-    normalTitle: "Ваш новый сайт. Приложение. Преимущество.",
+    normalTitle: "Разрабатываем сайты. Приложения. MVP.",
     normalText:
       "Проектируем и разрабатываем сайты, веб-приложения и MVP для предпринимателей и бизнеса по всему миру. Напрямую с разработчиками, которые запускают ваш продукт.",
     cta: "Заполнить бриф",
@@ -195,7 +195,7 @@ const copy = {
     glitchTitle: "404. Tā izskatīsies tava lapa pie lētiem freelanceriem.",
     glitchText:
       "Šķībi bloki, mirušas pogas, PNG logo un frāze 'gandrīz gatavs' trīs nedēļas pēc kārtas.",
-    normalTitle: "Jūsu jaunā mājaslapa. Lietotne. Priekšrocība.",
+    normalTitle: "Izstrādājam mājaslapas. Lietotnes. MVP.",
     normalText:
       "Projektējam un izstrādājam mājaslapas, tīmekļa lietotnes un MVP uzņēmējiem visā pasaulē. Sadarbojieties tieši ar izstrādātājiem, kuri īsteno jūsu produktu.",
     cta: "Aizpildīt briefu",
@@ -294,7 +294,7 @@ const copy = {
     glitchTitle: "404. This is your site if cheap freelancers build it.",
     glitchText:
       "Broken layouts, dead buttons, a PNG logo and 'almost done' repeated for three weeks.",
-    normalTitle: "Your next website. App. Unfair advantage.",
+    normalTitle: "We build websites. Apps. MVPs.",
     normalText:
       "We design and build websites, web apps and MVPs for founders and businesses worldwide. Work directly with the developers who ship your product.",
     cta: "Fill the brief",
@@ -792,6 +792,9 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
               <p className="kicker">SYSTEM / CHAOS</p>
               <h2>{t.servicesTitle}</h2>
               <p>{t.servicesSub}</p>
+              <a className="service-text-link" href={localizedHref("/website-development", lang)}>
+                {{ en: "Explore website development", ru: "Разработка сайтов для бизнеса", lv: "Mājaslapu izstrāde uzņēmumiem" }[lang]} <ArrowRight size={18} />
+              </a>
             </div>
             <div className="service-grid">
               {t.services.map((service, index) => {

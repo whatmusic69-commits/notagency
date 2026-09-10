@@ -1,3 +1,4 @@
+import { AnimatedFAQItem } from "./AnimatedFAQItem";
 import type { Lang } from "../../lib/language";
 import { localizedHref } from "../../lib/language";
 import { ArrowRight } from "lucide-react";
@@ -7,14 +8,21 @@ export function ServiceProof({ copy, lang }: { lang: Lang; copy: MobileAppDevelo
   return (
     <section className="mobile-service-proof" aria-labelledby="mobile-proof-title">
       <a className="mobile-proof-rank" href={localizedHref("/portfolio/hidy", lang)}>
-        <span className="mobile-proof-number">#4</span>
+        <span className="mobile-proof-number"><span>#</span><span>4</span></span>
         <strong id="mobile-proof-title">{copy.appStore}</strong>
         <small>{copy.context}</small>
         <ArrowRight aria-hidden="true" size={28} />
       </a>
       <div className="mobile-proof-facts">
         <strong>{copy.platforms}</strong>
-        <strong>{copy.path}</strong>
+        <strong className="mobile-proof-path">
+          {copy.path.split(" → ").map((step, index) => (
+            <span key={step}>
+              {index > 0 && <ArrowRight size={16} aria-hidden="true" />}
+              {step}
+            </span>
+          ))}
+        </strong>
         <strong>{copy.live}</strong>
       </div>
       <p>{copy.text}</p>
@@ -83,13 +91,12 @@ export function ServiceFAQ({ copy }: { copy: MobileAppDevelopmentCopy["faq"] }) 
       </header>
       <div>
         {copy.items.map((item, index) => (
-          <details key={item.question}>
-            <summary>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{item.question}</strong>
-            </summary>
-            <p>{item.answer}</p>
-          </details>
+          <AnimatedFAQItem
+            key={item.question}
+            question={item.question}
+            answer={item.answer}
+            number={String(index + 1).padStart(2, "0")}
+          />
         ))}
       </div>
     </section>

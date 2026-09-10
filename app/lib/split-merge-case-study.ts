@@ -1,0 +1,70 @@
+import type { Lang } from "./language";
+import type { CaseStudyCopy } from "./hidy-case-study";
+
+type SplitMergeCopy = Pick<CaseStudyCopy, "kicker" | "headline" | "meta" | "result" | "problem" | "solution" | "builtTitle" | "features" | "processTitle" | "process" | "cta"> & { store: string; service: string };
+
+export const splitMergeCaseStudyCopy: Record<Lang, SplitMergeCopy> = {
+  ru: {
+    kicker: "Портфолио / Мобильная головоломка",
+    headline: "Разделяй. Объединяй. Прокачивай.",
+    meta: [{ label: "Продукт", value: "Мобильная головоломка" }, { label: "Механика", value: "Разделение / Объединение" }, { label: "Работа", value: "Геймдизайн / Разработка / Монетизация" }, { label: "Релиз", value: "iOS / App Store" }],
+    result: { mark: "iOS", label: "От механики до App Store", text: "Полный путь разработки: игровое поле, визуальный стиль, улучшения, рекламная монетизация и публикация iOS-версии." },
+    problem: { title: "Отправная точка", paragraphs: ["В основе — знакомая по 2048 логика объединения чисел. Задача состояла в том, чтобы развить её в самостоятельную мобильную игру со своим характером.", "Нужно было связать базовую механику с прогрессом, улучшениями и полноценным выпуском в магазине приложений."] },
+    solution: { title: "Что мы сделали", paragraphs: ["Добавили разделение и объединение, прокачку и систему улучшений. Игровое поле и развитие игрока стали частями одного продукта.", "Собрали яркий визуальный стиль в духе NotAgency, подключили рекламную монетизацию и прошли путь от iOS-сборки до ревью и релиза в App Store."] },
+    builtTitle: "Что внутри игры",
+    features: [
+      { title: "Разделение и объединение", text: "Развили знакомую числовую механику через два связанных действия на игровом поле." },
+      { title: "Прогресс и улучшения", text: "Добавили прокачку и систему улучшений поверх основной головоломки." },
+      { title: "Визуальный характер", text: "Яркий интерфейс и выразительный стиль, близкий к характеру NotAgency." },
+      { title: "Рекламная монетизация", text: "Подключили рекламу как часть готового мобильного продукта." },
+      { title: "iOS-сборка", text: "Подготовили игру к публикации на iOS." },
+      { title: "Публикация", text: "Прошли настройку аккаунта, подготовку билдов, ревью и релиз в App Store." },
+    ],
+    processTitle: "Путь до релиза",
+    process: [{ title: "Механика", text: "Разделение, объединение и основа игрового процесса." }, { title: "Развитие", text: "Прогресс, улучшения и визуальный стиль." }, { title: "Монетизация", text: "Подключение рекламы и подготовка мобильной сборки." }, { title: "Релиз", text: "Настройки App Store, отправка на ревью и публикация." }],
+    store: "Открыть в App Store", service: "Разработка мобильных приложений",
+    cta: { title: "Есть идея мобильной игры?", text: "Расскажите об основной механике и о том, какой должна стать первая версия.", action: "Обсудить проект" },
+  },
+  en: {
+    kicker: "Portfolio / Mobile puzzle game",
+    headline: "Split. Merge. Level up.",
+    meta: [{ label: "Product", value: "Mobile puzzle game" }, { label: "Mechanic", value: "Split / Merge" }, { label: "Work", value: "Game design / Development / Monetization" }, { label: "Release", value: "iOS / App Store" }],
+    result: { mark: "iOS", label: "From mechanic to App Store", text: "The complete development path: game board, visual identity, upgrades, ad monetization and publication of the iOS version." },
+    problem: { title: "The starting point", paragraphs: ["The starting point was the number-merging logic familiar to 2048 players. The task was to develop it into a standalone mobile game with its own character.", "The core mechanic needed progression, upgrades and a complete route to an app store release."] },
+    solution: { title: "What we built", paragraphs: ["We added splitting and merging, progression and an upgrade system. The puzzle board and player development became parts of one product.", "We created a bright visual style close to NotAgency's character, implemented ad monetization and took the iOS build through review and App Store release."] },
+    builtTitle: "Inside the game",
+    features: [
+      { title: "Split & merge", text: "Expanded the familiar number puzzle through two connected actions on the game board." },
+      { title: "Progression & upgrades", text: "Added progression and an upgrade system around the core puzzle." },
+      { title: "Visual character", text: "A bright interface and expressive style close to NotAgency's identity." },
+      { title: "Ad monetization", text: "Integrated advertising as part of the finished mobile product." },
+      { title: "iOS build", text: "Prepared the game for publication on iOS." },
+      { title: "Publication", text: "Handled account configuration, builds, review and release in the App Store." },
+    ],
+    processTitle: "The route to release",
+    process: [{ title: "Mechanic", text: "Splitting, merging and the core gameplay." }, { title: "Progression", text: "Upgrades, progression and visual identity." }, { title: "Monetization", text: "Ad integration and preparation of the mobile build." }, { title: "Release", text: "App Store configuration, submission for review and publication." }],
+    store: "View on the App Store", service: "Mobile app development",
+    cta: { title: "Have a mobile game idea?", text: "Tell us about the core mechanic and what the first version should do.", action: "Discuss your project" },
+  },
+  lv: {
+    kicker: "Portfolio / Mobilā loģikas spēle",
+    headline: "Sadali. Apvieno. Attīsties.",
+    meta: [{ label: "Produkts", value: "Mobilā loģikas spēle" }, { label: "Mehānika", value: "Dalīšana / Apvienošana" }, { label: "Darbs", value: "Spēles dizains / Izstrāde / Monetizācija" }, { label: "Izlaišana", value: "iOS / App Store" }],
+    result: { mark: "iOS", label: "No mehānikas līdz App Store", text: "Pilns izstrādes ceļš: spēles laukums, vizuālais stils, uzlabojumi, reklāmu monetizācija un iOS versijas publicēšana." },
+    problem: { title: "Sākuma punkts", paragraphs: ["Pamatā bija 2048 spēlētājiem pazīstamā skaitļu apvienošanas loģika. Uzdevums bija attīstīt to par patstāvīgu mobilo spēli ar savu raksturu.", "Pamata mehānika bija jāsaista ar progresu, uzlabojumiem un pilnu ceļu līdz publicēšanai lietotņu veikalā."] },
+    solution: { title: "Ko izveidojām", paragraphs: ["Pievienojām dalīšanu un apvienošanu, progresu un uzlabojumu sistēmu. Spēles laukums un spēlētāja attīstība kļuva par viena produkta daļām.", "Izveidojām spilgtu vizuālo stilu NotAgency garā, pieslēdzām reklāmu monetizāciju un izgājām ceļu no iOS būvējuma līdz pārskatīšanai un izlaišanai App Store."] },
+    builtTitle: "Kas ir spēlē",
+    features: [
+      { title: "Dalīšana un apvienošana", text: "Paplašinājām pazīstamo skaitļu mehāniku ar divām saistītām darbībām spēles laukumā." },
+      { title: "Progress un uzlabojumi", text: "Papildinājām pamata loģikas spēli ar progresu un uzlabojumu sistēmu." },
+      { title: "Vizuālais raksturs", text: "Spilgta saskarne un izteiksmīgs stils, kas tuvs NotAgency identitātei." },
+      { title: "Reklāmu monetizācija", text: "Integrējām reklāmas kā gatavā mobilā produkta daļu." },
+      { title: "iOS būvējums", text: "Sagatavojām spēli publicēšanai iOS platformā." },
+      { title: "Publicēšana", text: "Veicām konta konfigurēšanu, būvējumu sagatavošanu, pārskatīšanu un izlaišanu App Store." },
+    ],
+    processTitle: "Ceļš līdz izlaišanai",
+    process: [{ title: "Mehānika", text: "Dalīšana, apvienošana un spēles pamats." }, { title: "Attīstība", text: "Progress, uzlabojumi un vizuālais stils." }, { title: "Monetizācija", text: "Reklāmu integrācija un mobilā būvējuma sagatavošana." }, { title: "Izlaišana", text: "App Store iestatījumi, iesniegšana pārskatīšanai un publicēšana." }],
+    store: "Apskatīt App Store", service: "Mobilo lietotņu izstrāde",
+    cta: { title: "Ir mobilās spēles ideja?", text: "Pastāstiet par galveno mehāniku un to, ko jāspēj pirmajai versijai.", action: "Apspriest projektu" },
+  },
+};

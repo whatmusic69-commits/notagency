@@ -10,6 +10,7 @@ import IsologicCaseStudy from "./IsologicCaseStudy";
 import UnderbpmCaseStudy from "./UnderbpmCaseStudy";
 import CoinerHeroCaseStudy from "./CoinerHeroCaseStudy";
 import JoolpayCaseStudy from "./JoolpayCaseStudy";
+import SplitMergeCaseStudy from "./SplitMergeCaseStudy";
 
 type ProjectPageProps = PageWithLangProps & {
   params: Promise<{
@@ -85,6 +86,15 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     ],
   };
   const structuredData = [projectJsonLd, breadcrumbJsonLd];
+
+  if (project.slug === "split-merge") {
+    return (
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+        <SplitMergeCaseStudy initialLang={initialLang} />
+      </>
+    );
+  }
 
   if (project.slug === "hidy") {
     return (

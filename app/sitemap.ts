@@ -3,14 +3,17 @@ import type { MetadataRoute } from "next";
 import { projects } from "./lib/projects";
 import { seoBaseUrl } from "./lib/seo";
 
-const lastModified = new Date("2026-05-25");
+// Update per page only after a substantive content change, never on each build.
+// Omit lastModified when the date cannot be verified.
 const routes: Array<{
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
   path: string;
   priority: number;
+  lastModified?: string;
 }> = [
-  { path: "/", changeFrequency: "weekly", priority: 1 },
-  { path: "/web-app-development", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/", changeFrequency: "weekly", priority: 1, lastModified: "2026-09-09" },
+  { path: "/website-development", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-09-09" },
+  { path: "/web-app-development", changeFrequency: "monthly", priority: 0.9, lastModified: "2026-09-09" },
   { path: "/portfolio", changeFrequency: "weekly", priority: 0.9 },
   { path: "/mobile-app-development", changeFrequency: "monthly", priority: 0.9 },
   { path: "/brief", changeFrequency: "monthly", priority: 0.85 },
@@ -23,7 +26,7 @@ const routes: Array<{
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const mainRoutes = routes.map(({ path, changeFrequency, priority }) => ({
+  const mainRoutes = routes.map(({ path, changeFrequency, priority, lastModified }) => ({
     url: `${seoBaseUrl}${path}`,
     lastModified,
     changeFrequency,
@@ -43,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return {
       url: `${seoBaseUrl}${path}`,
-      lastModified,
+      lastModified: project.slug === "split-merge" ? "2026-09-09" : undefined,
       changeFrequency: "monthly" as const,
       priority: 0.76,
       images: project.modalImage ? [`${seoBaseUrl}${project.modalImage.src.replaceAll("&", "%26")}`] : undefined,

@@ -6,23 +6,22 @@ import { SiteFooter } from "../components/SiteFooter";
 import { localizedHref } from "../lib/language";
 import { getPageMetadata } from "../lib/page-metadata";
 import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
-import { webAppCopy } from "../lib/web-app-development";
+import { websiteCopy } from "../lib/website-development";
 import { seoBaseUrl } from "../lib/seo";
-import underbpm from "../src/underbpm 1-web.webp";
-import joolpay from "../src/Joolpay2-web.webp";
+import isologic from "../src/isologic-website.webp";
 
 export function generateMetadata({ searchParams }: PageWithLangProps) {
-  return getPageMetadata("webAppDevelopment", searchParams);
+  return getPageMetadata("websiteDevelopment", searchParams);
 }
 
-export default async function WebAppDevelopmentPage({ searchParams }: PageWithLangProps) {
+export default async function WebsiteDevelopmentPage({ searchParams }: PageWithLangProps) {
   const lang = await getInitialLang(searchParams);
-  const t = webAppCopy[lang];
+  const t = websiteCopy[lang];
   const schema = {
     "@context": "https://schema.org", "@type": "Service",
     name: t.title, description: t.description, areaServed: "Worldwide",
-    serviceType: "Web application development",
-    url: `${seoBaseUrl}${localizedHref("/web-app-development", lang)}`,
+    serviceType: "Website design and development",
+    url: `${seoBaseUrl}${localizedHref("/website-development", lang)}`,
     provider: { "@type": "Organization", name: "NotAgency", url: seoBaseUrl },
   };
   return (
@@ -41,8 +40,8 @@ export default async function WebAppDevelopmentPage({ searchParams }: PageWithLa
           </div>
         </div>
         <figure className="mobile-service-hero-visual">
-          <Image src={underbpm} alt={t.cases[0].alt} placeholder="blur" priority unoptimized sizes="(max-width: 920px) 100vw, 54vw" />
-          <figcaption>UNDERBPM</figcaption>
+          <Image src={isologic} alt={t.imageAlt} placeholder="blur" priority unoptimized sizes="(max-width: 920px) 100vw, 54vw" />
+          <figcaption>ISOLOGIC</figcaption>
         </figure>
       </header>
       <section className="mobile-service-section mobile-service-build">
@@ -51,23 +50,24 @@ export default async function WebAppDevelopmentPage({ searchParams }: PageWithLa
       </section>
       <section id="web-cases" aria-labelledby="web-cases-title">
         <div className="web-cases-heading"><h2 id="web-cases-title">{t.casesTitle}</h2></div>
-        {t.cases.map((item, index) => (
-          <article className="mobile-hidy-spotlight" key={item.slug}>
-            <div className="mobile-hidy-copy">
-              <p className="kicker">{item.name}</p><h3>{item.name}</h3><p>{item.text}</p>
-              <a className="primary" href={localizedHref(`/portfolio/${item.slug}`, lang)}>{t.work}<ArrowRight size={21} /></a>
-            </div>
-            <figure><Image src={index === 0 ? underbpm : joolpay} alt={item.alt} placeholder="blur" loading="eager" unoptimized sizes="(max-width: 920px) 100vw, 52vw" /></figure>
-          </article>
-        ))}
+        <article className="mobile-hidy-spotlight">
+          <div className="mobile-hidy-copy">
+            <p className="kicker">Company website / CMS</p>
+            <h3>ISOLOGIC</h3>
+            <p>{t.caseText}</p>
+            <a className="primary" href={localizedHref("/portfolio/isologic", lang)}>{t.work}<ArrowRight size={21} /></a>
+          </div>
+          <figure><Image src={isologic} alt={t.imageAlt} placeholder="blur" loading="eager" unoptimized sizes="(max-width: 920px) 100vw, 52vw" /></figure>
+        </article>
       </section>
       <section className="mobile-service-process">
         <h2>{t.processTitle}</h2>
         <ol>{t.steps.map((step, index) => <li key={step.title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol>
       </section>
-      <section className="mobile-service-team"><h2>{t.teamTitle}</h2><div><p>{t.team}</p></div></section>
+      <section className="mobile-service-team"><h2>{t.handoverTitle}</h2><div><p>{t.handover}</p></div></section>
       <section className="mobile-service-faq"><header><h2>{t.faqTitle}</h2></header><div>{t.faq.map((item) => <AnimatedFAQItem key={item.question} question={item.question} answer={item.answer} />)}</div></section>
       <section className="mobile-service-cta"><h2>{t.cta}</h2><a className="primary" href={localizedHref("/brief", lang)}>{t.action}<ArrowRight size={22} /></a></section>
+      <section className="mobile-service-section"><a className="service-text-link" href={localizedHref("/web-app-development", lang)}>{t.appLink}<ArrowRight size={18} /></a></section>
       <SiteFooter lang={lang} />
     </main>
   );

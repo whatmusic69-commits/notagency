@@ -1,8 +1,11 @@
+import { websiteCopy } from "./website-development";
 import { webAppCopy } from "./web-app-development";
 import type { Lang } from "./language";
 import { getProjectBySlug } from "./projects";
+import { siteUrl } from "./site-url";
 
 export type SeoPageKey =
+  | "websiteDevelopment"
   | "home"
   | "mobileAppDevelopment"
   | "webAppDevelopment"
@@ -21,9 +24,10 @@ export type SeoEntry = {
   title: string;
 };
 
-export const seoBaseUrl = "https://notagency.io";
+export const seoBaseUrl = siteUrl;
 
 export const seoPaths: Record<SeoPageKey, string> = {
+  websiteDevelopment: "/website-development",
   home: "/",
   webAppDevelopment: "/web-app-development",
   mobileAppDevelopment: "/mobile-app-development",
@@ -68,6 +72,11 @@ const commonKeywords: Record<Lang, string[]> = {
 };
 
 export const seoCopy: Record<SeoPageKey, Record<Lang, SeoEntry>> = {
+  websiteDevelopment: {
+    en: { title: websiteCopy.en.title, description: websiteCopy.en.description, keywords: ["website development", "business websites", "website design"] },
+    ru: { title: websiteCopy.ru.title, description: websiteCopy.ru.description, keywords: ["разработка сайтов", "сайты для бизнеса", "создание сайта"] },
+    lv: { title: websiteCopy.lv.title, description: websiteCopy.lv.description, keywords: ["mājaslapu izstrāde", "uzņēmumu mājaslapas"] },
+  },
   webAppDevelopment: {
     en: { title: webAppCopy.en.title, description: webAppCopy.en.description, keywords: ["web application development", "customer portals", "marketplace development"] },
     ru: { title: webAppCopy.ru.title, description: webAppCopy.ru.description, keywords: ["разработка веб-приложений", "личные кабинеты", "разработка маркетплейсов"] },

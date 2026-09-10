@@ -12,7 +12,7 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://notagency.io"),
+  metadataBase: new URL(seoBaseUrl),
   title: {
     default: "NotAgency - Websites, Apps and Digital Systems",
     template: "%s | NotAgency",
@@ -106,7 +106,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "NotAgency",
   alternateName: ["Not Agency", "NotAgency Riga"],
-  url: "https://notagency.io",
+  url: seoBaseUrl,
   email: "hello@notagency.io",
   address: {
     "@type": "PostalAddress",
@@ -127,7 +127,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "NotAgency",
-  url: "https://notagency.io",
+  url: seoBaseUrl,
   inLanguage: ["en", "ru", "lv"],
   description:
     "Websites, web apps, MVPs and digital systems for founders and businesses worldwide.",
