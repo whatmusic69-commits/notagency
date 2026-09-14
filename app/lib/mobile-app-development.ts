@@ -28,6 +28,7 @@ export type MobileAppDevelopmentCopy = {
   team: { label: string; title: string; paragraphs: string[] };
   process: { label: string; title: string; steps: ServiceStep[]; action: string };
   secondary: { label: string; title: string; text: string; action: string; imageAlt: string };
+  studio: { label: string; title: string; text: string; action: string; imageAlt: string };
   faq: { label: string; title: string; items: ServiceFaq[] };
   cta: { title: [string, string]; text: string; action: string };
 };
@@ -110,6 +111,13 @@ export const mobileAppDevelopmentCopy: Record<Lang, MobileAppDevelopmentCopy> = 
       action: "View the project",
       imageAlt: "Split & Merge mobile puzzle game screens showing gameplay, progression and upgrades.",
     },
+    studio: {
+      "label": "UNDERBPM Studio / iOS",
+      "title": "Your studio. In your pocket.",
+      "text": "An iOS companion to the UNDERBPM marketplace for beatmakers. View statistics, track sales and upload new beats for sale directly from your phone.",
+      "action": "See the case study",
+      "imageAlt": "UNDERBPM Studio with iPhone screens for the beat catalog, uploads, statistics and sales."
+},
     faq: {
       label: "Mobile app development FAQ",
       title: "Questions before the build.",
@@ -206,6 +214,13 @@ export const mobileAppDevelopmentCopy: Record<Lang, MobileAppDevelopmentCopy> = 
       action: "Смотреть проект",
       imageAlt: "Экраны мобильной puzzle-игры Split & Merge с игровым процессом, прогрессом и улучшениями.",
     },
+    studio: {
+      "label": "UNDERBPM Studio / iOS",
+      "title": "Студия в кармане.",
+      "text": "iOS-приложение для битмейкеров площадки UNDERBPM. Смотреть статистику, следить за продажами и загружать новые биты на сайт для продажи — прямо с телефона.",
+      "action": "Смотреть кейс",
+      "imageAlt": "UNDERBPM Studio: экраны каталога битов, загрузки, статистики и продаж на iPhone."
+},
     faq: {
       label: "FAQ по разработке приложений",
       title: "Вопросы до начала разработки.",
@@ -302,6 +317,13 @@ export const mobileAppDevelopmentCopy: Record<Lang, MobileAppDevelopmentCopy> = 
       action: "Skatīt projektu",
       imageAlt: "Split & Merge mobilās puzzle spēles ekrāni ar gameplay, progresu un uzlabojumiem.",
     },
+    studio: {
+      "label": "UNDERBPM Studio / iOS",
+      "title": "Studija tavā kabatā.",
+      "text": "iOS lietotne UNDERBPM platformas bītmeikeriem. Apskati statistiku, seko pārdošanas datiem un augšupielādē jaunus bītus vietnē pārdošanai tieši no telefona.",
+      "action": "Apskatīt projektu",
+      "imageAlt": "UNDERBPM Studio ar iPhone ekrāniem: bītu katalogs, augšupielāde, statistika un pārdošana."
+},
     faq: {
       label: "Mobilo lietotņu izstrādes FAQ",
       title: "Jautājumi pirms izstrādes.",

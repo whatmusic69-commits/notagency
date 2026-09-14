@@ -8,7 +8,7 @@ import { getPageMetadata } from "../lib/page-metadata";
 import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
 import { websiteCopy } from "../lib/website-development";
 import { seoBaseUrl } from "../lib/seo";
-import isologic from "../src/isologic-website.webp";
+import { isologic } from "../lib/service-images";
 
 export function generateMetadata({ searchParams }: PageWithLangProps) {
   return getPageMetadata("websiteDevelopment", searchParams);

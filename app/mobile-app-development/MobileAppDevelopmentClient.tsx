@@ -1,8 +1,11 @@
 "use client";
 
+import { appStoreLabel } from "../lib/project-links";
+import { underbpmStudioAppUrl } from "../lib/underbpm-studio-case-study";
+
 import { localizedHref } from "../lib/language";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { SiteFooter } from "../components/SiteFooter";
@@ -16,9 +19,7 @@ import {
 } from "../components/service/ServicePageBlocks";
 import { type Lang, storeLang } from "../lib/language";
 import { mobileAppDevelopmentCopy } from "../lib/mobile-app-development";
-import hidyHero from "../src/hidy 1.png";
-import hidySpotlight from "../src/hidy-case.jpg";
-import splitMergeVisual from "../src/Split&Merge.png";
+import { underbpmStudio, hidyHero, hidySpotlight, splitMerge as splitMergeVisual } from "../lib/service-images";
 
 export default function MobileAppDevelopmentClient({ initialLang }: { initialLang: Lang }) {
   const [lang, setLang] = useState(initialLang);
@@ -51,7 +52,7 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
           </div>
         </div>
         <figure className="mobile-service-hero-visual">
-          <Image src={hidyHero} alt={t.hero.imageAlt} priority sizes="(max-width: 920px) 100vw, 54vw" />
+          <Image src={hidyHero} alt={t.hero.imageAlt} placeholder="blur" priority unoptimized sizes="(max-width: 920px) 100vw, 54vw" />
           <figcaption>{t.hero.imageCaption}</figcaption>
         </figure>
       </header>
@@ -70,7 +71,7 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
           </a>
         </div>
         <figure>
-          <Image src={hidySpotlight} alt={t.hidy.imageAlt} sizes="(max-width: 920px) 100vw, 52vw" />
+          <Image src={hidySpotlight} alt={t.hidy.imageAlt} placeholder="blur" loading="eager" unoptimized sizes="(max-width: 920px) 100vw, 52vw" />
         </figure>
       </section>
 
@@ -86,7 +87,7 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
 
       <section className="mobile-secondary-work" aria-labelledby="mobile-secondary-title">
         <figure>
-          <Image src={splitMergeVisual} alt={t.secondary.imageAlt} sizes="(max-width: 920px) 100vw, 48vw" />
+          <Image src={splitMergeVisual} alt={t.secondary.imageAlt} placeholder="blur" loading="eager" unoptimized sizes="(max-width: 920px) 100vw, 48vw" />
         </figure>
         <div>
           <p className="kicker">{t.secondary.label}</p>
@@ -96,6 +97,25 @@ export default function MobileAppDevelopmentClient({ initialLang }: { initialLan
             {t.secondary.action}
             <ArrowRight size={20} />
           </a>
+        </div>
+      </section>
+
+      <section className="mobile-secondary-work mobile-studio-work" aria-labelledby="mobile-studio-title">
+        <figure>
+          <Image src={underbpmStudio} alt={t.studio.imageAlt} placeholder="blur" loading="eager" unoptimized sizes="(max-width: 920px) 100vw, 48vw" />
+        </figure>
+        <div>
+          <p className="kicker">{t.studio.label}</p>
+          <h2 id="mobile-studio-title">{t.studio.title}</h2>
+          <p>{t.studio.text}</p>
+          <div className="hero-actions">
+            <a className="primary" href={localizedHref("/portfolio/underbpm-studio", lang)}>
+              {t.studio.action}<ArrowRight size={20} aria-hidden="true" />
+            </a>
+            <a className="secondary" href={underbpmStudioAppUrl} target="_blank" rel="noreferrer">
+              {appStoreLabel[lang]}<ExternalLink size={18} aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
 

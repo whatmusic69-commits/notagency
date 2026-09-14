@@ -109,7 +109,7 @@
 
 .mobile-service-hero-visual {
   align-self: center;
-  background: var(--black);
+  background: var(--paper);
   border: 4px solid var(--ink);
   box-shadow: 12px 12px 0 var(--pink);
   margin: 0;
@@ -6799,4 +6799,16 @@ a {
   line-height: 1.2;
   margin-top: 16px;
   text-shadow: 4px 4px 0 var(--ink);
+}
+
+.mobile-studio-work {
+  background: var(--white);
+}
+
+.mobile-studio-work h2 {
+  line-height: 1.15;
+}
+
+.mobile-studio-work figure {
+  box-shadow: 10px 10px 0 var(--violet);
 }

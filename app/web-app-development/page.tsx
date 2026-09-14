@@ -8,8 +8,7 @@ import { getPageMetadata } from "../lib/page-metadata";
 import { getInitialLang, type PageWithLangProps } from "../lib/server-language";
 import { webAppCopy } from "../lib/web-app-development";
 import { seoBaseUrl } from "../lib/seo";
-import underbpm from "../src/underbpm 1-web.webp";
-import joolpay from "../src/Joolpay2-web.webp";
+import { underbpm, joolpay } from "../lib/service-images";
 
 export function generateMetadata({ searchParams }: PageWithLangProps) {
   return getPageMetadata("webAppDevelopment", searchParams);

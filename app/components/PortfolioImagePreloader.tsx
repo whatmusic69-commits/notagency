@@ -4,6 +4,14 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useState } from "react";
 import { projects } from "../lib/projects";
+import { serviceImages } from "../lib/service-images";
+
+const previewImages = Array.from(
+  new Map(
+    [...serviceImages, ...projects.flatMap((project) => project.modalImage ? [project.modalImage] : [])]
+      .map((src) => [src.src, src]),
+  ).values(),
+);
 
 const preloadDelayMs = 350;
 
@@ -24,18 +32,17 @@ export function PortfolioImagePreloader() {
 
   return (
     <div className="portfolio-image-preloader" aria-hidden="true">
-      {projects.map((project) =>
-        project.modalImage ? (
-          <Image
-            alt=""
-            key={project.name}
-            loading="eager"
-            sizes="720px"
-            src={project.modalImage}
-            unoptimized
-          />
-        ) : null,
-      )}
+      {previewImages.map((src) => (
+        <Image
+          alt=""
+          key={src.src}
+          loading="eager"
+          fetchPriority="low"
+          sizes="720px"
+          src={src}
+          unoptimized
+        />
+      ))}
     </div>
   );
 }
