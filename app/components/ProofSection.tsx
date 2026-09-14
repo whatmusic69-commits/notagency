@@ -2,6 +2,7 @@ import { localizedHref } from "../lib/language";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Lang } from "../lib/language";
 import { projects } from "../lib/projects";
+import { ProjectCounter } from "./ProjectCounter";
 
 const proofCopy = {
   en: {
@@ -95,7 +96,7 @@ export function ProofSection({ lang }: { lang: Lang }) {
 
         <div className="proof-facts">
           <article className="proof-fact proof-fact-shipped">
-            <strong>{projects.length}</strong>
+            <ProjectCounter total={projects.length} />
             <span>{t.shipped}</span>
           </article>
           <article className="proof-fact proof-fact-platforms">
