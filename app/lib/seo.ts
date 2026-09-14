@@ -203,19 +203,19 @@ export const seoCopy: Record<SeoPageKey, Record<Lang, SeoEntry>> = {
     en: {
       title: "Portfolio",
       description:
-        "Explore NotAgency work for JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM and ISOLOGIC: websites, apps, games and digital products.",
+        "Explore NotAgency work for JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM Studio, UNDERBPM and ISOLOGIC: websites, apps, games and digital products.",
       keywords: ["NotAgency portfolio", "web design portfolio", "app portfolio"],
     },
     ru: {
       title: "Портфолио",
       description:
-        "Кейсы NotAgency для JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM и ISOLOGIC: сайты, приложения, игры и digital-продукты.",
+        "Кейсы NotAgency для JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM Studio, UNDERBPM и ISOLOGIC: сайты, приложения, игры и digital-продукты.",
       keywords: ["портфолио NotAgency", "портфолио сайтов", "портфолио приложений"],
     },
     lv: {
       title: "Portfolio",
       description:
-        "NotAgency darbi JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM un ISOLOGIC: mājaslapas, aplikācijas, spēles un digital produkti.",
+        "NotAgency darbi JoolPay, HIDY, Split & Merge, Coiner Hero, UNDERBPM Studio, UNDERBPM un ISOLOGIC: mājaslapas, aplikācijas, spēles un digital produkti.",
       keywords: ["NotAgency portfolio", "mājaslapu portfolio", "aplikāciju portfolio"],
     },
   },
@@ -307,6 +307,11 @@ export function getProjectSeoEntry(slug: string, lang: Lang): SeoEntry | null {
       en: "JoolPay Fintech Platform Development Case Study — NotAgency",
       ru: "JoolPay — кейс разработки fintech-платформы | NotAgency",
       lv: "JoolPay fintech platformas izstrādes case study — NotAgency",
+    },
+    "underbpm-studio": {
+      en: "UNDERBPM Studio iOS App Case Study — NotAgency",
+      ru: "UNDERBPM Studio — кейс iOS-приложения | NotAgency",
+      lv: "UNDERBPM Studio iOS lietotnes projekts — NotAgency",
     },
     underbpm: {
       en: "UNDERBPM Music Marketplace Development Case Study — NotAgency",

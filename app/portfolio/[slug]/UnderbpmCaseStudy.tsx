@@ -91,6 +91,11 @@ export default function UnderbpmCaseStudy({ initialLang }: { initialLang: Lang }
       </section>
 
       <aside className="case-service-link">
+        <a href={localizedHref("/portfolio/underbpm-studio", lang)}>
+          {{ en: "UNDERBPM Studio — the iOS app case study", ru: "UNDERBPM Studio — кейс iOS-приложения", lv: "UNDERBPM Studio — iOS lietotnes projekts" }[lang]}
+        </a>
+      </aside>
+      <aside className="case-service-link">
         <a href={localizedHref("/web-app-development", lang)}>
           {{ en: "Planning a web product? Explore web app development", ru: "Планируете веб-продукт? Разработка веб-приложений", lv: "Plānojat tīmekļa produktu? Tīmekļa lietotņu izstrāde" }[lang]}
         </a>

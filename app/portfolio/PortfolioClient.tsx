@@ -1,5 +1,7 @@
 "use client";
 
+import { appStoreLabel, isAppStoreUrl } from "../lib/project-links";
+
 import { localizedHref } from "../lib/language";
 
 import Image from "next/image";
@@ -154,7 +156,7 @@ export default function PortfolioClient({ initialLang }: PortfolioClientProps) {
                 rel="noreferrer"
                 target="_blank"
               >
-                {t.projectLink}
+                {isAppStoreUrl(project.url) ? appStoreLabel[lang] : t.projectLink}
                 <ExternalLink size={16} />
               </a>
               <a
@@ -213,10 +215,18 @@ export default function PortfolioClient({ initialLang }: PortfolioClientProps) {
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              <a className="project-modal-link" href={selectedProject.url} rel="noreferrer" target="_blank">
-                {t.projectModalVisit}
-                <ExternalLink size={17} />
-              </a>
+              <div className="project-modal-actions">
+                {isAppStoreUrl(selectedProject.url) ? (
+                  <a className="project-modal-link" href={localizedHref(`/portfolio/${selectedProject.slug}`, lang)}>
+                    {{ en: "Read case study", ru: "Смотреть кейс", lv: "Apskatīt projektu" }[lang]}
+                    <ArrowRight size={17} aria-hidden="true" />
+                  </a>
+                ) : null}
+                <a className="project-modal-link" href={selectedProject.url} rel="noreferrer" target="_blank">
+                  {isAppStoreUrl(selectedProject.url) ? appStoreLabel[lang] : t.projectModalVisit}
+                  <ExternalLink size={17} />
+                </a>
+              </div>
             </div>
           </div>
         ) : null}

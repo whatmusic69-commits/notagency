@@ -3,7 +3,9 @@
 import { localizedHref } from "../../lib/language";
 
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { appStoreLabel } from "../../lib/project-links";
+import { getProjectBySlug } from "../../lib/projects";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import hidyVisual from "../../src/hidy 1.png";
 import hidyTopFour from "../../src/top4.jpg";
@@ -38,6 +40,9 @@ export default function HidyCaseStudy({ initialLang }: { initialLang: Lang }) {
         <div className="case-hero-name">HIDY</div>
         <h1>{t.headline}</h1>
         <p className="case-hero-description">{t.description}</p>
+        <a className="secondary" href={getProjectBySlug("hidy")!.url} target="_blank" rel="noreferrer">
+          {appStoreLabel[lang]} <ExternalLink size={18} aria-hidden="true" />
+        </a>
         <CaseStudyMeta items={t.meta} />
         <figure className="case-hero-visual">
           <Image src={hidyVisual} alt={t.imageAlt} priority sizes="100vw" />

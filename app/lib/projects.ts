@@ -1,3 +1,5 @@
+import underbpmStudioScreenshot from "../src/Undebpm Studio.png";
+import { underbpmStudioAppUrl } from "./underbpm-studio-case-study";
 import type { StaticImageData } from "next/image";
 import coinerHeroScreenshot from "../src/COINER HERO.png";
 import hidyScreenshot from "../src/hidy-case.jpg";
@@ -159,6 +161,45 @@ export const projects: Project[] = [
     modalImage: underbpmScreenshot,
     tags: ["Marketplace", "Payments", "YouTube bridge", "Subscriptions"],
   },
+{
+  "name": "UNDERBPM Studio",
+  "slug": "underbpm-studio",
+  "type": "iOS beatmaker app",
+  "url": underbpmStudioAppUrl,
+  "color": "var(--violet)",
+  "summary": {
+    "en": "A studio in your pocket: an iOS app for UNDERBPM beatmakers, with statistics, sales and beat uploads.",
+    "ru": "Студия в кармане: iOS-приложение для битмейкеров UNDERBPM со статистикой, продажами и загрузкой битов.",
+    "lv": "Studija kabatā: iOS lietotne UNDERBPM bītmeikeriem ar statistiku, pārdošanas datiem un bītu augšupielādi."
+  },
+  "details": {
+    "en": "Built a mobile companion to UNDERBPM so producers can view statistics, track sales and upload beats to the website for sale.",
+    "ru": "Разработали мобильное дополнение к UNDERBPM: просмотр статистики, отслеживание продаж и загрузка битов на сайт для продажи.",
+    "lv": "Izstrādājām UNDERBPM mobilo papildinājumu statistikas apskatei, pārdošanas uzraudzībai un bītu augšupielādei vietnē pārdošanai."
+  },
+  "seoDescription": {
+    "en": "UNDERBPM Studio case study: an iOS app for beatmakers with statistics, sales tracking and beat uploads, developed by NotAgency.",
+    "ru": "Кейс UNDERBPM Studio: iOS-приложение для битмейкеров со статистикой, продажами и загрузкой битов от NotAgency.",
+    "lv": "UNDERBPM Studio projekts: NotAgency izstrādāta iOS lietotne bītmeikeriem ar statistiku, pārdošanas datiem un bītu augšupielādi."
+  },
+  "imageAlt": {
+    "en": "UNDERBPM Studio App Store page with iPhone screens for the beat catalog, uploads, statistics, profile and sales.",
+    "ru": "Страница UNDERBPM Studio в App Store: экраны каталога битов, загрузки, статистики, профиля и продаж на iPhone.",
+    "lv": "UNDERBPM Studio App Store lapa ar iPhone ekrāniem: bītu katalogs, augšupielāde, statistika, profils un pārdošana."
+  },
+  "modalDetails": {
+    "en": "We built UNDERBPM Studio around three core actions: view statistics, check sales and upload new beats for sale. The app brings these parts of the website into a focused mobile workspace.",
+    "ru": "Мы создали UNDERBPM Studio вокруг трёх основных сценариев: посмотреть статистику, проверить продажи и загрузить новый бит для продажи. Эти возможности сайта собраны в мобильном рабочем кабинете.",
+    "lv": "Izveidojām UNDERBPM Studio ap trim galvenajām darbībām: apskatīt statistiku, pārbaudīt pārdošanas datus un augšupielādēt jaunu bītu pārdošanai. Šīs vietnes iespējas apvienojām mobilā darba vidē."
+  },
+  "modalImage": underbpmStudioScreenshot,
+  "tags": [
+    "iOS",
+    "Music",
+    "Analytics",
+    "Beat uploads"
+  ]
+},
   {
     name: "HIDY",
     slug: "hidy",

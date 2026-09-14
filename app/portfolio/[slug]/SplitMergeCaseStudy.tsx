@@ -1,3 +1,4 @@
+import { appStoreLabel } from "../../lib/project-links";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "../../components/SiteHeader";
@@ -23,7 +24,7 @@ export default function SplitMergeCaseStudy({ initialLang: lang }: { initialLang
         <p className="case-hero-description">{project.summary[lang]}</p>
         <CaseStudyMeta items={t.meta} />
         <div className="hero-actions">
-          <a className="primary" href={project.url} target="_blank" rel="noopener noreferrer">{t.store}<ArrowRight size={20} /></a>
+          <a className="primary" href={project.url} target="_blank" rel="noopener noreferrer">{appStoreLabel[lang]}<ArrowRight size={20} aria-hidden="true" /></a>
         </div>
         <figure className="case-hero-visual">
           <Image src={splitMergeVisual} alt={project.imageAlt[lang]} priority unoptimized placeholder="blur" sizes="100vw" />

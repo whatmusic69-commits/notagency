@@ -2578,6 +2578,17 @@ a {
   margin: 0;
 }
 
+.project-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.project-modal-actions .project-modal-link {
+  margin-top: 0;
+}
+
 .project-modal-link {
   align-items: center;
   background: var(--ink);
@@ -6779,4 +6790,13 @@ a {
     line-height: 1.2;
     text-shadow: 3px 3px 0 var(--ink);
   }
+}
+
+.underbpm-studio-case .case-hero-name span {
+  color: var(--violet);
+  display: block;
+  font-size: 0.65em;
+  line-height: 1.2;
+  margin-top: 16px;
+  text-shadow: 4px 4px 0 var(--ink);
 }

@@ -1,3 +1,4 @@
+import UnderbpmStudioCaseStudy from "./UnderbpmStudioCaseStudy";
 import { localizedHref } from "../../lib/language";
 import { notFound } from "next/navigation";
 import { InfoPage } from "../../components/InfoPage";
@@ -86,6 +87,15 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     ],
   };
   const structuredData = [projectJsonLd, breadcrumbJsonLd];
+
+  if (project.slug === "underbpm-studio") {
+    return (
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+        <UnderbpmStudioCaseStudy initialLang={initialLang} />
+      </>
+    );
+  }
 
   if (project.slug === "split-merge") {
     return (

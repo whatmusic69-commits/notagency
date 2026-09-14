@@ -1,5 +1,7 @@
 "use client";
 
+import { appStoreLabel, isAppStoreUrl } from "./lib/project-links";
+
 import { localizedHref } from "./lib/language";
 
 import Image from "next/image";
@@ -882,7 +884,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                     ))}
                   </div>
                   <a className="project-link" href={project.url} rel="noreferrer" target="_blank">
-                    {t.projectLink}
+                    {isAppStoreUrl(project.url) ? appStoreLabel[lang] : t.projectLink}
                     <ExternalLink size={16} />
                   </a>
                   <a
@@ -946,7 +948,7 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
                     ))}
                   </div>
                   <a className="project-modal-link" href={selectedProject.url} rel="noreferrer" target="_blank">
-                    {t.projectModalVisit}
+                    {isAppStoreUrl(selectedProject.url) ? appStoreLabel[lang] : t.projectModalVisit}
                     <ExternalLink size={17} />
                   </a>
                 </div>
