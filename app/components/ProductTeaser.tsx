@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { ArrowDownRight, Asterisk, Smile } from "lucide-react";
 import type { Lang } from "../lib/language";
-import comingSoon from "../src/comingsoon.png";
+import teaserImage from "../src/nice try.jpg";
 
 const copy = {
   en: {
@@ -70,7 +70,7 @@ export function ProductTeaser({ lang }: { lang: Lang }) {
             <Smile size={24} />
           </span>
           <span className="product-teaser-screen" aria-hidden="true">
-            <Image src={comingSoon} alt="" fill sizes="(max-width: 900px) 90vw, 560px" />
+            <Image src={teaserImage} alt="" fill sizes="(max-width: 900px) 90vw, 560px" />
             <span className="product-teaser-tint" />
             <span className="product-teaser-censor">
               <span className="product-teaser-secret">{t.secret}</span>
