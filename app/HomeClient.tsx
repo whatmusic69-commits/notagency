@@ -24,6 +24,7 @@ import {
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { ProofSection } from "./components/ProofSection";
+import { ProductTeaser } from "./components/ProductTeaser";
 import {
   PortfolioHoverMascot,
   type PortfolioMascotTarget,
@@ -955,6 +956,8 @@ export default function HomeClient({ initialLang }: HomeClientProps) {
               </div>
             ) : null}
           </section>
+
+          <ProductTeaser lang={lang} />
 
           <section className="fit-check">
             <div className="section-head">
